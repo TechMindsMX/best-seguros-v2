@@ -19,7 +19,9 @@ appender('ROLLING',RollingFileAppender){
   }
 }
 
-root(ERROR, ['STDOUT'])
+root(ERROR, ['STDOUT','ROLLING'])
+root(INFO, ['ROLLING'])
+root(DEBUG, ['ROLLING'])
 
 def targetDir = BuildSettings.TARGET_DIR
 if (Environment.isDevelopmentMode() && targetDir) {
