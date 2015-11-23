@@ -40,7 +40,9 @@ databaseChangeLog = {
     }
   }
 
-  changeSet(author: "egjimenezg (generated)", id: "1448313897241-2") {
+  changeSet(author: "egjimenezg (generated)", id: "1448313897241-2"){
     addUniqueConstraint(columnNames: "rfc", constraintName: "UC_INSURANCERFC_COL", deferrable: "false", disabled: "false", initiallyDeferred: "false", tableName: "insurance")
   }
+
+    include file: 'adding-sponsor-and-coverage-table.groovy'
 }
