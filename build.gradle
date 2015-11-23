@@ -76,6 +76,14 @@ dependencies {
     console "org.grails:grails-console"
 }
 
+sourceSets{
+  main{
+    resources{
+      srcDir 'grails-app/migrations'
+    }
+  }
+}
+
 task wrapper(type: Wrapper) {
     gradleVersion = gradleWrapperVersion
 }
