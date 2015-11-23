@@ -1,9 +1,13 @@
 import com.bestseguros.Insurance
+import com.bestseguros.Coverage
+import com.bestseguros.Sponsor
 
 class BootStrap {
 
   def init = { servletContext ->
     createInsurances()
+    createSponsors()
+    createCoverages()
   }
 
   def destroy = {
@@ -17,6 +21,36 @@ class BootStrap {
       insurances.each{ insurance ->
         insurance.save(failOnError:true)
       } 
+    }
+  }
+
+  def createSponsors(){
+    if(!Sponsor.count()){
+      def sponsor = [new Sponsor(code:"PALHIE",
+                                 name:"Palacio de hierro",
+                                 country:"México",
+                                 fiscalAddress:"Av Paseo de la Reforma 3344",
+                                 phone:"98765432",
+                                 contact:"Lic José Luis Gonzalez Esponda",
+                                 rfc:"PALA981221"),
+                     new Sponsor(code:"LIVER1", 
+                                 name:"LIVERPOOL",
+                                 country:"México",
+                                 fiscalAddress:"Av Paseo de la Reforma 1528",
+                                 phone:"57658684",
+                                 contact:"Second Sponsor",
+                                 rfc:"JIGE930831")]
+      sponsor*.save()  
+    }
+  }
+
+  def createCoverages(){
+    if(!Coverage.count()){
+      def coverages = [new Coverage(code:"000012",
+                                    name:"Beneficio de pago directo de Gastos Médicos por Accidente"),
+                       new Coverage(code:"000112",
+                                    name:"Check Up Médico Anual")]
+      coverages*.save()
     }
   }
 
