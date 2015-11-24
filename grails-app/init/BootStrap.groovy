@@ -1,6 +1,8 @@
 import com.bestseguros.Insurance
 import com.bestseguros.Coverage
 import com.bestseguros.Sponsor
+import com.bestseguros.Bank
+import com.bestseguros.Trade
 
 class BootStrap {
 
@@ -8,6 +10,8 @@ class BootStrap {
     createInsurances()
     createSponsors()
     createCoverages()
+    createBanks()
+    createTrades()
   }
 
   def destroy = {
@@ -51,6 +55,22 @@ class BootStrap {
                        new Coverage(code:"000112",
                                     name:"Check Up Médico Anual")]
       coverages*.save()
+    }
+  }
+
+  def createBanks(){
+    if(!Bank.count()){
+      def banks = [new Bank(code:"002",name:"Banamex"),
+                   new Bank(code:"106",name:"Bank of America")]
+      banks*.save()
+    }
+  }
+
+  def createTrades(){
+    if(!Trade.count()){
+      def trades = [new Trade(name:"Vida"),
+                    new Trade(name:"Salud")]
+      trades*.save()
     }
   }
 
