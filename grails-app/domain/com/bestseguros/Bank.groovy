@@ -7,7 +7,7 @@ class Bank {
 
   static constraints = {
     code blank:false
-    name blank:false,size:0.250
+    name blank:false,size:0..250
   }
 
 }

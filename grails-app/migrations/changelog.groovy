@@ -44,5 +44,6 @@ databaseChangeLog = {
     addUniqueConstraint(columnNames: "rfc", constraintName: "UC_INSURANCERFC_COL", deferrable: "false", disabled: "false", initiallyDeferred: "false", tableName: "insurance")
   }
 
-    include file: 'adding-sponsor-and-coverage-table.groovy'
+  include file: 'adding-sponsor-and-coverage-table.groovy'
+  include file: 'adding-trade-and-bank-table.groovy'
 }
