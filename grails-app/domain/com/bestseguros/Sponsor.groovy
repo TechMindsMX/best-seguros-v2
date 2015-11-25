@@ -9,6 +9,7 @@ class Sponsor {
   String phone
   String contact
   String rfc
+  static hasMany = [products:Product]
 
   static constraints = {
     code blank:false,nullable:false
