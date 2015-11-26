@@ -5,10 +5,15 @@ class Plan {
   String name
   Double insuranceCost
 
-  static hasMany = [insuredSums:InsuredSum]
+  static hasMany = [
+    coverages:Coverage,
+    benefits:Benefit,
+    insureds: InsuredType,
+    insuredSumsByCoveragePerInsured:InsuredSumPerCoveragePerInsured
+  ]
 
   static constraints = {
     name blank:false
-    insuranceCost min:0
+    insuranceCost min:0d
   }
 }
