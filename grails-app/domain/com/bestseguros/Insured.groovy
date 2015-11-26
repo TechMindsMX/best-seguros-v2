@@ -15,12 +15,13 @@ class Insured{
   String colony
   String cp
   String city
+  InsuredType insuredType
 
   static constraints = {
     name blank:false
     lastName blank:false
     motherLastName blank:false
-    rthDate blank:false
+    birthDate blank:false
     rfc blank:false
     email blank:false
     address blank:false
