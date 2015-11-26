@@ -1,7 +1,8 @@
 package com.bestseguros
 
-class BeneficiaryCoverage{
+class RangeAgeByBeneficiary{
 
+  InsuredType insuredType
   Integer minAge
   Integer maxAge
   Integer renewal
