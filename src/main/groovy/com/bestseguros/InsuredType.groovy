@@ -1,7 +1,7 @@
 package com.bestseguros
-
+// TODO:Poner code en los enums
 enum InsuredType{
-  TITULAR,
-  CONYUGUE,
-  DEPENDIENTE
+  PRINCIPAL("Titular"),
+  SPOUSE("Conyugue"),
+  CHILD("Hijo")
 }
