@@ -9,12 +9,11 @@ class Product {
   String country
   Periodicity periodicity
   Boolean iva
-
-  static belongsTo = [insurance:Insurance,
-                      sponsor:Sponsor]
+  Insurance insurance
+  Sponsor sponsor
 
   static hasMany = [plans:Plan,
-                    beneficiaryCoverages:BeneficiaryCoverage]
+                    rangesAgeByBeneficiary:RangeAgeByBeneficiary]
 
   static constraints = {
     name blank:false
