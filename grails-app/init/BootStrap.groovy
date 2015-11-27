@@ -76,7 +76,7 @@ class BootStrap {
   def createInsuredSumsForFirstProduct(){
     def coverages = Coverage.getAll(1..3)
     def prices = [700,700,1400]
-    def insuredSums = []
+    def insuredSums = [:]
 
     coverages*.save()
 
@@ -88,7 +88,7 @@ class BootStrap {
                                                            insured:insuredType)
       }
       insuredSumsByCoverage*.save()
-      insuredSums << insuredSumsByCoverage
+      insuredSums[insuredType] = insuredSumsByCoverage
     }
 
     insuredSums
@@ -130,11 +130,29 @@ class BootStrap {
                                periodicity:Periodicity.MONTHLY,
                                iva:false)
 
+    def insuredSumsByCoverage = createInsuredSumsForFirstProduct()
 
-    coverages.each{ coverage ->
 
+    def plans = [new Plan(name:"Titular",insureds:[InsuredType.PRINCIPAL]),
+                 new Plan(name:"Titular y Cónyuge",insureds:[InsuredType.PRINCIPAL,InsuredType.SPOUSE]),
+                 new Plan(name:"Titular e hijo(s)",insureds:[InsuredType.PRINCIPAL,InsuredType.CHILD]),
+                 new Plan(name:"Titular, Cónyuge e hijo(s)",insureds:[InsuredType.PRINCIPAL,InsuredType.SPOUSE,InsuredType.CHILD])]
+
+    plans.each{ plan ->
+      plan.insureds.each{ insured ->
+        insuredSumsByCoverage[insured].each{ insuredSum ->
+          plan.addToInsuredSumsByCoveragePerInsured(insuredSum)
+        }
+      }
+
+      coverages.each{ coverage ->
+        plan.addToCoverages(coverage)
+      }
+
+      plan.save()
     }
   }
+
 
   def createProducts(){
     if(!Product.count()){
