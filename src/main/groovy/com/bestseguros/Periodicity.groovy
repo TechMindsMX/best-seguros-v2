@@ -7,4 +7,10 @@ enum Periodicity{
   BIANNUAL("Semestral"),
   ANNUAL("Anual"),
   UNIQUE("Única")
+
+  final String value
+  Periodicity(String value){ this.value = value}
+
+  String getKey(){ name() }
+
 }
