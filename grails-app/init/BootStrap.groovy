@@ -15,53 +15,39 @@ class BootStrap {
   }
 
   def destroy = {
-    
+
   }
-  
+
   def createInsurances(){
-    if(!Insurance.count()){ 
-      def insurances = [new Insurance(code:"0001",name:"Aseguradora 1",country:"México",fiscalAddress:"D.F.",phone:"5523697362",contact:"Eduardo Jiménez",rfc:"ASEG21022015"),
-                      new Insurance(code:"0002",name:"Aseguradora 2",country:"México",fiscalAddress:"D.F.",phone:"5548109234",contact:"Gamaliel Jiménez",rfc:"ASEG21022016")]
+    if(!Insurance.count()){
+      def insurances = [new Insurance(name:"Pan-American México, Companía de Seguros"),
+                        new Insurance(name:"Thona")]
+
       insurances.each{ insurance ->
         insurance.save(failOnError:true)
-      } 
+      }
     }
   }
 
   def createSponsors(){
     if(!Sponsor.count()){
-      def sponsor = [new Sponsor(code:"PALHIE",
-                                 name:"Palacio de hierro",
-                                 country:"México",
-                                 fiscalAddress:"Av Paseo de la Reforma 3344",
-                                 phone:"98765432",
-                                 contact:"Lic José Luis Gonzalez Esponda",
-                                 rfc:"PALA981221"),
-                     new Sponsor(code:"LIVER1", 
-                                 name:"LIVERPOOL",
-                                 country:"México",
-                                 fiscalAddress:"Av Paseo de la Reforma 1528",
-                                 phone:"57658684",
-                                 contact:"Second Sponsor",
-                                 rfc:"JIGE930831")]
-      sponsor*.save()  
+      def sponsor = new Sponsor(name:"Default Sponsor")
+      sponsor.save()
     }
   }
 
   def createCoverages(){
     if(!Coverage.count()){
-      def coverages = [new Coverage(code:"000012",
-                                    name:"Beneficio de pago directo de Gastos Médicos por Accidente"),
-                       new Coverage(code:"000112",
-                                    name:"Check Up Médico Anual")]
+      def coverages = [new Coverage(name:"Beneficio de pago directo de Gastos Médicos por Accidente"),
+                       new Coverage(name:"Check Up Médico Anual")]
       coverages*.save()
     }
   }
 
   def createBanks(){
     if(!Bank.count()){
-      def banks = [new Bank(code:"002",name:"Banamex"),
-                   new Bank(code:"106",name:"Bank of America")]
+      def banks = [new Bank(name:"Bancomer"),
+                   new Bank(name:"Santander")]
       banks*.save()
     }
   }
