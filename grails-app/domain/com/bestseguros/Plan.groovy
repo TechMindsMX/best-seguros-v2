@@ -3,7 +3,6 @@ package com.bestseguros
 class Plan {
 
   String name
-  Double insuranceCost
 
   static hasMany = [
     coverages:Coverage,
@@ -14,6 +13,6 @@ class Plan {
 
   static constraints = {
     name blank:false
-    insuranceCost min:0d
   }
+
 }
