@@ -3,6 +3,9 @@ import com.bestseguros.Coverage
 import com.bestseguros.Sponsor
 import com.bestseguros.Bank
 import com.bestseguros.Trade
+import com.bestseguros.Plan
+import com.bestseguros.InsuredSumPerCoveragePerInsured
+import com.bestseguros.InsuredType
 
 class BootStrap {
 
@@ -12,6 +15,7 @@ class BootStrap {
     createCoverages()
     createBanks()
     createTrades()
+    createInsuredSumsPerCoveragePerInsured()
   }
 
   def destroy = {
@@ -38,8 +42,10 @@ class BootStrap {
 
   def createCoverages(){
     if(!Coverage.count()){
-      def coverages = [new Coverage(name:"Beneficio de pago directo de Gastos Médicos por Accidente"),
-                       new Coverage(name:"Check Up Médico Anual")]
+      def coverages = [new Coverage(name:"Hospitalización por enfermedad"),
+                       new Coverage(name:"Hospitalización por Embarazo (Hasta 10 días, sólo a la mujer)"),
+                       new Coverage(name:"Hospitalización por Accidente")]
+
       coverages*.save()
     }
   }
@@ -55,8 +61,25 @@ class BootStrap {
   def createTrades(){
     if(!Trade.count()){
       def trades = [new Trade(name:"Vida"),
+                    new Trade(name:"Accidentes personales"),
                     new Trade(name:"Salud")]
       trades*.save()
+    }
+  }
+
+  def createInsuredSumsPerCoveragePerInsured(){
+    if(!InsuredSumPerCoveragePerInsured.count()){
+      InsuredType.values().each{ insuredType ->
+        [new InsuredSumPerCoveragePerInsured(coverage:Coverage.get(1),
+                                             insuredSum:700,
+                                             insured:insuredType),
+         new InsuredSumPerCoveragePerInsured(coverage:Coverage.get(2),
+                                             insuredSum:700,
+                                             insured:insuredType),
+         new InsuredSumPerCoveragePerInsured(coverage:Coverage.get(3),
+                                             insuredSum:1400,
+                                             insured:insuredType)]*.save()
+      }
     }
   }
 
