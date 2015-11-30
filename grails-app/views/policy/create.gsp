@@ -4,6 +4,7 @@
     <meta name="layout" content="main" />
     <g:set var="entityName" value="${message(code: 'policy.label', default: 'Policy')}" />
     <title><g:message code="default.create.label" args="[entityName]" /></title>
+    <asset:javascript src="policy/policy_create_controller.js" />
   </head>
   <body>
     <a href="#create-policy" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
