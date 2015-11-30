@@ -2,7 +2,7 @@
   <div class="form-group">
     <label class="col-lg-2 control-label" for="product">Aseguradora</label>
     <div class="col-lg-5">
-      <g:select class="form-control" from="${insurances}" name="product" optionKey="id" optionValue="name" ></g:select>
+      <g:select class="form-control" from="${insurances}" name="insurance" optionKey="id" optionValue="name" ></g:select>
     </div>
   </div>
 
