@@ -209,6 +209,8 @@ class BootStrap {
 
       product.addToPlans(plan)
     }
+
+    product.save()
   }
 
   def createProducts(){
