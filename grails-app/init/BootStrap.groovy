@@ -96,25 +96,25 @@ class BootStrap {
   }
 
   def createInsuredSumsForSecondProduct(){
-    def coverages = [new Coverage(name:"Básica por Fallecimiento"),
-                     new Coverage(name:"Hospitalización por Enfermedad (Hasta 180 dias)"),
-                     new Coverage(name:"Hospitalización por Embarazo (Hasta 10 días,sólo a la mujer)"),
-                     new Coverage(name:"Hospitalización por Accidente (Hasta 360 días)")]
+    def coverages = Coverage.getAll(4..7)
 
     def prices = [[25000,25000,0],
                   [700,700,350],
                   [700,700,350],
                   [1400,1400,700]]
 
-    def insuredSums = []
+    def insuredSums = [:]
     coverages*.save()
 
-    coverages.eachWithIndex{ coverage, i ->
-      InsuredType.values().eachWithIndex{ insuredType, j ->
-        insuredSums << new InsuredSumPerCoveragePerInsured(coverage:coverage,
-                                                           insuredSum:prices[i][j],
-                                                           insured:insuredType)
+    InsuredType.values().eachWithIndex{ insuredType, i ->
+      def insuredSumsByCoverage = []
+      coverages.eachWithIndex{ coverage, j ->
+        insuredSumsByCoverage << new InsuredSumPerCoveragePerInsured(coverage:coverage,
+                                                                     insuredSum:prices[j][i],
+                                                                     insured:insuredType)
       }
+
+      insuredSums[insuredType] = insuredSumsByCoverage
     }
 
     insuredSums
