@@ -21,7 +21,9 @@
         <div id="navbar-collapse-1" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li>
-              <a href="#">Póliza</a>
+              <g:link controller="policy" action="create">
+                Captura de Póliza
+              </g:link>
             </li>
           </ul>
         </div>
