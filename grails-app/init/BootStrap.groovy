@@ -104,6 +104,7 @@ class BootStrap {
                   [1400,1400,700]]
 
     def insuredSums = [:]
+
     coverages*.save()
 
     InsuredType.values().eachWithIndex{ insuredType, i ->
@@ -165,13 +166,55 @@ class BootStrap {
     }
 
     product.save()
-
   }
 
+  def createSecondProduct(){
+    def coverages = Coverage.getAll(1..3)
+    def product = new Product(name:"Renta diaria por Hospitalización",
+                              trade:Trade.findByName("Vida"),
+                              coin:"MXN",
+                              country:"México",
+                              insurance:Insurance.get(2),
+                              sponsor:Sponsor.get(1),
+                              periodicity:Periodicity.MONTHLY,
+                              iva:false)
+
+    def insuredSumsByCoverage = createInsuredSumsForSecondProduct()
+    def productBenefits = [new Benefit(name:"Plan visual"),
+                           new Benefit(name:"Plan dental")]
+
+    def plans = [new Plan(name:"Titular",
+                          insureds:[InsuredType.PRINCIPAL],
+                          benefits:productBenefits),
+                 new Plan(name:"Titular y Cónyuge",
+                          insureds:[InsuredType.PRINCIPAL,InsuredType.SPOUSE],
+                          benefits:productBenefits),
+                 new Plan(name:"Titular e hijos dependientes",
+                          insureds:[InsuredType.PRINCIPAL,InsuredType.CHILD],
+                          benefits:productBenefits),
+                 new Plan(name:"Titular, cónyuge e hijos dependientes",
+                          insureds:[InsuredType.PRINCIPAL,InsuredType.SPOUSE,InsuredType.CHILD,InsuredType.CHILD],
+                          benefits:productBenefits)]
+
+    plans.each{ plan ->
+      plan.insureds.each{ insured ->
+        insuredSumsByCoverage[insured].each{ insuredSum ->
+          plan.addToInsuredSumsByCoveragePerInsured(insuredSum)
+        }
+      }
+
+      coverages.each{ coverage ->
+        plan.addToCoverages(coverage)
+      }
+
+      product.addToPlans(plan)
+    }
+  }
 
   def createProducts(){
     if(!Product.count()){
       createFirstProduct()
+      createSecondProduct()
     }
   }
 
