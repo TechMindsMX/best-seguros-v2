@@ -122,7 +122,7 @@ class BootStrap {
 
   def createFirstProduct(){
     def coverages = Coverage.getAll(1..3)
-    def products = new Product(name:"Renta diaria por Hospitalización",
+    def product = new Product(name:"Renta diaria por Hospitalización",
                                trade:Trade.findByName("Accidentes personales"),
                                coin:"MXN",
                                country:"México",
@@ -161,8 +161,11 @@ class BootStrap {
         plan.addToCoverages(coverage)
       }
 
-      plan.save()
+      product.addToPlans(plan)
     }
+
+    product.save()
+
   }
 
 
