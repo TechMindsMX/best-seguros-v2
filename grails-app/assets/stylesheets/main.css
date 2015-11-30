@@ -1,27 +1,21 @@
 /* FONT STACK */
 body,
 input, select, textarea {
-    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    line-height: 1.1;
+  line-height: 1.1;
 }
 
 /* BASE LAYOUT */
 
 html {
-    background-color: #ddd;
-    background-image: -moz-linear-gradient(center top, #aaa, #ddd);
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #aaa), color-stop(1, #ddd));
-    background-image: linear-gradient(top, #aaa, #ddd);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr = '#aaaaaa', EndColorStr = '#dddddd');
-    background-repeat: no-repeat;
-    height: 100%;
-    /* change the box model to exclude the padding from the calculation of 100% height (IE8+) */
-    -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-            box-sizing: border-box;
+  height: 100%;
+  /* change the box model to exclude the padding from the calculation of 100% height (IE8+) */
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html.no-cssgradients {
@@ -29,7 +23,7 @@ html.no-cssgradients {
 }
 
 html * {
-    margin: 0;
+  margin: 0;
 }
 
 body {
@@ -41,10 +35,6 @@ body {
        -moz-box-shadow: 0 0 0.3em #255b17;
     -webkit-box-shadow: 0 0 0.3em #255b17;
             box-shadow: 0 0 0.3em #255b17;
-}
-
-#grailsLogo {
-    background-color: #abbf78;
 }
 
 a:link, a:visited, a:hover {
@@ -81,9 +71,9 @@ img {
 }
 
 .content h1 {
-    border-bottom: 1px solid #CCCCCC;
-    margin: 0.8em 1em 0.3em;
-    padding: 0 0.25em;
+  border-bottom: 1px solid #CCCCCC;
+  margin: 0.8em 1em 0.3em;
+  padding: 0 0.25em;
 }
 
 .scaffold-list h1 {
@@ -91,13 +81,12 @@ img {
 }
 
 .footer {
-    background: #abbf78;
-    color: #000;
-    clear: both;
-    font-size: 0.8em;
-    margin-top: 1.5em;
-    padding: 1em;
-    min-height: 1em;
+  color: #000;
+  clear: both;
+  font-size: 0.8em;
+  margin-top: 1.5em;
+  padding: 1em;
+  min-height: 1em;
 }
 
 .footer a {
@@ -220,12 +209,6 @@ fieldset,
 .fieldcontain .property-value {
     display: block;
     margin-left: 27%;
-}
-
-label {
-    cursor: pointer;
-    display: inline-block;
-    margin: 0 0.25em 0 0;
 }
 
 input, select, textarea {
@@ -564,6 +547,6 @@ th:hover, tr:hover {
 }
 
 a.skip {
-    position: absolute;
-    left: -9999px;
+  position: absolute;
+  left: -9999px;
 }
