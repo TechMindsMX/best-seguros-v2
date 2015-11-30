@@ -8,6 +8,7 @@ import com.bestseguros.InsuredSumPerCoveragePerInsured
 import com.bestseguros.InsuredType
 import com.bestseguros.Product
 import com.bestseguros.Periodicity
+import com.bestseguros.Benefit
 
 class BootStrap {
 
@@ -132,11 +133,22 @@ class BootStrap {
 
     def insuredSumsByCoverage = createInsuredSumsForFirstProduct()
 
+    def productBenefits = [new Benefit(name:"Check up anual"),
+                           new Benefit(name:"Check up anual(sólo titular)"),
+                           new Benefit(name:"Check up anual(sólo titular y cónyuge)")]
 
-    def plans = [new Plan(name:"Titular",insureds:[InsuredType.PRINCIPAL]),
-                 new Plan(name:"Titular y Cónyuge",insureds:[InsuredType.PRINCIPAL,InsuredType.SPOUSE]),
-                 new Plan(name:"Titular e hijo(s)",insureds:[InsuredType.PRINCIPAL,InsuredType.CHILD]),
-                 new Plan(name:"Titular, Cónyuge e hijo(s)",insureds:[InsuredType.PRINCIPAL,InsuredType.SPOUSE,InsuredType.CHILD])]
+    def plans = [new Plan(name:"Titular",
+                          insureds:[InsuredType.PRINCIPAL],
+                          benefits:[productBenefits[0]]),
+                 new Plan(name:"Titular y Cónyuge",
+                          insureds:[InsuredType.PRINCIPAL,InsuredType.SPOUSE],
+                          benefits:[productBenefits[0]]),
+                 new Plan(name:"Titular e hijo(s)",
+                          insureds:[InsuredType.PRINCIPAL,InsuredType.CHILD],
+                          benefits:[productBenefits[1]]),
+                 new Plan(name:"Titular, Cónyuge e hijo(s)",
+                          insureds:[InsuredType.PRINCIPAL,InsuredType.SPOUSE,InsuredType.CHILD],
+                          benefits:[productBenefits[2]])]
 
     plans.each{ plan ->
       plan.insureds.each{ insured ->
