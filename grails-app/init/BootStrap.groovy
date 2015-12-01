@@ -23,6 +23,7 @@ class BootStrap {
     createProducts()
     JSON.createNamedConfig('policy'){
       it.registerObjectMarshaller(new ProductMarshaller())
+      it.registerObjectMarshaller(new PlanMarshaller())
     }
   }
 
