@@ -5,8 +5,8 @@ import grails.transaction.Transactional
 @Transactional
 class PlanService {
   
-  def findPlansForProduct(Long productId){
-    Product.get(productId).plans
+  def findPlansForProduct(String uuid){
+    Product.findByUuid(uuid).plans
   }
 
 }
