@@ -8,7 +8,10 @@ class ProductController {
 
   def index(Insurance insurance){ 
     withFormat{
-      json{ render productService.findInsuranceProducts(insurance.id) as JSON}
+      json{ 
+        JSON.use('policy')
+        render productService.findInsuranceProducts(insurance.id) as JSON
+      }
     }
   }
  
