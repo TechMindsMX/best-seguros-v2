@@ -16,10 +16,10 @@ var Product = {
         contentType:'application/json; charset=utf-8'
       })
       .done(function(response){
-        console.log(response);
+        resolve(response);
       })
       .fail(function(response){
-
+        reject(response);
       });
     });
   }    
