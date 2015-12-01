@@ -28,7 +28,7 @@ class PlanServiceSpec extends Specification {
       products*.save(validate:false)
 
     when:
-      def productPlans = service.findPlansForProduct(products.first().id)
+      def productPlans = service.findPlansForProduct(products.first().uuid)
     then:
       productPlans.size() == 2 
   }
