@@ -12,7 +12,7 @@ class UrlMappings {
     "404"(view:'/notFound')
 
     "/products"(resources:'product')
+    "/plans"(resources:'plan')
   }
-
   
 }
