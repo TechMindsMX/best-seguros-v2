@@ -1,4 +1,5 @@
 //= require product/product.js
+//= require product/product_select_view.js
 
 var PolicyCreateController = (function(){
 
@@ -7,7 +8,7 @@ var PolicyCreateController = (function(){
   };
 
   var producListSuccess = function(data){
-
+    ProductSelectView.render(data); 
   };
   
   var failure = function(data){
