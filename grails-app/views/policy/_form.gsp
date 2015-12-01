@@ -21,6 +21,22 @@
         {{/each}}
       </select>
     </div>
+    <div class="col-lg-5 productPlans">
+      
+    </div>
+  </script>
+  
+  <script id="plans-select-template" type="text/x-handlebars-template">
+    <div class="row">
+      <label class="col-lg-2 control-label" for="plan">Planes</label>
+      <div class="col-lg-10">
+        <select class="form-control" name="plan">
+          {{#each this}}
+          <option value="{{id}}">{{name}}</option>
+          {{/each}}
+        </select>
+      </div>
+    </div>
   </script>
 
 </g:form>
