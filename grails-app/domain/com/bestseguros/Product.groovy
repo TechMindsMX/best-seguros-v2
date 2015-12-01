@@ -2,6 +2,7 @@ package com.bestseguros
 
 class Product {
 
+  String uuid = UUID.randomUUID().toString().replaceAll('-','').substring(0,10)
   String name
   Trade trade
   String coin
