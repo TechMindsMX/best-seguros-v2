@@ -1,6 +1,7 @@
 //= require product/product.js
 //= require plan/plan.js
 //= require product/product_select_view.js
+//= require plan/plan_select_view.js
 
 var PolicyCreateController = (function(){
 
