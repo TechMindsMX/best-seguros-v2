@@ -9,6 +9,8 @@ import com.bestseguros.InsuredType
 import com.bestseguros.Product
 import com.bestseguros.Periodicity
 import com.bestseguros.Benefit
+import com.bestseguros.marshallers.*
+import grails.converters.JSON
 
 class BootStrap {
 
@@ -19,6 +21,9 @@ class BootStrap {
     createTrades()
     createCoverages()
     createProducts()
+    JSON.createNamedConfig('policy'){
+      it.registerObjectMarshaller(new ProductMarshaller())
+    }
   }
 
   def destroy = {
