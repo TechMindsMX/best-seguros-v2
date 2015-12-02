@@ -9,6 +9,7 @@ class Policy {
 
   static constraints = {
     product nullable:true
+    plan nullable:true
   }
 
 }
