@@ -9,6 +9,7 @@ import com.bestseguros.InsuredType
 import com.bestseguros.Product
 import com.bestseguros.Periodicity
 import com.bestseguros.Benefit
+import com.bestseguros.InsuranceCostPerInsured
 import com.bestseguros.marshallers.*
 import grails.converters.JSON
 
@@ -129,6 +130,14 @@ class BootStrap {
 
   def createFirstProduct(){
     def coverages = Coverage.getAll(1..3)
+
+    def insuranceCosts = [new InsuranceCostPerInsured(insuranceCost:196.91,
+                                                      insured:InsuredType.PRINCIPAL),
+                          new InsuranceCostPerInsured(insuranceCost:150.51,
+                                                      insured:InsuredType.SPOUSE),
+                          new InsuranceCostPerInsured(insuranceCost:92.80,
+                                                      insured:InsuredType.CHILD)]
+
     def product = new Product(name:"Renta diaria por Hospitalización",
                                trade:Trade.findByName("Accidentes personales"),
                                coin:"MXN",
@@ -157,6 +166,10 @@ class BootStrap {
                           insureds:[InsuredType.PRINCIPAL,InsuredType.SPOUSE,InsuredType.CHILD],
                           benefits:[productBenefits[2]])]
 
+    insuranceCosts.each{ insuranceCost ->
+      product.addToInsuranceCostsPerInsured(insuranceCost) 
+    }
+
     plans.each{ plan ->
       plan.insureds.each{ insured ->
         insuredSumsByCoverage[insured].each{ insuredSum ->
@@ -176,6 +189,13 @@ class BootStrap {
 
   def createSecondProduct(){
     def coverages = Coverage.getAll(1..3)
+    def insuranceCosts = [new InsuranceCostPerInsured(insuranceCost:195,
+                                                      insured:InsuredType.PRINCIPAL),
+                          new InsuranceCostPerInsured(insuranceCost:152.50,
+                                                      insured:InsuredType.SPOUSE),
+                          new InsuranceCostPerInsured(insuranceCost:85,
+                                                      insured:InsuredType.CHILD)]
+
     def product = new Product(name:"Renta diaria por Hospitalización",
                               trade:Trade.findByName("Vida"),
                               coin:"MXN",
@@ -201,6 +221,10 @@ class BootStrap {
                  new Plan(name:"Titular, cónyuge e hijos dependientes",
                           insureds:[InsuredType.PRINCIPAL,InsuredType.SPOUSE,InsuredType.CHILD,InsuredType.CHILD],
                           benefits:productBenefits)]
+
+    insuranceCosts.each{ insuranceCost ->
+      product.addToInsuranceCostsPerInsured(insuranceCost)
+    }
 
     plans.each{ plan ->
       plan.insureds.each{ insured ->
