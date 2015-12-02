@@ -4,6 +4,7 @@ class Policy {
 
   Product product
   PolicyStatus policyStatus
+  Plan plan
   static hasMany = [insureds:Insured]
 
   static constraints = {
