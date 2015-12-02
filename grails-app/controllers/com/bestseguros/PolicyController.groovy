@@ -18,7 +18,7 @@ class PolicyController {
   }
 
   def create() {
-    [insurances:Insurance.list()]
+    [products:Product.list()]
   }
 
   @Transactional

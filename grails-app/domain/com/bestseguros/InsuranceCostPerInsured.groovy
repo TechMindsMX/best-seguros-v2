@@ -2,11 +2,11 @@ package com.bestseguros
 
 class InsuranceCostPerInsured {
 
-  Double insuredCost
+  Double insuranceCost
   InsuredType insured
 
   static constraints = {
-    insuredCost min:0d
+    insuranceCost min:0d
   }
 
 }
