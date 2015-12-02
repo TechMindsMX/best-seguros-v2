@@ -32,8 +32,7 @@ var PolicyCreateController = (function(){
   };
 
   var bindEvents = function(){
-    $(settings.insuranceSelector).on("change",updateProducts);
-    $(settings.productsListDiv).on("click",settings.productSelector,updatePlans);
+    $(settings.productSelector).on("change",updatePlans);
   };
 
   var start = function(){
