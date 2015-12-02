@@ -6,7 +6,7 @@ class Policy {
   static hasMany = [insureds:Insured]
 
   static constraints = {
-
+    product nullable:true
   }
 
 }

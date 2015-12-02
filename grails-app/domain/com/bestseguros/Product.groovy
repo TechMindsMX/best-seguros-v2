@@ -13,7 +13,8 @@ class Product {
   Sponsor sponsor
 
   static hasMany = [plans:Plan,
-                    rangesAgeByBeneficiary:RangeAgeByBeneficiary]
+                    rangesAgeByBeneficiary:RangeAgeByBeneficiary,
+                    insuranceCostsPerInsured:InsuranceCostPerInsured]
 
   static constraints = {
     name blank:false
