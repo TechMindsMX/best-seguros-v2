@@ -11,6 +11,8 @@ class Plan {
     insuredSumsByCoveragePerInsured:InsuredSumPerCoveragePerInsured
   ]
 
+  static belongsTo = [product:Product]
+
   static constraints = {
     name blank:false
   }
