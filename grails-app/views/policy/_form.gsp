@@ -2,16 +2,16 @@
   <div class="form-group">
     <label class="col-lg-2 control-label" for="product">Productos</label>
     <div class="col-lg-5">
-      <g:select class="form-control" from="${products}" name="product" optionKey="uuid" optionValue="name" ></g:select>
+      <g:select class="form-control" from="${products}" name="product" noSelection="${['':'--Seleccionar--']}" optionKey="uuid" optionValue="name" ></g:select>
     </div>
     <div class="col-lg-5 productPlans">
 
     </div>
   </div>
   <div class="form-group">
-    <div class="col-lg-12">
-
+    <div class="col-lg-12 planInfo">
     </div>
+    <g:render template="/plan/info" />
   </div>
 
   <fieldset class="buttons">
