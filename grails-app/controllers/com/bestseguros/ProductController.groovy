@@ -3,16 +3,16 @@ package com.bestseguros
 import grails.converters.JSON
 
 class ProductController {
-  
+
   def productService
 
-  def index(Insurance insurance){ 
+  def index(Insurance insurance){
     withFormat{
-      json{ 
+      json{
         JSON.use('policy')
-        render productService.findInsuranceProducts(insurance.id) as JSON
+        render productService.findInsuranceProducts(insurance?.id ?: 0) as JSON
       }
     }
   }
- 
+
 }
