@@ -1,8 +1,8 @@
 package com.bestseguros.marshallers
 
-import com.bestseguros.RangeAgeByBeneficiary
 import grails.converters.JSON
 import org.grails.web.converters.marshaller.ObjectMarshaller
+import com.bestseguros.RangeAgeByBeneficiary
 
 class RangeAgeByBeneficiaryMarshaller implements ObjectMarshaller<JSON>{
 

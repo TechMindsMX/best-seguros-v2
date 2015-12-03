@@ -14,8 +14,8 @@ class InsuredSumPerCoveragePerInsuredMarshaller implements ObjectMarshaller<JSON
     def insuredSumPerCoveragePerInsured = object as InsuredSumPerCoveragePerInsured
     def insuredSumPerCoveragePerInsuredValues = [coverage:insuredSumPerCoveragePerInsured.coverage,
                                                  insuredSum:insuredSumPerCoveragePerInsured.insuredSum,
-                                                 insured:insuredSumPerCoveragePerInsured.insured.key]
+                                                 insured:insuredSumPerCoveragePerInsured.insured.value]
 
-    json.covertAnother(insuredSumPerCoveragePerInsuredValues)
+    json.convertAnother(insuredSumPerCoveragePerInsuredValues)
   }
 }

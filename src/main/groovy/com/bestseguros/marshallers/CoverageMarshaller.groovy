@@ -14,7 +14,7 @@ class CoverageMarshaller implements ObjectMarshaller<JSON>{
     def coverage = object as Coverage
     def coverageValues = [name:coverage.name]
 
-    json.converAnother(coverageValues)
+    json.convertAnother(coverageValues)
   }
 
 }
