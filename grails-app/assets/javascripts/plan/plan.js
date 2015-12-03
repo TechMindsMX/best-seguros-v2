@@ -1,11 +1,11 @@
 var Plan = {
   id:'',
   name:'',
-  
+
   create: function(data){
     return $.extend({},this,data);
   },
-  
+
   list: function(params){
     return new RSVP.Promise(function(resolve,reject){
       $.ajax({
@@ -16,7 +16,23 @@ var Plan = {
         contentType:'application/json; charset=utf-8'
       })
       .done(function(response){
-        console.log(response);
+        resolve(response);
+      })
+      .fail(function(response){
+        reject(response);
+      });
+    });
+  },
+
+  get: function(params){
+    return new RSVP.Promise(function(resolve,reject){
+      $.ajax({
+        url:params.url,
+        type:'GET',
+        datatype:'json',
+        contentType:'application/json; charset=utf-8'
+      })
+      .done(function(response){
         resolve(response);
       })
       .fail(function(response){
