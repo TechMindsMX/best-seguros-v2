@@ -3,9 +3,10 @@ package com.bestseguros
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
-@Transactional(readOnly = true)
+@Transactional
 class PolicyController {
 
+  def policyService
   static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
   def index(Integer max) {
@@ -18,7 +19,33 @@ class PolicyController {
   }
 
   def create() {
-    [products:Product.list()]
+    def policy = policyService.createPolicy()
+    redirect(action:"edit",id:policy.id)
+  }
+
+  @Transactional
+  def update(Policy policy) {
+    if (policy == null) {
+      transactionStatus.setRollbackOnly()
+      notFound()
+      return
+    }
+
+    if (policy.hasErrors()) {
+      transactionStatus.setRollbackOnly()
+      respond policy.errors, view:'edit'
+      return
+    }
+
+    policy.save flush:true
+
+    request.withFormat {
+      form multipartForm {
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'policy.label', default: 'Policy'), policy.id])
+        redirect policy
+      }
+      '*'{ respond policy, [status: OK] }
+    }
   }
 
   @Transactional
@@ -47,33 +74,11 @@ class PolicyController {
   }
 
   def edit(Policy policy) {
-    respond policy
+    [products:Product.list(),
+     policy:policy]
   }
 
-  @Transactional
-  def update(Policy policy) {
-    if (policy == null) {
-      transactionStatus.setRollbackOnly()
-      notFound()
-      return
-    }
 
-    if (policy.hasErrors()) {
-      transactionStatus.setRollbackOnly()
-      respond policy.errors, view:'edit'
-      return
-    }
-
-    policy.save flush:true
-
-    request.withFormat {
-      form multipartForm {
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'policy.label', default: 'Policy'), policy.id])
-        redirect policy
-      }
-      '*'{ respond policy, [status: OK] }
-    }
-  }
 
   @Transactional
   def delete(Policy policy) {
