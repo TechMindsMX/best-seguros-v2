@@ -1,4 +1,5 @@
 <g:form class="form-horizontal" action="save" >
+<g:if test="${!policy.product}">
   <div class="form-group">
     <label class="col-lg-2 control-label" for="product">Productos</label>
     <div class="col-lg-5">
@@ -31,4 +32,5 @@
       </div>
     </div>
   </script>
+</g:if>
 </g:form>
