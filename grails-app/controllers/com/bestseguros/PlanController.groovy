@@ -6,7 +6,7 @@ class PlanController {
 
   def planService
 
-  def index(){ 
+  def index(){
     withFormat{
       json{
         JSON.use('policy')
@@ -15,4 +15,12 @@ class PlanController {
     }
   }
 
+  def show(Plan plan){
+    withFormat{
+      json{
+        JSON.use('policy')
+        render planService.getPlanDetail(plan) as JSON
+      }
+    }
+  }
 }
