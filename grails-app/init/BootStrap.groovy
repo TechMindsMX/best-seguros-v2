@@ -25,6 +25,7 @@ class BootStrap {
     JSON.createNamedConfig('policy'){
       it.registerObjectMarshaller(new ProductMarshaller())
       it.registerObjectMarshaller(new PlanMarshaller())
+      it.registerObjectMarshaller(new CoverageMarshaller())
     }
   }
 
@@ -167,7 +168,7 @@ class BootStrap {
                           benefits:[productBenefits[2]])]
 
     insuranceCosts.each{ insuranceCost ->
-      product.addToInsuranceCostsPerInsured(insuranceCost) 
+      product.addToInsuranceCostsPerInsured(insuranceCost)
     }
 
     plans.each{ plan ->

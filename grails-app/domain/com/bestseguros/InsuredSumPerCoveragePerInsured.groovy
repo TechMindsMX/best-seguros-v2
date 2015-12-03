@@ -6,8 +6,6 @@ class InsuredSumPerCoveragePerInsured {
   Double insuredSum
   InsuredType insured
 
-  static belongsTo = [plan:Plan]
-
   static constraints = {
     insuredSum min:0d
   }
