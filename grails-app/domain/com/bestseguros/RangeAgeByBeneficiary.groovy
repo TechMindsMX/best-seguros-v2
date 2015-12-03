@@ -9,7 +9,8 @@ class RangeAgeByBeneficiary{
 
   static constraints = {
     minAge min:0
-    minAge min:0
+    maxAge min:0
+    renewal min:0
   }
 
 }
