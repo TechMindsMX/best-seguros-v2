@@ -66,7 +66,7 @@ class PlanServiceSpec extends Specification {
     when:
       def planInfo = service.getPlanDetail(plan)
     then:
-      planInfo.insuredSumsByCoveragePerInsured[InsuredType.PRINCIPAL].size() == 2
+      planInfo.insuredSumsByCoveragePerInsured[InsuredType.PRINCIPAL.value].size() == 2
       planInfo.rangeAgesByBeneficiary.size() == 1
       planInfo.insuranceCostsPerInsured.size() == 1
   }
