@@ -6,7 +6,8 @@ import grails.transaction.Transactional
 class PolicyService {
 
   def createPolicy(){
-    def policy = new Policy(policyStatus:PolicyStatus.CREATED).save()
+    def policy = new Policy(policyStatus:PolicyStatus.CREATED)
+    policy.save()
     policy
   }
 }
