@@ -8,6 +8,11 @@
 
     </div>
   </div>
+  <div class="form-group">
+    <div class="col-lg-12">
+
+    </div>
+  </div>
 
   <fieldset class="buttons">
     <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
@@ -18,6 +23,7 @@
       <label class="col-lg-2 control-label" for="plan">Planes</label>
       <div class="col-lg-10">
         <select class="form-control" name="plan">
+          <option value="">--Seleccionar--</option>
           {{#each this}}
           <option value="{{id}}">{{name}}</option>
           {{/each}}
