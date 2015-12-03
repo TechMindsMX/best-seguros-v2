@@ -10,6 +10,7 @@ import com.bestseguros.Product
 import com.bestseguros.Periodicity
 import com.bestseguros.Benefit
 import com.bestseguros.InsuranceCostPerInsured
+import com.bestseguros.RangeAgeByBeneficiary
 import com.bestseguros.marshallers.*
 import grails.converters.JSON
 
@@ -25,7 +26,10 @@ class BootStrap {
     JSON.createNamedConfig('policy'){
       it.registerObjectMarshaller(new ProductMarshaller())
       it.registerObjectMarshaller(new PlanMarshaller())
+      it.registerObjectMarshaller(new InsuredSumPerCoveragePerInsuredMarshaller())
       it.registerObjectMarshaller(new CoverageMarshaller())
+      it.registerObjectMarshaller(new RangeAgeByBeneficiaryMarshaller())
+      it.registerObjectMarshaller(new InsuranceCostPerInsuredMarshaller())
     }
   }
 
@@ -93,8 +97,8 @@ class BootStrap {
       def insuredSumsByCoverage = []
       coverages.eachWithIndex{ coverage, i ->
         insuredSumsByCoverage << new InsuredSumPerCoveragePerInsured(coverage:coverage,
-                                                           insuredSum:prices[i],
-                                                           insured:insuredType)
+                                                                     insuredSum:prices[i],
+                                                                     insured:insuredType)
       }
       insuredSumsByCoverage*.save()
       insuredSums[insuredType] = insuredSumsByCoverage
@@ -139,6 +143,19 @@ class BootStrap {
                           new InsuranceCostPerInsured(insuranceCost:92.80,
                                                       insured:InsuredType.CHILD)]
 
+    def rangesAgeByBeneficiary = [new RangeAgeByBeneficiary(insuredType:InsuredType.PRINCIPAL,
+                                                            minAge:18,
+                                                            maxAge:64,
+                                                            renewal:69),
+                                  new RangeAgeByBeneficiary(insuredType:InsuredType.SPOUSE,
+                                                            minAge:18,
+                                                            maxAge:64,
+                                                            renewal:70),
+                                  new RangeAgeByBeneficiary(insuredType:InsuredType.CHILD,
+                                                            minAge:1,
+                                                            maxAge:18,
+                                                            renewal:21)]
+
     def product = new Product(name:"Renta diaria por Hospitalización",
                                trade:Trade.findByName("Accidentes personales"),
                                coin:"MXN",
@@ -171,6 +188,10 @@ class BootStrap {
       product.addToInsuranceCostsPerInsured(insuranceCost)
     }
 
+    rangesAgeByBeneficiary.each{ rangeAgeByBeneficiary ->
+      product.addToRangesAgeByBeneficiary(rangeAgeByBeneficiary)
+    }
+
     plans.each{ plan ->
       plan.insureds.each{ insured ->
         insuredSumsByCoverage[insured].each{ insuredSum ->
@@ -197,6 +218,20 @@ class BootStrap {
                           new InsuranceCostPerInsured(insuranceCost:85,
                                                       insured:InsuredType.CHILD)]
 
+    def rangesAgeByBeneficiary = [new RangeAgeByBeneficiary(insuredType:InsuredType.PRINCIPAL,
+                                                            minAge:18,
+                                                            maxAge:64,
+                                                            renewal:69),
+                                  new RangeAgeByBeneficiary(insuredType:InsuredType.SPOUSE,
+                                                            minAge:18,
+                                                            maxAge:64,
+                                                            renewal:69),
+                                  new RangeAgeByBeneficiary(insuredType:InsuredType.CHILD,
+                                                            minAge:1,
+                                                            maxAge:18,
+                                                            renewal:21)]
+
+
     def product = new Product(name:"Renta diaria por Hospitalización",
                               trade:Trade.findByName("Vida"),
                               coin:"MXN",
@@ -222,6 +257,10 @@ class BootStrap {
                  new Plan(name:"Titular, cónyuge e hijos dependientes",
                           insureds:[InsuredType.PRINCIPAL,InsuredType.SPOUSE,InsuredType.CHILD,InsuredType.CHILD],
                           benefits:productBenefits)]
+
+    rangesAgeByBeneficiary.each{ range ->
+      product.addToRangesAgeByBeneficiary(range)
+    }
 
     insuranceCosts.each{ insuranceCost ->
       product.addToInsuranceCostsPerInsured(insuranceCost)
