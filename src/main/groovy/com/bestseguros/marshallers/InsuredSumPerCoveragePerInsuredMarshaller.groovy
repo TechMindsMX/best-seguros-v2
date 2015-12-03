@@ -1,11 +1,10 @@
 package com.bestseguros.marshallers
 
-import com.bestseguros.InsuredSumPerCoveragePerInsured
 import grails.converters.JSON
 import org.grails.web.converters.marshaller.ObjectMarshaller
+import com.bestseguros.InsuredSumPerCoveragePerInsured
 
-
-class InsuredSumPerCoveragePerInsured{
+class InsuredSumPerCoveragePerInsuredMarshaller implements ObjectMarshaller<JSON>{
 
   boolean supports(Object object){
     object instanceof InsuredSumPerCoveragePerInsured

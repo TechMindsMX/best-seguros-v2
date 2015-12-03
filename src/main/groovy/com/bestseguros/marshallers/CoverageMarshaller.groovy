@@ -4,7 +4,7 @@ import grails.converters.JSON
 import org.grails.web.converters.marshaller.ObjectMarshaller
 import com.bestseguros.Coverage
 
-class Coverage implements ObjectMarshaller<JSON>{
+class CoverageMarshaller implements ObjectMarshaller<JSON>{
 
   boolean supports(Object object){
     object instanceof Coverage
