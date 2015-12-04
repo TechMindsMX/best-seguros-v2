@@ -52,7 +52,11 @@
   </div>
   <div class="row">
     <div class="col-lg-12">
-      <button type="button" class="btn btn-primary pull-right">Agregar Producto</button>
+      <g:form controller="policy" action="addProduct" id="${policy.id}">
+        <input type="hidden" name="plan" value="{{plan}}"/>
+        <input type="hidden" name="product" value="{{product}}" />
+        <input type="submit" class="btn btn-primary pull-right">Agregar Producto</input>
+      </g:form>
     </div>
   </div>
 </script>
