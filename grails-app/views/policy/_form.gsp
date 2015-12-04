@@ -1,5 +1,5 @@
-<div class="form-horizontal" action="save" >
-  <g:if test="${!policy.product}">
+<g:if test="${!policy.product}">
+  <div class="form-horizontal">
     <div class="form-group">
       <label class="col-lg-2 control-label" for="product">Productos</label>
       <div class="col-lg-5">
@@ -30,5 +30,56 @@
         </div>
       </div>
     </script>
-  </g:if>
-</div>
+  </div>
+</g:if>
+<g:else>
+  <div class="row-fluid">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Información del producto</h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-lg-1">
+            <label>Nombre</label>
+          </div>
+          <div class="col-lg-3">
+            <span>
+              ${policy?.product?.name}
+            </span>
+          </div>
+          <div class="col-lg-2">
+            <label>Aseguradora</label>
+          </div>
+          <div class="col-lg-4">
+            <span>
+              ${policy?.product?.insurance?.name}
+            </span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-1">
+            <label>Ramo</label>
+          </div>
+          <div class="col-lg-3">
+            <span>
+              ${policy?.product?.trade?.name}
+            </span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-1">
+            <label>Plan</label>
+          </div>
+          <div class="col-lg-3">
+            ${policy?.plan?.name}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</g:else>
+
