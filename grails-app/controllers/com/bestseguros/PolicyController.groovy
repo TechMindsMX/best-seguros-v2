@@ -23,62 +23,15 @@ class PolicyController {
     redirect(action:"edit",id:policy.id)
   }
 
-  @Transactional
-  def update(Policy policy) {
-    if (policy == null) {
-      transactionStatus.setRollbackOnly()
-      notFound()
-      return
-    }
-
-    if (policy.hasErrors()) {
-      transactionStatus.setRollbackOnly()
-      respond policy.errors, view:'edit'
-      return
-    }
-
-    policy.save flush:true
-
-    request.withFormat {
-      form multipartForm {
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'policy.label', default: 'Policy'), policy.id])
-        redirect policy
-      }
-      '*'{ respond policy, [status: OK] }
-    }
-  }
-
-  @Transactional
-  def save(Policy policy) {
-    if(policy == null) {
-      transactionStatus.setRollbackOnly()
-      notFound()
-      return
-    }
-
-    if(policy.hasErrors()) {
-      transactionStatus.setRollbackOnly()
-      respond policy.errors, view:'create'
-      return
-    }
-
-    policy.save flush:true
-
-    request.withFormat {
-      form multipartForm {
-        flash.message = message(code: 'default.created.message', args: [message(code: 'policy.label', default: 'Policy'), policy.id])
-        redirect policy
-      }
-      '*' { respond policy, [status: CREATED] }
-    }
-  }
-
   def edit(Policy policy) {
     [products:Product.list(),
      policy:policy]
   }
 
-
+  def addProduct(Policy policy){
+    policyService.addProductAndPlanToPolicy(policy.id,[product:params.long("product"),plan:params.long("plan")])
+    redirect(action:"edit",id:policy.id)
+  }
 
   @Transactional
   def delete(Policy policy) {
