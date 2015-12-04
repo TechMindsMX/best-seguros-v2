@@ -1,3 +1,5 @@
+<%@ page import="com.bestseguros.Insured" %>
+
 <g:if test="${!policy.product}">
   <div class="form-horizontal">
     <div class="form-group">
@@ -77,9 +79,43 @@
             ${policy?.plan?.name}
           </div>
         </div>
-
       </div>
     </div>
   </div>
+
+  <div class="row-fluid">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Asegurados</h3>
+      </div>
+      <div class="panel-body">
+        <div class="row" style="margin-bottom:20px;">
+          <g:each var="insured" in="${policy?.plan?.insureds?.sort()}">
+            <div class="panel-group" id="accordion${insured.key}" role="tablist" aria-multiselectable="true">
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading${insured.key}">
+                  <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse${insured.key}" aria-expanded="true" aria-controls="collapse${insured.key}">
+                      ${insured.value}
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapse${insured.key}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                  <div class="panel-body">
+                    <g:if test="${!policy?.insureds.contains(insured)}">
+                      <g:render template="/insured/form" model="[insured:new Insured()]"/>
+                    </g:if>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </g:each>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
 </g:else>
+
 
