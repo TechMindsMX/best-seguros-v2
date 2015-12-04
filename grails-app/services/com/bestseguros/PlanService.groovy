@@ -17,7 +17,9 @@ class PlanService {
       insuredSumsByCoveragePerInsured[insured.value] = plan.insuredSumsByCoveragePerInsured.findAll{ it.insured == insured }.sort{ it.coverage.name }
     }
 
-    [insuredSumsByCoveragePerInsured:insuredSumsByCoveragePerInsured,
+    [product:product.id,
+     plan:plan.id,
+     insuredSumsByCoveragePerInsured:insuredSumsByCoveragePerInsured,
      rangeAgesByBeneficiary:product.rangesAgeByBeneficiary,
      insuranceCostsPerInsured:product.insuranceCostsPerInsured]
   }
