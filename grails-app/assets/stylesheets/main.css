@@ -27,7 +27,6 @@ html * {
 }
 
 body {
-    background: #ffffff;
     color: #333333;
     margin: 0 auto;
     max-width: 960px;
@@ -37,13 +36,6 @@ body {
             box-shadow: 0 0 0.3em #255b17;
 }
 
-a:link, a:visited, a:hover {
-    color: #48802c;
-}
-
-a:hover, a:active {
-    outline: none; /* prevents outline in webkit on active links but retains it for tab focus */
-}
 
 h1 {
     color: #48802c;
@@ -61,14 +53,6 @@ img {
 }
 
 /* GENERAL */
-
-#grailsLogo a {
-    display: inline-block;
-    margin: 1em;
-}
-
-.content {
-}
 
 .content h1 {
   border-bottom: 1px solid #CCCCCC;
