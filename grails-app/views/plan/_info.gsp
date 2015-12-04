@@ -55,7 +55,7 @@
       <g:form controller="policy" action="addProduct" id="${policy.id}">
         <input type="hidden" name="plan" value="{{plan}}"/>
         <input type="hidden" name="product" value="{{product}}" />
-        <button type="submit" class="btn btn-primary pull-right">Agregar Producto</button>
+        <button type="submit" class="btn btn-primary pull-right">Comenzar con la captura de los asegurados</button>
       </g:form>
     </div>
   </div>
