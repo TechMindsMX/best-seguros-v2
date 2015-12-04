@@ -24,7 +24,7 @@ class PolicyController {
   }
 
   def edit(Policy policy) {
-    render view:"edit",model:[products:Product.list(),policy:policy]
+    render view:"/policy/edit",model:[products:Product.list(),policy:policy]
   }
 
   def addProduct(Policy policy){
