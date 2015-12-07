@@ -1,7 +1,7 @@
 <form class="form-horizontal">
-  <f:field bean="insured" property="name" wrapper="form" />
-  <f:field bean="insured" property="lastName" wrapper="form" />
-  <f:field bean="insured" property="motherLastName" wrapper="form" />
+  <f:field bean="insured" property="name" wrapper="form" label="${message(code:"insured.name")}" />
+  <f:field bean="insured" property="lastName" wrapper="form" label="${message(code:"insured.lastName")}"/>
+  <f:field bean="insured" property="motherLastName" wrapper="form" label="${message(code:"insured.motherLastName")}"/>
   <div class="form-group">
     <label for="name" class="col-sm-3 control-label">Fecha de Nacimiento</label>
     <div class="col-sm-5">
@@ -15,8 +15,8 @@
   <f:field bean="insured" property="country" wrapper="form" label="${message(code:"insured.country")}"/>
   <f:field bean="insured" property="state" wrapper="form" label="${message(code:"insured.state")}"/>
   <f:field bean="insured" property="town" wrapper="form" label="${message(code:"insured.town")}"/>
-  <f:field bean="insured" property="colony" wrapper="form" />
-  <f:field bean="insured" property="cp" wrapper="form" />
-  <f:field bean="insured" property="city" wrapper="form" />
-  <f:field bean="insured" property="city" wrapper="form" />
+  <f:field bean="insured" property="colony" wrapper="form" label="${message(code:"insured.colony")}"/>
+  <f:field bean="insured" property="cp" wrapper="form" label="${message(code:"insured.cp")}" />
+  <f:field bean="insured" property="city" wrapper="form" label="${message(code:"insured.city")}" />
+  <button type="submit" class="btn btn-default pull-right">Registrar</button>
 </form>
