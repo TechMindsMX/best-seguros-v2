@@ -24,7 +24,10 @@ class PolicyController {
   }
 
   def edit(Policy policy) {
-    render view:"/policy/edit",model:[products:Product.list(),policy:policy]
+    def insureds = policyService.findUnsavedInsuredsForPolicy(policy)
+    render view:"/policy/edit",model:[products:Product.list(),
+                                      policy:policy,
+                                      insureds:insureds]
   }
 
   def addProduct(Policy policy){
