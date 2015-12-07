@@ -19,15 +19,15 @@ class PolicyService {
   }
 
   def findUnsavedInsuredsForPolicy(Policy policy){
-    def policyInsureds = policy.insureds
-    def planInsureds = policy?.plan?.insureds
+    def policyInsureds = policy.insureds ?: []
+    def planInsureds = policy?.plan?.insureds ?: []
 
-    def maximumInsuredsNumber = policy.plan.maximumInsuredsNumber
+    def maximumInsuredsNumber = policy?.plan?.maximumInsuredsNumber
     def unsavedInsureds = [:]
 
     planInsureds.findAll{ it != InsuredType.CHILD }.each{ insured ->
       if(!policyInsureds.findAll{ it.insuredType == insured })
-        unsavedInsureds[insured] = new Insured()
+        unsavedInsureds[insured] = [new Insured()]
     }
 
     if(planInsureds.contains(InsuredType.CHILD)){

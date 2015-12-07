@@ -102,9 +102,9 @@
                 </div>
                 <div id="collapse${insured.key}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                   <div class="panel-body">
-                    <g:if test="${!policy?.insureds.contains(insured)}">
+                    <g:if test="${insureds[insured].size()}">
                       <!--TODO: Enviar los insureds desde el controller -->
-                      <g:render template="/insured/form" model="[insured:new Insured()]"/>
+                      <g:render template="/insured/form" model="[insured:insureds[insured].first()]"/>
                     </g:if>
                   </div>
                 </div>
