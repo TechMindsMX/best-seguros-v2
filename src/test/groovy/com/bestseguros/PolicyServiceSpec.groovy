@@ -33,4 +33,29 @@ class PolicyServiceSpec extends Specification {
       policyWithProduct.plan.id
   }
 
+  Should "get the unsaved insured for the policy"(){
+    given:"the plan"
+      def insureds = _insureds
+      def plan = new Plan(name:"un nuevo plan",
+                          maximumInsuredsNumber:_maximumInsuredsNumber);
+
+      insureds.each{ insured ->
+        plan.addToInsureds(insured)
+      }
+
+      plan.save(validate:false)
+    and:"the policy"
+      def savedInsureds = _savedInsureds
+      def policy = new Policy(plan:plan)
+      policy.save()
+    when:
+      def unsavedInsureds = service.findUnsavedInsuredsForPolicy(policy)
+    then:
+      unsavedInsureds.values().flatten().size() == _size
+    where:
+    _insureds                                 | _maximumInsuredsNumber  | _savedInsureds || _size
+    [InsuredType.PRINCIPAL]                   | 1                       | []             || 1
+    [InsuredType.PRINCIPAL,InsuredType.CHILD] | 3                       | []             || 3
+  }
+
 }
