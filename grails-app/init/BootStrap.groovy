@@ -172,15 +172,19 @@ class BootStrap {
                            new Benefit(name:"Check up anual(sólo titular y cónyuge)")]
 
     def plans = [new Plan(name:"Titular",
+                          maximumInsuredsNumber:1,
                           insureds:[InsuredType.PRINCIPAL],
                           benefits:[productBenefits[0]]),
                  new Plan(name:"Titular y Cónyuge",
+                          maximumInsuredsNumber:2,
                           insureds:[InsuredType.PRINCIPAL,InsuredType.SPOUSE],
                           benefits:[productBenefits[0]]),
                  new Plan(name:"Titular e hijo(s)",
+                          maximumInsuredsNumber:2,
                           insureds:[InsuredType.PRINCIPAL,InsuredType.CHILD],
                           benefits:[productBenefits[1]]),
                  new Plan(name:"Titular, Cónyuge e hijo(s)",
+                          maximumInsuredsNumber:4,
                           insureds:[InsuredType.PRINCIPAL,InsuredType.SPOUSE,InsuredType.CHILD],
                           benefits:[productBenefits[2]])]
 
@@ -246,15 +250,19 @@ class BootStrap {
                            new Benefit(name:"Plan dental")]
 
     def plans = [new Plan(name:"Titular",
+                          maximumInsuredsNumber:1,
                           insureds:[InsuredType.PRINCIPAL],
                           benefits:productBenefits),
                  new Plan(name:"Titular y Cónyuge",
+                          maximumInsuredsNumber:2,
                           insureds:[InsuredType.PRINCIPAL,InsuredType.SPOUSE],
                           benefits:productBenefits),
                  new Plan(name:"Titular e hijos dependientes",
+                          maximumInsuredsNumber:3,
                           insureds:[InsuredType.PRINCIPAL,InsuredType.CHILD],
                           benefits:productBenefits),
                  new Plan(name:"Titular, cónyuge e hijos dependientes",
+                          maximumInsuredsNumber:4,
                           insureds:[InsuredType.PRINCIPAL,InsuredType.SPOUSE,InsuredType.CHILD,InsuredType.CHILD],
                           benefits:productBenefits)]
 
