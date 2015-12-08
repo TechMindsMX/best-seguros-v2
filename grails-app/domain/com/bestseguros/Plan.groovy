@@ -3,7 +3,6 @@ package com.bestseguros
 class Plan {
 
   String name
-  Integer maximumInsuredsNumber
 
   static hasMany = [
     coverages:Coverage,
