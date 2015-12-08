@@ -8,7 +8,7 @@ class Plan {
   static hasMany = [
     coverages:Coverage,
     benefits:Benefit,
-    insureds: InsuredType,
+    insureds: InsuredForPlan,
     insuredSumsByCoveragePerInsured:InsuredSumPerCoveragePerInsured
   ]
 
