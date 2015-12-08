@@ -90,7 +90,7 @@
       </div>
       <div class="panel-body">
         <div class="row" style="margin-bottom:20px;">
-          <g:each var="insured" in="${policy?.plan?.insureds?.sort()}">
+          <g:each var="insured" in="${insuredTypes}">
             <div class="panel-group" id="accordion${insured.key}" role="tablist" aria-multiselectable="true">
               <div class="panel panel-default">
                 <div class="panel-heading" role="tab" id="heading${insured.key}">
@@ -102,9 +102,13 @@
                 </div>
                 <div id="collapse${insured.key}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                   <div class="panel-body">
-                    <g:if test="${insureds[insured].size()}">
+                    <g:each var="savedInsured" in="${insureds.savedInsureds[insured]}">
+                      Saved Insured
+                    </g:each>
+
+                    <g:if test="${insureds.unsavedInsureds[insured]}">
                       <!--TODO: Enviar los insureds desde el controller -->
-                      <g:render template="/insured/form" model="[insured:insureds[insured].first()]"/>
+                      <g:render template="/insured/form" model="[insured:insureds.unsavedInsureds[insured].first()]"/>
                     </g:if>
                   </div>
                 </div>
