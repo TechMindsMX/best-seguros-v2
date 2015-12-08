@@ -4,9 +4,10 @@ import grails.test.mixin.TestFor
 import grails.test.mixin.Mock
 import spock.lang.Specification
 import java.lang.Void as Should
+import com.bestseguros.InsuredForPlan
 
 @TestFor(PlanService)
-@Mock([Plan,Product,Coverage,Benefit,InsuredSumPerCoveragePerInsured,RangeAgeByBeneficiary])
+@Mock([Plan,Product,Coverage,Benefit,InsuredSumPerCoveragePerInsured,RangeAgeByBeneficiary,InsuredForPlan])
 class PlanServiceSpec extends Specification {
 
   Should "get the plans of a product"(){
@@ -53,7 +54,7 @@ class PlanServiceSpec extends Specification {
                                                              insured:InsuredType.PRINCIPAL)]
       def plan = new Plan(name:"Titular",
                           coverages:coverages,
-                          insureds:[InsuredType.PRINCIPAL],
+                          insureds:[new InsuredForPlan(insured:InsuredType.PRINCIPAL)],
                           benefits:[new Benefit(name:"Some Benefit").save(validate:false)])
 
       insuredSums.each{ insuredSum ->

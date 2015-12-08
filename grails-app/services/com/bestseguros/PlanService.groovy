@@ -13,7 +13,7 @@ class PlanService {
     def product = plan.product
     def insuredSumsByCoveragePerInsured = [:]
 
-    plan.insureds.sort().each{ insured ->
+    plan.insureds*.insured.sort().each{ insured ->
       insuredSumsByCoveragePerInsured[insured.value] = plan.insuredSumsByCoveragePerInsured.findAll{ it.insured == insured }.sort{ it.coverage.name }
     }
 
