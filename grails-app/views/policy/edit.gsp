@@ -21,7 +21,7 @@
         </g:eachError>
       </ul>
       </g:hasErrors>
-      <g:render template="form" model="[policy:policy]" />
+      <g:render template="/policy/form" model="[policy:policy]" />
     </div>
   </body>
 </html>
