@@ -24,13 +24,16 @@ class PolicyController {
   }
 
   def edit(Policy policy) {
-    def insureds = policyService.findSavedAndUnsavedInsuredsForPolicy(policy)
-    def insuredTypes = policy?.plan?.insureds*.insured.sort() 
-    def model = [policy:policy,insuredTypes:insuredTypes,insureds:insureds]
+    def model = [:]
+    model.policy = policy
 
-    if(!policy.product){
+    if(!policy.product)
       model.products = Product.list()
-    } 
+    else{
+      def insureds = policyService.findSavedAndUnsavedInsuredsForPolicy(policy)
+      def insuredTypes = policy?.plan?.insureds*.insured ?: []
+      model << [insuredTypes:insuredTypes.sort(),insureds:insureds]
+    }
 
     render view:"/policy/edit",model:model
   }
