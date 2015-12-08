@@ -37,7 +37,7 @@ class PolicyService {
       }
 
       (planInsuredsByType - (policyInsuredsByType?.size() ?: 0)).times{ i ->
-        unsavedInsureds[insured] << new Insured()
+        unsavedInsureds[insured] << new Insured(insuredType:insured)
       }
     }
 
