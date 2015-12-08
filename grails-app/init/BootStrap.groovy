@@ -11,6 +11,7 @@ import com.bestseguros.Periodicity
 import com.bestseguros.Benefit
 import com.bestseguros.InsuranceCostPerInsured
 import com.bestseguros.RangeAgeByBeneficiary
+import com.bestseguros.InsuredForPlan
 import com.bestseguros.marshallers.*
 import grails.converters.JSON
 
@@ -173,19 +174,23 @@ class BootStrap {
 
     def plans = [new Plan(name:"Titular",
                           maximumInsuredsNumber:1,
-                          insureds:[InsuredType.PRINCIPAL],
+                          insureds:[new InsuredForPlan(insured:InsuredType.PRINCIPAL)],
                           benefits:[productBenefits[0]]),
                  new Plan(name:"Titular y Cónyuge",
                           maximumInsuredsNumber:2,
-                          insureds:[InsuredType.PRINCIPAL,InsuredType.SPOUSE],
+                          insureds:[new InsuredForPlan(insured:InsuredType.PRINCIPAL),
+                                    new InsuredForPlan(insured:InsuredType.SPOUSE)],
                           benefits:[productBenefits[0]]),
                  new Plan(name:"Titular e hijo(s)",
                           maximumInsuredsNumber:2,
-                          insureds:[InsuredType.PRINCIPAL,InsuredType.CHILD],
+                          insureds:[new InsuredForPlan(insured:InsuredType.PRINCIPAL),
+                                    new InsuredForPlan(insured:InsuredType.CHILD)],
                           benefits:[productBenefits[1]]),
                  new Plan(name:"Titular, Cónyuge e hijo(s)",
                           maximumInsuredsNumber:4,
-                          insureds:[InsuredType.PRINCIPAL,InsuredType.SPOUSE,InsuredType.CHILD],
+                          insureds:[new InsuredForPlan(insured:InsuredType.PRINCIPAL),
+                                    new InsuredForPlan(insured:InsuredType.SPOUSE),
+                                    new InsuredForPlan(insured:InsuredType.CHILD)],
                           benefits:[productBenefits[2]])]
 
     insuranceCosts.each{ insuranceCost ->

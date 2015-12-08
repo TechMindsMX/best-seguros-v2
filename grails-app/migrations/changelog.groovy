@@ -473,4 +473,5 @@ databaseChangeLog = {
   include file: 'updating-product-and-cost-per-insured-relations.groovy'
   include file: 'removing-relation-in-insured-sums-per-coverage.groovy'
   include file: 'adding-maximum-insureds-number.groovy'
+  include file: 'updating-plan-insureds-relation.groovy'
 }
