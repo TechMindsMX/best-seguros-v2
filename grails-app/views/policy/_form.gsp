@@ -103,12 +103,13 @@
                 <div id="collapse${insured.key}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                   <div class="panel-body">
                     <g:each var="savedInsured" in="${insureds.savedInsureds[insured]}">
-                      Saved Insured
+                      <g:render template="/insured/show" model="[insured:savedInsured]"/> 
                     </g:each>
 
                     <g:if test="${insureds.unsavedInsureds[insured]}">
                       <!--TODO: Enviar los insureds desde el controller -->
-                      <g:render template="/insured/form" model="[insured:insureds.unsavedInsureds[insured].first()]"/>
+                      <g:render template="/insured/form" model="[insured:insureds.unsavedInsureds[insured].first(),
+                                                                 policy:policy]"/>
                     </g:if>
                   </div>
                 </div>
