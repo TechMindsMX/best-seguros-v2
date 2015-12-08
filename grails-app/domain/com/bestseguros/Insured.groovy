@@ -21,7 +21,6 @@ class Insured{
     name blank:false
     lastName blank:false
     motherLastName blank:false
-    birthDate blank:false
     rfc blank:false
     email blank:false
     address blank:false
