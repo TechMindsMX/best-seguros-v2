@@ -175,7 +175,8 @@ class BootStrap {
     def insuredsForPlan = [[new InsuredForPlan(insured:InsuredType.PRINCIPAL)],
                            [new InsuredForPlan(insured:InsuredType.PRINCIPAL),new InsuredForPlan(insured:InsuredType.SPOUSE)],
                            [new InsuredForPlan(insured:InsuredType.PRINCIPAL),new InsuredForPlan(insured:InsuredType.CHILD)],
-                           [new InsuredForPlan(insured:InsuredType.PRINCIPAL),new InsuredForPlan(insured:InsuredType.SPOUSE),new InsuredForPlan(insured:InsuredType.CHILD)]]
+                           [new InsuredForPlan(insured:InsuredType.PRINCIPAL),new InsuredForPlan(insured:InsuredType.SPOUSE),
+                            new InsuredForPlan(insured:InsuredType.CHILD)]]
 
     def plans = [new Plan(name:"Titular",
                           benefits:[productBenefits[0]]),
@@ -250,22 +251,20 @@ class BootStrap {
     def insuredSumsByCoverage = createInsuredSumsForSecondProduct()
     def productBenefits = [new Benefit(name:"Plan visual"),
                            new Benefit(name:"Plan dental")]
+    def insuredsForPlan = [[new InsuredForPlan(insured:InsuredType.PRINCIPAL)],
+                           [new InsuredForPlan(insured:InsuredType.PRINCIPAL),new InsuredForPlan(insured:InsuredType.SPOUSE)],
+                           [new InsuredForPlan(insured:InsuredType.PRINCIPAL),new InsuredForPlan(insured:InsuredType.CHILD)],
+                           [new InsuredForPlan(insured:InsuredType.PRINCIPAL),new InsuredForPlan(insured:InsuredType.SPOUSE),
+                            new InsuredForPlan(insured:InsuredType.CHILD)]]
+
 
     def plans = [new Plan(name:"Titular",
-                          maximumInsuredsNumber:1,
-                          insureds:[InsuredType.PRINCIPAL],
                           benefits:productBenefits),
                  new Plan(name:"Titular y Cónyuge",
-                          maximumInsuredsNumber:2,
-                          insureds:[InsuredType.PRINCIPAL,InsuredType.SPOUSE],
                           benefits:productBenefits),
                  new Plan(name:"Titular e hijos dependientes",
-                          maximumInsuredsNumber:3,
-                          insureds:[InsuredType.PRINCIPAL,InsuredType.CHILD],
                           benefits:productBenefits),
                  new Plan(name:"Titular, cónyuge e hijos dependientes",
-                          maximumInsuredsNumber:4,
-                          insureds:[InsuredType.PRINCIPAL,InsuredType.SPOUSE,InsuredType.CHILD,InsuredType.CHILD],
                           benefits:productBenefits)]
 
     rangesAgeByBeneficiary.each{ range ->
@@ -276,7 +275,7 @@ class BootStrap {
       product.addToInsuranceCostsPerInsured(insuranceCost)
     }
 
-    plans.each{ plan ->
+    plans.eachWithIndex{ plan,i ->
       plan.insureds.each{ insured ->
         insuredSumsByCoverage[insured].each{ insuredSum ->
           plan.addToInsuredSumsByCoveragePerInsured(insuredSum)
@@ -285,6 +284,10 @@ class BootStrap {
 
       coverages.each{ coverage ->
         plan.addToCoverages(coverage)
+      }
+
+      insuredsForPlan[i].each{ insuredForPlan ->
+        plan.addToInsureds(insuredForPlan)
       }
 
       product.addToPlans(plan)
@@ -296,7 +299,7 @@ class BootStrap {
   def createProducts(){
     if(!Product.count()){
       createFirstProduct()
-      //createSecondProduct()
+      createSecondProduct()
     }
   }
 
