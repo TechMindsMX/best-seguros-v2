@@ -6,7 +6,7 @@ import spock.lang.Specification
 import java.lang.Void as Should
 
 @TestFor(PolicyService)
-@Mock([Policy,Plan,Product])
+@Mock([Policy,Plan,Product,InsuredForPlan,Insured])
 class PolicyServiceSpec extends Specification {
 
   Should "create a new Policy"(){
@@ -36,8 +36,7 @@ class PolicyServiceSpec extends Specification {
   Should "get the unsaved insured for the policy"(){
     given:"the plan"
       def insureds = _insureds
-      def plan = new Plan(name:"un nuevo plan",
-                          maximumInsuredsNumber:_maximumInsuredsNumber);
+      def plan = new Plan(name:"un nuevo plan");
 
       insureds.each{ insured ->
         plan.addToInsureds(insured)
@@ -47,15 +46,23 @@ class PolicyServiceSpec extends Specification {
     and:"the policy"
       def savedInsureds = _savedInsureds
       def policy = new Policy(plan:plan)
+      savedInsureds.each{ savedInsured ->
+        policy.addToInsureds(savedInsured)
+      }
       policy.save()
     when:
-      def unsavedInsureds = service.findUnsavedInsuredsForPolicy(policy)
+      def savedAndUnsavedInsureds = service.findSavedAndUnsavedInsuredsForPolicy(policy)
     then:
-      unsavedInsureds.values().flatten().size() == _size
+      savedAndUnsavedInsureds.unsavedInsureds.values().flatten().size() == _unsavedSize
+      savedAndUnsavedInsureds.savedInsureds.values().flatten().size() == _savedSize
     where:
-    _insureds                                 | _maximumInsuredsNumber  | _savedInsureds || _size
-    [InsuredType.PRINCIPAL]                   | 1                       | []             || 1
-    [InsuredType.PRINCIPAL,InsuredType.CHILD] | 3                       | []             || 3
+    _insureds                                                                                         |  _savedInsureds                                   | _unsavedSize || _savedSize
+    [new InsuredForPlan(insured:InsuredType.PRINCIPAL)]                                               |  []                                               | 1            || 0
+    [new InsuredForPlan(insured:InsuredType.PRINCIPAL),
+     new InsuredForPlan(insured:InsuredType.CHILD),
+     new InsuredForPlan(insured:InsuredType.CHILD)]                                                   |  []                                               | 3            || 0
+    [new InsuredForPlan(insured:InsuredType.PRINCIPAL),
+     new InsuredForPlan(insured:InsuredType.CHILD)]                                                   |  [new Insured(insuredType:InsuredType.PRINCIPAL)] | 1            || 1 
   }
 
 }
