@@ -196,11 +196,6 @@ class BootStrap {
     }
 
     plans.eachWithIndex{ plan,i ->
-      plan.insureds.each{ insured ->
-        insuredSumsByCoverage[insured].each{ insuredSum ->
-          plan.addToInsuredSumsByCoveragePerInsured(insuredSum)
-        }
-      }
 
       coverages.each{ coverage ->
         plan.addToCoverages(coverage)
@@ -209,7 +204,13 @@ class BootStrap {
       insuredsForPlan[i].each{ insuredForPlan ->
         plan.addToInsureds(insuredForPlan)
       }
-      
+
+      plan.insureds*.insured.unique().each{ insured ->
+        insuredSumsByCoverage[insured].each{ insuredSum ->
+          plan.addToInsuredSumsByCoveragePerInsured(insuredSum)
+        }
+      }
+
       product.addToPlans(plan)
     }
 
@@ -276,11 +277,6 @@ class BootStrap {
     }
 
     plans.eachWithIndex{ plan,i ->
-      plan.insureds.each{ insured ->
-        insuredSumsByCoverage[insured].each{ insuredSum ->
-          plan.addToInsuredSumsByCoveragePerInsured(insuredSum)
-        }
-      }
 
       coverages.each{ coverage ->
         plan.addToCoverages(coverage)
@@ -288,6 +284,12 @@ class BootStrap {
 
       insuredsForPlan[i].each{ insuredForPlan ->
         plan.addToInsureds(insuredForPlan)
+      }
+
+      plan.insureds*.insured.unique().each{ insured ->
+        insuredSumsByCoverage[insured].each{ insuredSum ->
+          plan.addToInsuredSumsByCoveragePerInsured(insuredSum)
+        }
       }
 
       product.addToPlans(plan)
