@@ -14,6 +14,7 @@ var InsuredCreateController = (function(){
       selectMonths: true,
       selectYears: 110,
       format:'dd/mm/yyyy',
+      formatSubmit:'dd/mm/yyyy',
       max: true,
       today: false,
       clear: false,
