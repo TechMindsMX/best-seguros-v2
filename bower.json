@@ -16,6 +16,7 @@
   "dependencies": {
     "bootstrap": "~3.3.6",
     "handlebars": "~4.0.5",
-    "rsvp.js": "rsvp#~3.1.0"
+    "rsvp.js": "rsvp#~3.1.0",
+    "pickadate": "~3.5.6"
   }
 }

@@ -5,6 +5,9 @@
     <g:set var="entityName" value="${message(code: 'policy.label', default: 'Policy')}" />
     <title><g:message code="default.create.label" args="[entityName]" /></title>
     <asset:javascript src="policy/policy_create_controller.js" />
+    <asset:javascript src="insured/insured_create_controller.js" />
+    <asset:stylesheet src="third_party/pickadate/lib/themes/default.css" />
+    <asset:stylesheet src="third_party/pickadate/lib/themes/default.date.css" />
   </head>
   <body>
     <div class="nav" role="navigation">
