@@ -22,7 +22,7 @@ class Insured{
     lastName blank:false
     motherLastName blank:false
     rfc blank:false
-    email blank:false
+    email blank:false, email:true
     address blank:false
     country blank:false
     state blank:false
