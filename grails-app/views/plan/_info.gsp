@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-lg-12">
     {{#each insuredSumsByCoveragePerInsured}}
-      <table>
+      <table class="table table-bordered">
         <thead>
           <tr>
             <th colspan="2">
@@ -26,7 +26,7 @@
             </tr>
           {{/each}}
             <tr>
-              <table>
+              <table class="table table-bordered">
                 <thead>
                   <tr>
                     <th>Rango Edad</th>
