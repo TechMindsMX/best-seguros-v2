@@ -10,12 +10,12 @@
   <f:field bean="insured" property="name" wrapper="form" label="${message(code:"insured.name")}" />
   <f:field bean="insured" property="lastName" wrapper="form" label="${message(code:"insured.lastName")}"/>
   <f:field bean="insured" property="motherLastName" wrapper="form" label="${message(code:"insured.motherLastName")}"/>
-  <!-- <div class="form-group">
+  <div class="form-group">
     <label for="name" class="col-sm-3 control-label">Fecha de Nacimiento</label>
     <div class="col-sm-5">
-      <input type="text" class="col-sm-9 form-control" id="birthDate" name="birthDate" />
+      <input type="text" class="col-sm-9 form-control datePicker" id="birthDate" name="birthDate" />
     </div>
-  </div> -->
+  </div>
   <f:field bean="insured" property="phone" wrapper="form" label="${message(code:"insured.phone")}" />
   <f:field bean="insured" property="rfc" wrapper="form" label="${message(code:"insured.rfc")}" maxlength="13"/>
   <f:field bean="insured" property="email" wrapper="form" label="${message(code:"insured.email")}" />
