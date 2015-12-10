@@ -103,7 +103,7 @@
                 <div id="collapse${insured.key}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                   <div class="panel-body">
                     <g:each var="savedInsured" in="${insureds.savedInsureds[insured]}">
-                      <g:render template="/insured/show" model="[insured:savedInsured]"/> 
+                      <g:render template="/insured/show" model="[insured:savedInsured]"/>
                     </g:each>
 
                     <g:if test="${insureds.unsavedInsureds[insured]}">
@@ -116,6 +116,9 @@
               </div>
             </div>
           </g:each>
+          <g:form controller="policy" action="save">
+            <button type="submit" class="btn btn-default pull-right">Cerrar póliza</button>
+          </g:form>
         </div>
       </div>
 
