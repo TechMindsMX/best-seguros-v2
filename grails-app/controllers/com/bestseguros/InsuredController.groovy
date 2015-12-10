@@ -6,8 +6,6 @@ class InsuredController {
   def policyService
 
   def save(Insured insured){
-    insured.birthDate = new Date()
-    insured.validate()
     def policy = Policy.get(params.long("policy"))
 
     if(insured.hasErrors()){
