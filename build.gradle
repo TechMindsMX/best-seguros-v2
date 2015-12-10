@@ -6,7 +6,7 @@ buildscript {
         mavenLocal()
         maven { url "https://repo.grails.org/grails/core" }
     }
-    dependencies {        
+    dependencies {
         classpath "org.grails:grails-gradle-plugin:$grailsVersion"
         classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:2.5.0'
         classpath "org.grails.plugins:hibernate:4.3.10.5"
@@ -63,10 +63,13 @@ dependencies {
     compile "org.grails.plugins:cache"
     compile "org.hibernate:hibernate-ehcache"
     compile "org.grails.plugins:scaffolding"
+    compile "org.grails.plugins:rendering:2.0.0-SNAPSHOT"
     compile "mysql:mysql-connector-java:5.1.37"
+
 
     runtime "org.grails.plugins:asset-pipeline"
     runtime 'org.grails.plugins:database-migration:2.0.0.RC1'
+    runtime "org.springframework:spring-test:4.0.7.RELEASE"
     testCompile "org.grails:grails-plugin-testing"
     testCompile "org.grails.plugins:geb"
 
