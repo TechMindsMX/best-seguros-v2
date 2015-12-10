@@ -116,7 +116,8 @@
               </div>
             </div>
           </g:each>
-          <g:form controller="policy" action="save">
+
+          <g:form controller="policy" action="save" id="${policy.id}">
             <button type="submit" class="btn btn-default pull-right">Cerrar póliza</button>
           </g:form>
         </div>
