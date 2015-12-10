@@ -72,11 +72,22 @@ class PolicyServiceSpec extends Specification {
       insureds.each{ insured ->
         plan.addToInsureds(insured)
       }
+
     and:"a product"
       def product = new Product()
-      def policy = new Policy()
+      product.addToPlans(plan)
+      product.save(validate:false)
+
+      def policy = new Policy(product:product,
+                              plan:plan)
+
+      _insuredsForPolicy.each{ insured ->
+        policy.addToInsureds(insured)
+      }
+
+      policy.save(validate:false)
     when:
-      def isValid = service.isThePolicyValid()
+      def isValid = service.isThePolicyValid(policy)
     then:
       isValid == _isValid
     where:
