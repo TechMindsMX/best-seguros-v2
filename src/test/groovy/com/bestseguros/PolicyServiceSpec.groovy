@@ -62,7 +62,30 @@ class PolicyServiceSpec extends Specification {
      new InsuredForPlan(insured:InsuredType.CHILD),
      new InsuredForPlan(insured:InsuredType.CHILD)]                                                   |  []                                               | 3            || 0
     [new InsuredForPlan(insured:InsuredType.PRINCIPAL),
-     new InsuredForPlan(insured:InsuredType.CHILD)]                                                   |  [new Insured(insuredType:InsuredType.PRINCIPAL)] | 1            || 1 
+     new InsuredForPlan(insured:InsuredType.CHILD)]                                                   |  [new Insured(insuredType:InsuredType.PRINCIPAL)] | 1            || 1
+  }
+
+  Should "validate the policy"(){
+    given:"the plan"
+      def plan = new Plan()
+      def insureds = _insuredsForPlan
+      insureds.each{ insured ->
+        plan.addToInsureds(insured)
+      }
+    and:"a product"
+      def product = new Product()
+      def policy = new Policy()
+    when:
+      def isValid = service.isThePolicyValid()
+    then:
+      isValid == _isValid
+    where:
+      _insuredsForPlan                                                                                   | _insuredsForPolicy                                || _isValid
+      [new InsuredForPlan(insured:InsuredType.PRINCIPAL),new InsuredForPlan(insured:InsuredType.CHILD)]  | [new Insured(insuredType:InsuredType.PRINCIPAL)]  || false
+      [new InsuredForPlan(insured:InsuredType.PRINCIPAL),
+        new InsuredForPlan(insured:InsuredType.CHILD),
+        new InsuredForPlan(insured:InsuredType.CHILD)]                                                   | [new Insured(insuredType:InsuredType.PRINCIPAL),
+                                                                                                             new Insured(insuredType:InsuredType.CHILD)]      || true
   }
 
 }
