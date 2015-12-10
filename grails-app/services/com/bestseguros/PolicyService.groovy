@@ -63,4 +63,8 @@ class PolicyService {
       areTheInsuredsComplete
   }
 
+  def updatePolicyStatus(Policy policy){
+    policy.policyStatus = PolicyStatus.FINISHED
+  }
+
 }
