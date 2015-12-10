@@ -1,5 +1,6 @@
 //= require third_party/pickadate/lib/picker.js
 //= require third_party/pickadate/lib/picker.date.js
+//= require third_party/pickadate/lib/picker.time.js
 //= require third_party/pickadate/lib/translations/es_ES.js
 
 var InsuredCreateController = (function(){
