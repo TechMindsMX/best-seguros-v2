@@ -1,9 +1,11 @@
 package com.bestseguros
+import org.grails.databinding.BindingFormat
 
 class Insured{
   String name
   String lastName
   String motherLastName
+  @BindingFormat("dd/MM/yyyy")
   Date birthDate
   String phone
   String rfc
