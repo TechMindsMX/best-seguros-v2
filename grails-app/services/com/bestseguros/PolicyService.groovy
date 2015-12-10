@@ -41,7 +41,26 @@ class PolicyService {
       }
     }
 
-    [unsavedInsureds:unsavedInsureds,savedInsureds:savedInsureds] 
+    [unsavedInsureds:unsavedInsureds,savedInsureds:savedInsureds]
+  }
+
+  def isThePolicyValid(Policy policy){
+    if(!policy.product)
+      return false
+
+    def plan = policy.plan
+    def policyInsureds = policy.insureds
+    def planInsureds = plan.insureds*.insured
+    def insureds = plan.insureds*.insured.unique()
+
+    def areTheInsuredsComplete = insureds.findAll{ it != InsuredType.CHILD}.every{ insured ->
+      planInsureds.findAll{ it == insured }?.size() == policyInsureds.findAll{ it.insuredType == insured }?.size()
+    }
+
+    if(insureds.contains(InsuredType.CHILD))
+      areTheInsuredsComplete && policyInsureds.findAll{ it.insuredType == InsuredType.CHILD }
+    else
+      areTheInsuredsComplete
   }
 
 }
