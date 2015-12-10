@@ -13,7 +13,7 @@
   <div class="form-group">
     <label for="name" class="col-sm-3 control-label">Fecha de Nacimiento</label>
     <div class="col-sm-5">
-      <input type="text" class="col-sm-9 form-control datePicker" id="birthDate" name="birthDate" />
+      <input type="text" class="col-sm-9 form-control datePicker" id="birthDate" name="insured.birthDate" value="${formatDate(format:'dd/MM/yyyy',date:insured.birthDate)}"/>
     </div>
   </div>
   <f:field bean="insured" property="phone" wrapper="form" label="${message(code:"insured.phone")}" />
