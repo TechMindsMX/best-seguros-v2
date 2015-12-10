@@ -44,23 +44,8 @@ class PolicyController {
   }
 
   @Transactional
-  def delete(Policy policy) {
-
-    if (policy == null) {
-      transactionStatus.setRollbackOnly()
-      notFound()
-      return
-    }
-
-    policy.delete flush:true
-
-    request.withFormat {
-      form multipartForm {
-        flash.message = message(code: 'default.deleted.message', args: [message(code: 'policy.label', default: 'Policy'), policy.id])
-        redirect action:"index", method:"GET"
-      }
-      '*'{ render status: NO_CONTENT }
-    }
+  def save(){
+    renderPdf(template:"/pdfs/report")
   }
 
   protected void notFound() {
