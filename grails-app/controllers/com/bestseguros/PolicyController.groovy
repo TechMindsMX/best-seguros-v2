@@ -44,8 +44,14 @@ class PolicyController {
   }
 
   @Transactional
-  def save(){
-    renderPdf(template:"/pdfs/report")
+  def save(Policy policy){
+    if(!policyService.isThePolicyValid(policy)){
+      redirect(action:"edit",id:policy.id)
+      flash.message = "Falta capturar información para la póliza"
+      return
+    }
+    else
+      renderPdf(template:"/pdfs/report")
   }
 
   protected void notFound() {
