@@ -67,4 +67,12 @@ class PolicyService {
     policy.policyStatus = PolicyStatus.FINISHED
   }
 
+  def getPolicyDetail(Policy policy){
+    def detail = [:]
+    detail.contractingParty = policy.insureds.find{ it.insuredType == InsuredType.PRINCIPAL }
+    detail.policyNumber = policy.id
+    detail
+  }
+
+
 }
