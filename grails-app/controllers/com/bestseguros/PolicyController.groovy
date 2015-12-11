@@ -50,8 +50,10 @@ class PolicyController {
       flash.message = "Falta capturar información para la póliza"
       return
     }
-    else
-      renderPdf(template:"/pdfs/report")
+    else{
+      def policyDetail = policyService.getPolicyDetail(policy)
+      renderPdf(template:"/pdfs/report",model:[policyDetail:policyDetail])
+    }
   }
 
   protected void notFound() {
