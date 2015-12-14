@@ -51,7 +51,7 @@
   <body>
     <div class="row-fluid">
       <div class="col-print-5">
-        <p></p>
+        <img src="${grailsApplication.config.grails.serverUrl}/assets/pan_american.png" height="110" width="300"/>
       </div>
       <div class="col-print-7">
         <div class="row-fluid" >
