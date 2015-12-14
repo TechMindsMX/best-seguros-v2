@@ -31,6 +31,10 @@
         margin-left:10px;
       }
 
+      div.labelDiv{
+        padding-left:5px !important;
+      }
+
       div.body{
         border-style: solid;
         border-width: 0px 1px 1px 1px !important;
@@ -39,6 +43,10 @@
       span.dataLabel{
         padding-left:5px;
         font-weight: bold;
+      }
+    
+      span.leftSpan{
+        padding-left:5px;
       }
 
       body{
@@ -190,8 +198,8 @@
 
         <div class="row body">
           <g:each var="benefit" in="${policyDetail.benefits}">
-            <div class="col-print-4">
-              <b>${benefit.coverage.name} para dependiente ${benefit.insured.value}</b>
+            <div class="col-print-4 labelDiv" >
+              <b>${benefit.coverage.name} para dependiente ${benefit.insured.value}.</b>
             </div>
             <div class="col-print-2 text-center">
               <b><g:formatNumber number="${benefit.insuredSum}" type="currency" /></b>
@@ -226,7 +234,9 @@
 
         <div class="row body">
           <g:each var="insured" in="${policyDetail.insureds}">
-            <div class="col-print-6">${insured?.name} ${insured?.lastName} ${insured?.motherLastName}</div>
+            <div class="col-print-6">
+              <span class="leftSpan">${insured?.name} ${insured?.lastName} ${insured?.motherLastName}</span>
+            </div>
             <div class="col-print-3 text-center">${insured?.insuredType.value} </div>
             <div class="col-print-3 text-center">
               <g:formatDate format="dd/MM/yyyy" date="${insured?.birthDate}"/>

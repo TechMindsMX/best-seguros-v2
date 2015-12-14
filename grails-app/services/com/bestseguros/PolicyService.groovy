@@ -73,7 +73,7 @@ class PolicyService {
     detail.periodicity = policy.product.periodicity.value
     detail.coin = policy.product.coin
     detail.productName = policy.product.name
-    detail.benefits = policy.plan.insuredSumsByCoveragePerInsured 
+    detail.benefits = policy.plan.insuredSumsByCoveragePerInsured.sort{ insuredSum -> insuredSum.insured }
     detail.insureds = policy.insureds
     detail.monthlyInsuranceCost = 0
     
