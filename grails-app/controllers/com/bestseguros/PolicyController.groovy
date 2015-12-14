@@ -51,6 +51,7 @@ class PolicyController {
       return
     }
     else{
+      policyService.updatePolicyStatus(policy)
       def policyDetail = policyService.getPolicyDetail(policy)
       renderPdf(template:"/pdfs/report",model:[policyDetail:policyDetail])
     }
