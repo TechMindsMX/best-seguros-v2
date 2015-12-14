@@ -19,6 +19,9 @@ class Insured{
   String city
   InsuredType insuredType
 
+  Date dateCreated
+  Date lastUpdated
+
   static constraints = {
     name blank:false
     lastName blank:false

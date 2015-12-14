@@ -6,6 +6,9 @@ class Policy {
   PolicyStatus policyStatus
   Plan plan
   static hasMany = [insureds:Insured]
+  
+  Date dateCreated
+  Date lastUpdated
 
   static constraints = {
     product nullable:true

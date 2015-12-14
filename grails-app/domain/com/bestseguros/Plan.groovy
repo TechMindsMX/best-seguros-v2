@@ -3,6 +3,9 @@ package com.bestseguros
 class Plan {
 
   String name
+  
+  Date dateCreated
+  Date lastUpdated
 
   static hasMany = [
     coverages:Coverage,

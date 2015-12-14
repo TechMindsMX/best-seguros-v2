@@ -12,6 +12,9 @@ class Product {
   Insurance insurance
   Sponsor sponsor
 
+  Date dateCreated
+  Date lastUpdated
+
   static hasMany = [plans:Plan,
                     rangesAgeByBeneficiary:RangeAgeByBeneficiary,
                     insuranceCostsPerInsured:InsuranceCostPerInsured]
