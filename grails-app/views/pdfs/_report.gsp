@@ -38,6 +38,7 @@
 
       span.dataLabel{
         padding-left:5px;
+        font-weight: bold;
       }
 
       body{
@@ -49,85 +50,58 @@
     <link rel="stylesheet" href="${grailsApplication.config.grails.serverUrl}/assets/third_party/bootstrap/dist/css/bootstrap.css?compile=false" />
   </head>
   <body>
-    <div class="row-fluid">
+    <div class="row">
       <div class="col-print-5">
         <img src="${grailsApplication.config.grails.serverUrl}/assets/pan_american.png" height="110" width="300"/>
       </div>
-      <div class="col-print-7">
+      <div class="col-print-6">
         <div class="row-fluid" >
           <h5>PÓLIZA DE SEGUROS DE ${policyDetail?.productName?.toUpperCase()}</h5>
         </div>
-        <div class="row-fluid">
-          <table class="table bordered">
-            <tr>
-              <th colspan="2" class="header" style="text-align:center;">
-                Contratante
-              </th>
-            </tr>
-            <tr>
-              <td>
-                <strong>Nombre:</strong>
-              </td>
-              <td>
-                ${policyDetail?.contractingParty?.name}
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <strong>Calle y número:</strong>
-              </td>
-              <td>
-                ${policyDetail?.contractingParty?.address}
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <strong>
-                  Colonia:
-                </strong>
-              </td>
-              <td>
-                ${policyDetail?.contractingParty?.colony}
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <strong>Delegación o municipio</strong>
-              </td>
-              <td>
-                XXXXXXXXXXXXXXXXXXXXX
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <strong>
-                  Entidad federativa
-                </strong>
-              </td>
-              <td>
-                ${policyDetail?.contractingParty?.state}
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <strong>
-                  C.P.
-                </strong>
-              </td>
-              <td>
-                ${policyDetail?.contractingParty?.cp}
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <strong>R.F.C.</strong>
-              </td>
-              <td>
-                ${policyDetail?.contractingParty?.rfc}
-              </td>
-            </tr>
-          </table>
+
+        <div class="row">
+          <div class="col-print-12 header"><b>Contratante</b></div>
         </div>
+        <div class="row">
+          <div class="col-print-12 body">
+            <div class="col-print-6">
+              <span class="dataLabel">Nombre:</span>
+            </div>
+            <div class="col-print-6 text-left">${policyDetail?.contractingParty?.name}</div>
+
+            <div class="col-print-6">
+              <span class="dataLabel">Calle y número:</span>
+            </div>
+            <div class="col-print-6 text-left">${policyDetail?.contractingParty?.address}</div>
+
+            <div class="col-print-6">
+              <span class="dataLabel">Colonia:</span>
+            </div>
+            <div class="col-print-6 text-left">${policyDetail?.contractingParty?.colony}</div>
+            
+            <div class="col-print-6">
+              <span class="dataLabel">Delegación o municipio</span>
+            </div>
+            <div class="col-print-6 text-left">${policyDetail?.contractingParty?.town}</div>
+            
+            <div class="col-print-6">
+              <span class="dataLabel">Entidad federativa</span>
+            </div>
+            <div class="col-print-6 text-left">${policyDetail?.contractingParty?.state}</div>
+
+            <div class="col-print-6">
+              <span class="dataLabel">C.P.</span>
+            </div>
+            <div class="col-print-6 text-left">${policyDetail?.contractingParty?.cp}</div>
+            
+            <div class="col-print-6">
+              <span class="dataLabel">R.F.C.</span>
+            </div>
+            <div class="col-print-6 text-left">${policyDetail?.contractingParty?.rfc}</div>
+
+          </div>
+        </div>
+
       </div>
     </div>
 
