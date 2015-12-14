@@ -6,7 +6,7 @@ import grails.transaction.Transactional
 class PlanService {
 
   def findPlansForProduct(String uuid){
-    Product.findByUuid(uuid)?.plans ?: []
+    Product.findByUuid(uuid)?.plans?.sort{ plan -> plan.name } ?: []
   }
 
   def getPlanDetail(Plan plan){
