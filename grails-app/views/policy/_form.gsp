@@ -1,4 +1,4 @@
-<%@ page import="com.bestseguros.Insured" %>
+<%@ page import="com.bestseguros.PolicyStatus" %>
 
 <g:if test="${!policy.product}">
   <div class="form-horizontal">
@@ -117,9 +117,11 @@
             </div>
           </g:each>
 
-          <g:form controller="policy" action="save" id="${policy.id}">
-            <button type="submit" class="btn btn-default pull-right">Cerrar póliza</button>
-          </g:form>
+          <g:if test="${policy?.policyStatus != PolicyStatus.FINISHED}">
+            <g:form controller="policy" action="save" id="${policy.id}">
+              <button type="submit" class="btn btn-default pull-right">Cerrar póliza</button>
+            </g:form>
+          </g:if>
         </div>
       </div>
 
