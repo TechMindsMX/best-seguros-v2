@@ -475,4 +475,5 @@ databaseChangeLog = {
   include file: 'adding-maximum-insureds-number.groovy'
   include file: 'updating-plan-insureds-relation.groovy'
   include file: 'removing-maximum-number.groovy'
+  include file: 'adding-dates-to-domain-classes.groovy'
 }
