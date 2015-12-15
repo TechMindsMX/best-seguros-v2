@@ -26,7 +26,7 @@ class Insured{
     name blank:false
     lastName blank:false
     motherLastName blank:false
-    rfc blank:false
+    rfc blank:false,nullable:true,size:10..15,matches:/[A-Z]{4}([0-9]{2})(1[0-2]|0[1-9])([0-3][0-9])([A-Z0-9]{3})$/
     email blank:false, email:true
     address blank:false
     country blank:false
