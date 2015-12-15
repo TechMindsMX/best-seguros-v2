@@ -2,6 +2,7 @@
 //= require third_party/pickadate/lib/picker.date.js
 //= require third_party/pickadate/lib/picker.time.js
 //= require third_party/pickadate/lib/translations/es_ES.js
+//= require insured/insured_address_controller.js
 
 var InsuredCreateController = (function(){
 
@@ -10,6 +11,7 @@ var InsuredCreateController = (function(){
   };
 
   var start = function(){
+    InsuredAddressController.start();
     $(settings.datePicker).pickadate({
       selectYears: true,
       selectMonths: true,
