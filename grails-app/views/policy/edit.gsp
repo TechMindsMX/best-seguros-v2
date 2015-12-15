@@ -24,6 +24,7 @@
         </g:eachError>
       </ul>
       </g:hasErrors>
+      <input type="hidden" id="sepomexUrl" name="sepomexUrl" value="${sepomexUrl}" />
       <g:render template="/policy/form" model="[policy:policy]" />
     </div>
   </body>
