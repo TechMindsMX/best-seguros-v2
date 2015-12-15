@@ -26,6 +26,7 @@ class PolicyController {
   def edit(Policy policy) {
     def model = [:]
     model.policy = policy
+    model.sepomexUrl = grailsApplication.config.sepomex.url
 
     if(!policy.product)
       model.products = Product.list()
