@@ -1,6 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
   <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <style>
       .col-print-1 {width:8%;  float:left;}
       .col-print-2 {width:16%; float:left;}
@@ -14,7 +15,7 @@
       .col-print-10{width:83%; float:left;}
       .col-print-11{width:92%; float:left;}
       .col-print-12{width:100%; float:left;}
-      
+
       .row{
         margin-left:0px !important;
         margin-right:0px !important;
@@ -22,7 +23,7 @@
 
       div.header{
         background: #A4A4A4 !important;
-        text-align:center; 
+        text-align:center;
         padding: 5px 0px 0px 0px !important;
         border: solid 1px #000000 !important;
       }
@@ -44,14 +45,16 @@
         padding-left:5px;
         font-weight: bold;
       }
-    
+
       span.leftSpan{
         padding-left:5px;
       }
 
       body{
+        font-family: Arial !important;
         font-size:12px !important;
-      } 
+        -fs-pdf-font-encoding: UTF-8 !important;
+      }
 
       @page {  margin: 0.2in; }
     </style>
@@ -86,12 +89,12 @@
               <span class="dataLabel">Colonia:</span>
             </div>
             <div class="col-print-6 text-left">${policyDetail?.contractingParty?.colony}</div>
-            
+
             <div class="col-print-6">
               <span class="dataLabel">Delegación o municipio</span>
             </div>
             <div class="col-print-6 text-left">${policyDetail?.contractingParty?.town}</div>
-            
+
             <div class="col-print-6">
               <span class="dataLabel">Entidad federativa</span>
             </div>
@@ -101,7 +104,7 @@
               <span class="dataLabel">C.P.</span>
             </div>
             <div class="col-print-6 text-left">${policyDetail?.contractingParty?.cp}</div>
-            
+
             <div class="col-print-6">
               <span class="dataLabel">R.F.C.</span>
             </div>
@@ -121,7 +124,7 @@
       </div>
     </div>
 
-    
+
     <div class="row">
       <div class="col-print-5">
         <div class="row">
@@ -140,12 +143,12 @@
             <div class="col-print-6">
               <g:formatDate format="dd/MM/yyyy" date="${policyDetail?.dateCreated}"/>
             </div>
-            
+
             <div class="col-print-6">
               <span class="dataLabel">Forma de Pago:</span>
             </div>
             <div class="col-print-6">${policyDetail?.periodicity}</div>
-    
+
             <div class="col-print-6">
               <span class="dataLabel">Moneda:</span>
             </div>
@@ -171,22 +174,22 @@
       </div>
 
     </div>
-    
+
     <div class="row" style="margin-top:10px;">
       <div class="col-print-11">
         <div class="row header">
           <div class="col-print-4">
             <b>BENEFICIOS</b>
           </div>
-          
+
           <div class="col-print-2">
             <b>SUMA ASEGURADA</b>
           </div>
-          
+
           <div class="col-print-2">
             <b>DEDUCIBLE</b>
           </div>
-          
+
           <div class="col-print-2">
             <b>PERIODO DE ESPERA</b>
           </div>
@@ -208,18 +211,18 @@
               No Aplica
             </div>
            <div class="col-print-2 text-center">
-              - 
+              -
             </div>
            <div class="col-print-2 text-center">
-              - 
+              -
             </div>
 
           </g:each>
         </div>
 
       </div>
-    </div> 
-  
+    </div>
+
     <div class="row">
       <div class="col-print-11">
         <div class="row header">
@@ -243,7 +246,7 @@
             </div>
           </g:each>
         </div>
-        
+
         <div class="row header">
           <div class="col-print-6">
             <p></p>
@@ -266,13 +269,13 @@
 
       </div>
     </div>
-    
+
     <div class="row">
       <div class="col-print-11 text-justify">
         <p>Si el contenido de esta Póliza o sus modificaciones no concordaren con la oferta, el Contratante podrá pedir la rectificación correspondiente dentro de los treinta días que sigan al día en que reciba la Póliza. Transcurrido este plazo se considerarán aceptadas las estipulaciones de la Póliza o de sus modificaciones</p>
       </div>
     </div>
-  
+
     <div class="row">
       <div class="col-print-11 text-center">
         <div class="row">
@@ -280,17 +283,17 @@
             <b>México, D.F. a</b>
           </div>
         </div>
-        
+
         <div class="row" style="margin-top:80px;">
           <div class="col-print-5">
             <p></p>
-          </div> 
+          </div>
           <div class="col-print-7">
             <hr style="border-top: 1px solid #000 !important;"></hr>
             <p>Pan-American México, Compañía de Seguros, S.A. de C.V.</p>
           </div>
         </div>
-      </div> 
+      </div>
     </div>
 
 
@@ -298,7 +301,7 @@
       <div class="col-print-11 text-justify">
         <p>Para atención al asegurado: Centro de Contacto D.F. [*] en un horario de [*].
 Para acceso a la unidad especializada de la compañía: Centro de Contacto D.F. (52 55) 50472504 y larga distancia sin costo: 01800 212 5598 de lunes a jueves de 9:00 a 17:00 horas y viernes de 9:00 a 14:00 horas, correo electrónico: une@palig.com
-Y en nuestras oficinas ubicadas en Av. Paseo de la Reforma 412, Suite 1501, Col. Juárez, C.P. 06600, México D.F.  de lunes a viernes de 9 a 17 horas. 
+Y en nuestras oficinas ubicadas en Av. Paseo de la Reforma 412, Suite 1501, Col. Juárez, C.P. 06600, México D.F.  de lunes a viernes de 9 a 17 horas.
 El detalle de los beneficios, sus limitaciones y exclusiones se pueden consultar en las condiciones generales disponibles en nuestra  página web. : www.palig.com/mexico</p>
       </div>
     </div>
