@@ -134,6 +134,20 @@ class BootStrap {
     insuredSums
   }
 
+  def getInsuredsForPlan(){
+    def insuredsForPlan = [[new InsuredForPlan(insured:InsuredType.PRINCIPAL)],
+                           [new InsuredForPlan(insured:InsuredType.PRINCIPAL),new InsuredForPlan(insured:InsuredType.SPOUSE)],
+                           [new InsuredForPlan(insured:InsuredType.PRINCIPAL)],
+                           [new InsuredForPlan(insured:InsuredType.PRINCIPAL),new InsuredForPlan(insured:InsuredType.SPOUSE)]]
+  
+    15.times{
+      insuredsForPlan[2] << new InsuredForPlan(insured:InsuredType.CHILD)
+      insuredsForPlan[3] << new InsuredForPlan(insured:InsuredType.CHILD)
+    }
+    
+    insuredsForPlan
+  }
+
   def createFirstProduct(){
     def coverages = Coverage.getAll(1..3)
 
@@ -172,11 +186,7 @@ class BootStrap {
                            new Benefit(name:"Check up anual(sólo titular)"),
                            new Benefit(name:"Check up anual(sólo titular y cónyuge)")]
 
-    def insuredsForPlan = [[new InsuredForPlan(insured:InsuredType.PRINCIPAL)],
-                           [new InsuredForPlan(insured:InsuredType.PRINCIPAL),new InsuredForPlan(insured:InsuredType.SPOUSE)],
-                           [new InsuredForPlan(insured:InsuredType.PRINCIPAL),new InsuredForPlan(insured:InsuredType.CHILD)],
-                           [new InsuredForPlan(insured:InsuredType.PRINCIPAL),new InsuredForPlan(insured:InsuredType.SPOUSE),
-                            new InsuredForPlan(insured:InsuredType.CHILD)]]
+    def insuredsForPlan = getInsuredsForPlan()
 
     def plans = [new Plan(name:"Titular",
                           benefits:[productBenefits[0]]),
@@ -252,12 +262,8 @@ class BootStrap {
     def insuredSumsByCoverage = createInsuredSumsForSecondProduct()
     def productBenefits = [new Benefit(name:"Plan visual"),
                            new Benefit(name:"Plan dental")]
-    def insuredsForPlan = [[new InsuredForPlan(insured:InsuredType.PRINCIPAL)],
-                           [new InsuredForPlan(insured:InsuredType.PRINCIPAL),new InsuredForPlan(insured:InsuredType.SPOUSE)],
-                           [new InsuredForPlan(insured:InsuredType.PRINCIPAL),new InsuredForPlan(insured:InsuredType.CHILD)],
-                           [new InsuredForPlan(insured:InsuredType.PRINCIPAL),new InsuredForPlan(insured:InsuredType.SPOUSE),
-                            new InsuredForPlan(insured:InsuredType.CHILD)]]
-
+   
+    def insuredsForPlan = getInsuredsForPlan()
 
     def plans = [new Plan(name:"Titular",
                           benefits:productBenefits),
