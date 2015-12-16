@@ -10,7 +10,7 @@ class InsuredController {
 
     if(insured.hasErrors()){
       def insureds = policyService.findSavedAndUnsavedInsuredsForPolicy(policy)
-      def insuredTypes = policy?.plan?.insureds*.insured ?: []
+      def insuredTypes = policy?.plan?.insureds*.insured.unique() ?: []
       insureds.unsavedInsureds[insured.insuredType].remove(0)
       insureds.unsavedInsureds[insured.insuredType].add(0,insured)
       render view:"/policy/edit",model:[policy:policy,insuredTypes:insuredTypes.sort(),insureds:insureds]

@@ -32,7 +32,7 @@ class PolicyController {
       model.products = Product.list()
     else{
       def insureds = policyService.findSavedAndUnsavedInsuredsForPolicy(policy)
-      def insuredTypes = policy?.plan?.insureds*.insured ?: []
+      def insuredTypes = policy?.plan?.insureds*.insured.unique() ?: []
       model << [insuredTypes:insuredTypes.sort(),insureds:insureds]
     }
 
