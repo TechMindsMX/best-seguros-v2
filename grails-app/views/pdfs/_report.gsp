@@ -56,11 +56,96 @@
         -fs-pdf-font-encoding: UTF-8 !important;
       }
 
-      @page {  margin: 0.2in; }
+      @page {
+        margin: 0.1in;
+        size: 11in 11.5in;
+      }
+
+      .text-vertical{
+
+      }
+
     </style>
     <link rel="stylesheet" href="${grailsApplication.config.grails.serverUrl}/assets/third_party/bootstrap/dist/css/bootstrap.css?compile=false" />
   </head>
   <body>
+    <div class="row">
+      <div class="col-print-10">
+
+        <div class="row">
+          <div class="col-print-4">
+            <img src="${grailsApplication.config.grails.serverUrl}/assets/pan_american.png" height="80" width="275"/>
+          </div>
+
+          <div class="col-print-8">
+            <div class="row">
+              <div class="col-print-4"><p></p></div>
+              <div class="col-print-8 text-right"><h5>PÓLIZA DE SEGUROS DE ${policyDetail?.productName?.toUpperCase()}</h5></div>
+            </div><!--ENDOF IMAGE ROW -->
+
+            <div class="row-fluid">
+              <div class="col-print-12">
+                <div class="row">
+                  <div class="col-print-12 header"><b>Contratante</b></div>
+                </div>
+                <div class="row">
+                  <div class="col-print-12 body">
+                    <div class="col-print-5">
+                      <span class="dataLabel">Nombre:</span>
+                    </div>
+                    <div class="col-print-7">
+                      ${policyDetail?.contractingParty?.name}
+                    </div>
+
+                    <div class="col-print-5">
+                      <span class="dataLabel">Calle y número:</span>
+                    </div>
+                    <div class="col-print-7 text-left">${policyDetail?.contractingParty?.address}</div>
+
+                    <div class="col-print-5">
+                      <span class="dataLabel">Colonia:</span>
+                    </div>
+                    <div class="col-print-7 text-left">${policyDetail?.contractingParty?.colony}</div>
+
+                    <div class="col-print-5">
+                      <span class="dataLabel">Delegación o municipio</span>
+                    </div>
+                    <div class="col-print-7 text-left">${policyDetail?.contractingParty?.town}</div>
+
+                    <div class="col-print-5">
+                      <span class="dataLabel">Entidad federativa</span>
+                    </div>
+                    <div class="col-print-7 text-left">${policyDetail?.contractingParty?.state}</div>
+
+                    <div class="col-print-5">
+                      <span class="dataLabel">C.P.</span>
+                    </div>
+                    <div class="col-print-7 text-left">${policyDetail?.contractingParty?.cp}</div>
+
+                    <div class="col-print-5">
+                      <span class="dataLabel">R.F.C.</span>
+                    </div>
+                    <div class="col-print-7 text-left">${policyDetail?.contractingParty?.rfc}</div>
+
+                  </div>
+                </div>
+              </div>
+            </div><!--ENDOF ROW-->
+
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-print-2">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="text-vertical">Aquí va el texto que hay que poner en orientación vertical</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="row">
       <div class="col-print-5">
         <img src="${grailsApplication.config.grails.serverUrl}/assets/pan_american.png" height="110" width="300"/>
