@@ -58,11 +58,24 @@
 
       @page {
         margin: 0.1in;
-        size: 11in 11.5in;
+        size: 10.5in 11.5in;
       }
 
       .text-vertical{
+        /* Safari */
+        -webkit-transform: rotate(-90deg) !important;
 
+        /* Firefox */
+        -moz-transform: rotate(-90deg) !important;
+
+        /* IE */
+        -ms-transform: rotate(-90deg) !important;
+
+        /* Opera */
+        -o-transform: rotate(-90deg) !important;
+
+        /* Internet Explorer */
+        filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3) !important;
       }
 
     </style>
@@ -70,7 +83,7 @@
   </head>
   <body>
     <div class="row">
-      <div class="col-print-10">
+      <div class="col-print-11">
 
         <div class="row">
           <div class="col-print-4">
@@ -135,13 +148,70 @@
           </div>
         </div>
 
-      </div>
-
-      <div class="col-print-2">
         <div class="row">
-          <div class="col-lg-12">
-            <div class="text-vertical">Aquí va el texto que hay que poner en orientación vertical</div>
+          <div class="col-print-12">
+            <p>Pan-American México, Compañia de Seguros, S.A. de C.V., en adelante la "Compañia", de conformidad con el presente contacto,
+               sus alcances y limitaciones, pagará la indemnización que proceda si es que ocurre alguno de los siguientes eventos amparados
+               siempre que la póliza correspondiente se encuentre vigente al momento de ocurrir el Evento.</p>
           </div>
+        </div>
+
+        <div class="row">
+          <div class="col-print-5">
+            <div class="row">
+              <div class="col-print-12 header"><b>Datos de la Póliza</b></div>
+            </div>
+            <div class="row">
+              <div class="col-print-12 body">
+                <div class="col-print-5">
+                  <span class="dataLabel">No. de Póliza</span>
+                </div>
+                <div class="col-print-7">${policyDetail?.policyNumber}</div>
+
+                <div class="col-print-5">
+                  <span class="dataLabel">Fecha de Emisión:</span>
+                </div>
+                <div class="col-print-7">
+                  <g:formatDate format="dd/MM/yyyy" date="${policyDetail?.dateCreated}"/>
+                </div>
+
+                <div class="col-print-5">
+                  <span class="dataLabel">Forma de Pago:</span>
+                </div>
+                <div class="col-print-7">${policyDetail?.periodicity}</div>
+
+                <div class="col-print-5">
+                  <span class="dataLabel">Moneda:</span>
+                </div>
+                <div class="col-print-7">${policyDetail?.coin}</div>
+              </div>
+            </div>
+          </div><!--ENDOF FIRST-COLUMN -->
+
+          <div class="col-print-1">
+            <p></p>
+          </div>
+
+          <div class="col-print-6">
+            <div class="row">
+              <div class="col-print-12 header"><b>Datos de Control</b></div>
+            </div>
+
+            <div class="row">
+              <div class="col-print-12 body">
+                <div class="col-print-6">
+                  <span class="dataLabel">Producto</span>
+                </div>
+                <div class="col-print-6">${policyDetail?.productName}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> <!--ENOF col-print-11 -->
+
+      <div class="col-print-1">
+        <div class="row text-vertical">
+          <img src="${grailsApplication.config.grails.serverUrl}/assets/textRight.png" height="1063" width="120"/>
         </div>
       </div>
     </div>
