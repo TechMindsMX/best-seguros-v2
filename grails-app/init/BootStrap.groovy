@@ -171,14 +171,14 @@ class BootStrap {
                                                             maxAge:18,
                                                             renewal:21)]
 
-    def product = new Product(name:"Renta diaria por Hospitalización",
-                               trade:Trade.findByName("Accidentes personales"),
-                               coin:"MXN",
-                               country:"México",
-                               insurance:Insurance.get(1),
-                               sponsor:Sponsor.get(1),
-                               periodicity:Periodicity.MONTHLY,
-                               iva:false)
+    def product = new Product(name:"Renta diaria por Hospitalización - ${Insurance.get(1).name}",
+                              trade:Trade.findByName("Accidentes personales"),
+                              coin:"MXN",
+                              country:"México",
+                              insurance:Insurance.get(1),
+                              sponsor:Sponsor.get(1),
+                              periodicity:Periodicity.MONTHLY,
+                              iva:false)
 
     def insuredSumsByCoverage = createInsuredSumsForFirstProduct()
 
@@ -250,7 +250,7 @@ class BootStrap {
                                                             renewal:21)]
 
 
-    def product = new Product(name:"Renta diaria por Hospitalización",
+    def product = new Product(name:"Renta diaria por Hospitalización - ${Insurance.get(2).name}",
                               trade:Trade.findByName("Vida"),
                               coin:"MXN",
                               country:"México",
