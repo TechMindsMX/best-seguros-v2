@@ -17,7 +17,11 @@ class InsuredController {
       return
     }
 
-    insuredService.addInsuredForPolicy(insured,policy)
+    if(params.isPrincipal)
+      insuredService.addContratingPartyAndPrincipalForPolicy(insured,policy)
+    else
+      insuredService.addInsuredForPolicy(insured,policy)
+
     redirect(controller:"policy",action:"edit",id:policy.id)
   }
 
