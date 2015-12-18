@@ -32,7 +32,19 @@ class InsuredServiceSpec extends Specification {
       service.addInsuredForPolicy(insured,policy)
     then:
       policy.insureds.size() == 1
-      policy.insureds.first().id 
+      policy.insureds.first().id
   }
- 
+
+  Should "save the contracting party as principal"(){
+    given:"the policy and the contracting party insured"
+      def policy = new Policy().save(validate:false)
+      def insured = new Insured(name:"Gamaliel",
+                                lastName:"Jiménez",
+                                insuredType:InsuredType.CONTRACTING_PARTY)
+    when:
+      def service = service.addContratingPartyAndPrincipalForPolicy(insured,policy)
+    then:
+      policy.insureds.size() == 2
+  }
+
 }
