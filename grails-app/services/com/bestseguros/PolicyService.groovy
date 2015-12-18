@@ -76,12 +76,16 @@ class PolicyService {
     detail.benefits = policy.plan.insuredSumsByCoveragePerInsured.sort{ insuredSum -> insuredSum.insured }
     detail.insureds = policy.insureds
     detail.monthlyInsuranceCost = 0
-    
+
     detail.insureds.each{ insured ->
       detail.monthlyInsuranceCost += policy.product.insuranceCostsPerInsured.find{ it.insured == insured.insuredType }*.insuranceCost.sum()
     }
 
     detail
+  }
+
+  def getContractingParty(policy){
+    policy.insureds.find{ it.insuredType = InsuredType.CONTRACTING_PARTY }
   }
 
 }
