@@ -24,9 +24,9 @@ class PolicyController {
   }
 
   def edit(Policy policy) {
-    def model = [:]
-    model.policy = policy
-    model.sepomexUrl = grailsApplication.config.sepomex.url
+    def model = [policy:policy,
+                 sepomexUrl:grailsApplication.config.sepomex.url,
+                 contractingParty:policyService.getContractingParty(policy) ?: new Insured(insuredType:InsuredType.CONTRACTING_PARTY)]
 
     if(!policy.product)
       model.products = Product.list()
