@@ -1,3 +1,5 @@
+<%@ page import="com.bestseguros.InsuredType" %>
+
 <g:form controller="insured" action="save" class="form-horizontal">
   <div class="row">
     <h1>Registrar ${insured.insuredType.value}</h1>
@@ -30,6 +32,19 @@
   <f:field bean="insured" property="town" wrapper="form" label="${message(code:"insured.town")}"/>
   <f:field bean="insured" property="colony" wrapper="form" label="${message(code:"insured.colony")}"/>
   <f:field bean="insured" property="city" wrapper="form" label="${message(code:"insured.city")}" />
+
+  <g:if test="${insured.insuredType == InsuredType.CONTRACTING_PARTY}">
+    <div class="form-group">
+      <div class="col-sm-3 text-right">
+        <label for="principal">Titular</label>
+      </div>
+
+      <div class="col-sm-5">
+        <g:checkBox name="principal" checked="${principal}"  />
+      </div>
+    </div>
+  </g:if>
+
   <input type="hidden" name="insured.insuredType" value="${insured.insuredType.key}"/>
   <input type="hidden" name="policy" value="${policy.id}"/>
   <button type="submit" class="btn btn-default pull-right">Registrar</button>
