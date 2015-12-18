@@ -14,8 +14,11 @@ class InsuredService {
 
   def addContratingPartyAndPrincipalForPolicy(Insured insured,Policy policy){
     def domainClass = new DefaultGrailsDomainClass(Insured.class)
-    def fields = domainClass.persistentProperties*.name
-    def principal = new Insured()
+    def fields = domainClass.persistentProperties*.name.grep{
+                   !['insuredType','dateCreated','lastUpdated'].contains(it)
+                 }
+
+    def principal = new Insured(insuredType:InsuredType.PRINCIPAL)
 
     fields.each{ field ->
       principal[field] = insured[field]
