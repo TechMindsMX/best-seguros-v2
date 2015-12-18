@@ -3,7 +3,8 @@ package com.bestseguros
 enum InsuredType{
   PRINCIPAL("Titular"),
   SPOUSE("Conyugue"),
-  CHILD("Hijo")
+  CHILD("Hijo"),
+  CONTRACTING_PARTY("Contratante")
 
   final String value
   InsuredType(String value){ this.value = value}
