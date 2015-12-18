@@ -99,4 +99,22 @@ class PolicyServiceSpec extends Specification {
                                                                                                              new Insured(insuredType:InsuredType.CHILD)]      || true
   }
 
+  Should "get the contracting party"(){
+    given:"the policy and its insureds"
+      def policy = new Policy()
+      def insureds = [new Insured(insuredType:InsuredType.PRINCIPAL),
+                      new Insured(insuredType:InsuredType.CONTRACTING_PARTY)]
+
+      insureds.each{ insured ->
+        policy.addToInsureds(insured)
+      }
+
+      policy.save(validate:false)
+
+    when:
+      def contractingParty = service.getContractingParty(policy)
+    then:
+      contractingParty.insuredType == InsuredType.CONTRACTING_PARTY
+  }
+
 }
