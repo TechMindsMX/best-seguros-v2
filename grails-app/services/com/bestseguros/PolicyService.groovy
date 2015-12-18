@@ -85,7 +85,7 @@ class PolicyService {
   }
 
   def getContractingParty(policy){
-    policy.insureds.find{ it.insuredType = InsuredType.CONTRACTING_PARTY }
+    policy.insureds.find{ it.insuredType == InsuredType.CONTRACTING_PARTY }
   }
 
 }

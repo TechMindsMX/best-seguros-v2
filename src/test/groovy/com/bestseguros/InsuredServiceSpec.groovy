@@ -44,7 +44,7 @@ class InsuredServiceSpec extends Specification {
     when:
       def service = service.addContratingPartyAndPrincipalForPolicy(insured,policy)
     then:
-      policy.insureds.size() == 2
+      policy.insureds.find{ it.insuredType.PRINCIPAL }
   }
 
 }
