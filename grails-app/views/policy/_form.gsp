@@ -34,6 +34,7 @@
     </script>
   </div>
 </g:if>
+
 <g:else>
   <div class="row-fluid">
     <div class="panel panel-primary">
@@ -90,19 +91,22 @@
       </div>
       <div class="panel-body">
         <div class="row">
-          <g:if test="${contractingParty?.id}">
-
-          </g:if>
-          <g:else>
-            <g:render template="/insured/form" model="[insured:contractingParty,policy:policy]"/>
-          </g:else>
+          <div class="col-lg-12">
+            <g:if test="${contractingParty.id}">
+              <g:render template="/insured/show" model="[insured:contractingParty]"/>
+            </g:if>
+            <g:else>
+              <g:render template="/insured/form" model="[insured:contractingParty,
+                                                         policy:policy]"/>
+            </g:else>
+          </div>
         </div>
       </div>
 
     </div>
   </div>
 
-  <g:if test="${contractingParty?.id}">
+  <g:if test="${contractingParty.id}">
   <div class="row-fluid">
     <div class="panel panel-primary">
       <div class="panel-heading">

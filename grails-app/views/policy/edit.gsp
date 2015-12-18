@@ -20,12 +20,12 @@
       <g:hasErrors bean="${this.policy}">
       <ul class="errors" role="alert">
         <g:eachError bean="${this.policy}" var="error">
-        <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
+          <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
         </g:eachError>
       </ul>
       </g:hasErrors>
       <input type="hidden" id="sepomexUrl" name="sepomexUrl" value="${sepomexUrl}" />
-      <g:render template="/policy/form" model="[policy:policy]" />
+      <g:render template="/policy/form" />
     </div>
   </body>
 </html>
