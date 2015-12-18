@@ -86,6 +86,26 @@
   <div class="row-fluid">
     <div class="panel panel-primary">
       <div class="panel-heading">
+        <div class="panel-title">Contratante</div>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <g:if test="${contractingParty?.id}">
+
+          </g:if>
+          <g:else>
+            <g:render template="/insured/form" model="[insured:contractingParty,policy:policy]"/>
+          </g:else>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <g:if test="${contractingParty?.id}">
+  <div class="row-fluid">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
         <h3 class="panel-title">Asegurados</h3>
       </div>
       <div class="panel-body">
@@ -108,8 +128,7 @@
 
                     <g:if test="${insureds.unsavedInsureds[insured]}">
                       <!--TODO: Enviar los insureds desde el controller -->
-                      <g:render template="/insured/form" model="[insured:insureds.unsavedInsureds[insured].first(),
-                                                                 policy:policy]"/>
+                      <g:render template="/insured/form" model="[insured:insureds.unsavedInsureds[insured].first(),policy:policy]"/>
                     </g:if>
                   </div>
                 </div>
@@ -127,6 +146,7 @@
 
     </div>
   </div>
+  </g:if>
 
 </g:else>
 

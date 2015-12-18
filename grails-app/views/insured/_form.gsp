@@ -1,6 +1,6 @@
 <g:form controller="insured" action="save" class="form-horizontal">
   <div class="row">
-    <h1>Registrar nuevo ${insured.insuredType.value}</h1>
+    <h1>Registrar ${insured.insuredType.value}</h1>
   </div>
 
   <g:hasErrors bean="${insured}">
