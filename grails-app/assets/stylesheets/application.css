@@ -1,4 +1,6 @@
 /*
 *= require third_party/bootstrap/dist/css/bootstrap.css
-*= require main.css
+*= require third_party/font-awesome/css/font-awesome.css
+*= require theme/plugins.css
+*= require theme/style.css
 */
