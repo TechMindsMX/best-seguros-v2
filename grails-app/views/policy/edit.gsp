@@ -10,10 +10,21 @@
     <asset:stylesheet src="third_party/pickadate/lib/themes/default.date.css" />
   </head>
   <body>
-    <div class="nav" role="navigation">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="page-title">
+          <h1>Captura de Póliza</h1>
+        </div>
+      </div>
     </div>
+
+    <div class="row">
+      <div class="col-lg-12">
+
+      </div>
+    </div>
+
     <div id="create-policy" class="content scaffold-create" role="main">
-      <h1>Captura de Póliza</h1>
       <g:if test="${flash.message}">
       <div class="message" role="status">${flash.message}</div>
       </g:if>
