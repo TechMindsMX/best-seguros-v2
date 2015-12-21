@@ -46,13 +46,31 @@
             <a href="javascript:;" data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#pages">
               <i class="fa fa-files-o"></i> Pages <i class="fa fa-caret-down"></i>
             </a>
-          </li>
+            <ul id="pages" class="collapse nav">
+              <li>
+                <a href="profile.html"><i class="fa fa-angle-double-right"></i> User Profile</a>
+              </li>
+              <li>
+                <a href="invoice.html"><i class="fa fa-angle-double-right"></i> Invoice</a>
+              </li>
+            </ul>
+          </li> <!--ENDOF LI.PANEL -->
 
         </ul>
       </div>
-    </nav>
+    </nav> <!--ENDOF NAVBAR-SIDE -->
 
-    <g:layoutBody/>
+    <div id="page-wrapper">
+      <div class="page-content page-content-ease-in">
+        <div class="row">
+          <div class="col-lg-12">
+            <g:layoutBody/>
+          </div>
+        </div>
+      </div>
+    </div><!-- ENDOF PAGE-WRAPPER -->
+
+
     <div class="footer" role="contentinfo"></div>
     <div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
   </body>

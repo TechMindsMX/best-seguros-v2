@@ -3,7 +3,7 @@ var HomeController = (function(){
   var selectors = {
     sidebar_toggle:'#sidebar-toggle',
     navbar_side:'.navbar-side',
-    page_wrapper:'page-wrapper'
+    page_wrapper:'#page-wrapper'
   };
 
   var toggleDiv = function(){
