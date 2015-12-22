@@ -3,11 +3,11 @@
 <g:if test="${!policy.product}">
   <div class="form-horizontal">
     <div class="form-group">
-      <label class="col-lg-2 control-label" for="product">Productos</label>
+      <label class="col-lg-1 control-label" for="product">Productos</label>
       <div class="col-lg-5">
         <g:select class="form-control" from="${products}" name="product" noSelection="${['':'--Seleccionar--']}" optionKey="uuid" optionValue="name" ></g:select>
       </div>
-      <div class="col-lg-5 productPlans">
+      <div class="col-lg-3 productPlans">
       </div>
     </div>
     <div class="form-group">
