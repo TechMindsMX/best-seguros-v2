@@ -37,25 +37,10 @@
       <div class="navbar-collapse sidebar-collapse collapse">
         <ul id="side" class="nav navbar-nav side-nav">
           <li>
-            <a class="active" href="#">
-              <i class="fa fa-dashboard"></i> Dashboard
-            </a>
+            <g:link controller="policy" action="create">
+              <i class=" fa fa-sticky-note"></i> Nueva Póliza
+            </g:link>
           </li>
-
-          <li class="panel">
-            <a href="javascript:;" data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#pages">
-              <i class="fa fa-files-o"></i> Pages <i class="fa fa-caret-down"></i>
-            </a>
-            <ul id="pages" class="collapse nav">
-              <li>
-                <a href="profile.html"><i class="fa fa-angle-double-right"></i> User Profile</a>
-              </li>
-              <li>
-                <a href="invoice.html"><i class="fa fa-angle-double-right"></i> Invoice</a>
-              </li>
-            </ul>
-          </li> <!--ENDOF LI.PANEL -->
-
         </ul>
       </div>
     </nav> <!--ENDOF NAVBAR-SIDE -->

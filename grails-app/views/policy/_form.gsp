@@ -3,11 +3,11 @@
 <g:if test="${!policy.product}">
   <div class="form-horizontal">
     <div class="form-group">
-      <label class="col-lg-2 control-label" for="product">Productos</label>
+      <label class="col-lg-1 control-label" for="product">Productos</label>
       <div class="col-lg-5">
         <g:select class="form-control" from="${products}" name="product" noSelection="${['':'--Seleccionar--']}" optionKey="uuid" optionValue="name" ></g:select>
       </div>
-      <div class="col-lg-5 productPlans">
+      <div class="col-lg-3 productPlans">
       </div>
     </div>
     <div class="form-group">
@@ -36,73 +36,75 @@
 </g:if>
 
 <g:else>
-  <div class="row-fluid">
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <h3 class="panel-title">Información del producto</h3>
-      </div>
-      <div class="panel-body">
-        <div class="row">
-          <div class="col-lg-1">
-            <label>Nombre</label>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="portlet portlet-blue">
+        <div class="portlet-heading">
+          <div class="portlet-title">
+            <h4>Información del producto</h4>
           </div>
-          <div class="col-lg-3">
-            <span>
-              ${policy?.product?.name}
-            </span>
-          </div>
-          <div class="col-lg-2">
-            <label>Aseguradora</label>
-          </div>
-          <div class="col-lg-4">
-            <span>
-              ${policy?.product?.insurance?.name}
-            </span>
-          </div>
-        </div>
+          <div class="clearfix"></div>
+        </div><!--ENDOF PORTLET HEADING -->
 
-        <div class="row">
-          <div class="col-lg-1">
-            <label>Ramo</label>
+        <div class="portlet-body">
+          <div class="row">
+            <div class="col-lg-1">
+              <label>Nombre</label>
+            </div>
+            <div class="col-lg-5">
+              <span>${policy?.product?.name}</span>
+            </div>
+            <div class="col-lg-1">
+              <label>Aseguradora</label>
+            </div>
+            <div class="col-lg-4">
+              <span>${policy?.product?.insurance?.name}</span>
+            </div>
           </div>
-          <div class="col-lg-3">
-            <span>
-              ${policy?.product?.trade?.name}
-            </span>
-          </div>
-        </div>
 
-        <div class="row">
-          <div class="col-lg-1">
-            <label>Plan</label>
+          <div class="row">
+            <div class="col-lg-1">
+              <label>Ramo</label>
+            </div>
+            <div class="col-lg-3">
+              <span>${policy?.product?.trade?.name}</span>
+            </div>
           </div>
-          <div class="col-lg-3">
-            ${policy?.plan?.name}
+
+          <div class="row">
+            <div class="col-lg-1">
+              <label>Plan</label>
+            </div>
+            <div class="col-lg-3">
+              ${policy?.plan?.name}
+            </div>
           </div>
-        </div>
-      </div>
+
+        </div><!--ENDOF PORTLET-BODY -->
+      </div><!--ENDOF PORTLET-DEFAULT-->
     </div>
   </div>
 
-  <div class="row-fluid">
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <div class="panel-title">Contratante</div>
-      </div>
-      <div class="panel-body">
-        <div class="row">
-          <div class="col-lg-12">
-            <g:if test="${contractingParty.id}">
-              <g:render template="/insured/show" model="[insured:contractingParty]"/>
-            </g:if>
-            <g:else>
-              <g:render template="/insured/form" model="[insured:contractingParty,
-                                                         policy:policy]"/>
-            </g:else>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="portlet portlet-blue">
+        <div class="portlet-heading">
+          <div class="portlet-title">
+            <h4>Contratante</h4>
           </div>
-        </div>
-      </div>
+          <div class="clearfix"></div>
+        </div><!--ENDOF PORTLET HEADING -->
 
+        <div class="portlet-body">
+          <g:if test="${contractingParty.id}">
+            <g:render template="/insured/show" model="[insured:contractingParty]"/>
+          </g:if>
+          <g:else>
+            <g:render template="/insured/form" model="[insured:contractingParty,policy:policy]"/>
+          </g:else>
+        </div>
+
+      </div>
     </div>
   </div>
 
