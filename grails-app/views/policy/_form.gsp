@@ -62,66 +62,49 @@
             </div>
           </div>
 
-        </div> <!--ENDOF PORTLET-BODY -->
+          <div class="row">
+            <div class="col-lg-1">
+              <label>Ramo</label>
+            </div>
+            <div class="col-lg-3">
+              <span>${policy?.product?.trade?.name}</span>
+            </div>
+          </div>
 
-      </div>
+          <div class="row">
+            <div class="col-lg-1">
+              <label>Plan</label>
+            </div>
+            <div class="col-lg-3">
+              ${policy?.plan?.name}
+            </div>
+          </div>
+
+        </div><!--ENDOF PORTLET-BODY -->
+      </div><!--ENDOF PORTLET-DEFAULT-->
     </div>
   </div>
 
-  <div class="row-fluid">
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <h3 class="panel-title">Información del producto</h3>
-      </div>
-      <div class="panel-body">
-        <div class="row">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="portlet portlet-blue">
+        <div class="portlet-heading">
+          <div class="portlet-title">
+            <h4>Contratante</h4>
+          </div>
+          <div class="clearfix"></div>
+        </div><!--ENDOF PORTLET HEADING -->
 
-
-
+        <div class="portlet-body">
+          <g:if test="${contractingParty.id}">
+            <g:render template="/insured/show" model="[insured:contractingParty]"/>
+          </g:if>
+          <g:else>
+            <g:render template="/insured/form" model="[insured:contractingParty,policy:policy]"/>
+          </g:else>
         </div>
 
-        <div class="row">
-          <div class="col-lg-1">
-            <label>Ramo</label>
-          </div>
-          <div class="col-lg-3">
-            <span>
-              ${policy?.product?.trade?.name}
-            </span>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-1">
-            <label>Plan</label>
-          </div>
-          <div class="col-lg-3">
-            ${policy?.plan?.name}
-          </div>
-        </div>
       </div>
-    </div>
-  </div>
-
-  <div class="row-fluid">
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <div class="panel-title">Contratante</div>
-      </div>
-      <div class="panel-body">
-        <div class="row">
-          <div class="col-lg-12">
-            <g:if test="${contractingParty.id}">
-              <g:render template="/insured/show" model="[insured:contractingParty]"/>
-            </g:if>
-            <g:else>
-              <g:render template="/insured/form" model="[insured:contractingParty,
-                                                         policy:policy]"/>
-            </g:else>
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
 
