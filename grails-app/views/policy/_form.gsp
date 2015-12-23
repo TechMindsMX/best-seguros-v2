@@ -36,6 +36,38 @@
 </g:if>
 
 <g:else>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="portlet portlet-blue">
+        <div class="portlet-heading">
+          <div class="portlet-title">
+            <h4>Información del producto</h4>
+          </div>
+          <div class="clearfix"></div>
+        </div><!--ENDOF PORTLET HEADING -->
+
+        <div class="portlet-body">
+          <div class="row">
+            <div class="col-lg-1">
+              <label>Nombre</label>
+            </div>
+            <div class="col-lg-5">
+              <span>${policy?.product?.name}</span>
+            </div>
+            <div class="col-lg-1">
+              <label>Aseguradora</label>
+            </div>
+            <div class="col-lg-4">
+              <span>${policy?.product?.insurance?.name}</span>
+            </div>
+          </div>
+
+        </div> <!--ENDOF PORTLET-BODY -->
+
+      </div>
+    </div>
+  </div>
+
   <div class="row-fluid">
     <div class="panel panel-primary">
       <div class="panel-heading">
@@ -43,22 +75,9 @@
       </div>
       <div class="panel-body">
         <div class="row">
-          <div class="col-lg-1">
-            <label>Nombre</label>
-          </div>
-          <div class="col-lg-3">
-            <span>
-              ${policy?.product?.name}
-            </span>
-          </div>
-          <div class="col-lg-2">
-            <label>Aseguradora</label>
-          </div>
-          <div class="col-lg-4">
-            <span>
-              ${policy?.product?.insurance?.name}
-            </span>
-          </div>
+
+
+
         </div>
 
         <div class="row">
