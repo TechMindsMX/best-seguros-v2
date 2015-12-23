@@ -37,7 +37,7 @@
                   </tr>
                   {{/each}}
                   <tr>
-                    <table class="table table-bordered">
+                    <table class="table">
                       <thead>
                         <tr>
                           <th>Rango Edad</th>
