@@ -22,7 +22,7 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row form-row">
     <div class="col-lg-4">
       <div class="form-group">
         <label for="name" class="col-sm-4 control-label">Fecha de Nacimiento</label>
@@ -39,7 +39,7 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row form-row">
     <div class="col-lg-4">
       <f:field bean="insured" property="email" wrapper="form" label="${message(code:"insured.email")}" />
     </div>
@@ -52,7 +52,7 @@
   </div>
 
 
-  <div class="row">
+  <div class="row form-row">
     <div class="col-lg-4">
       <f:field bean="insured" property="country" wrapper="form" label="${message(code:"insured.country")}"/>
     </div>
@@ -64,7 +64,7 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row form-row">
     <div class="col-lg-4">
       <f:field bean="insured" property="colony" wrapper="form" label="${message(code:"insured.colony")}"/>
     </div>
@@ -75,14 +75,11 @@
 
   <g:if test="${insured.insuredType == InsuredType.CONTRACTING_PARTY}">
     <div class="form-group">
-      <div class="col-lg-4">
+        <label class="control-label col-sm-1">
+          Titular
+        </label>
         <div class="checkbox">
-          <label>
-            <!-- <g:checkBox name="principal" checked="${principal}"  /> -->
-            <input type="checkbox">
-            </input>
-            Titular
-          </label>
+          <g:checkBox name="principal" checked="${principal}"  />
         </div>
       </div>
     </div>
