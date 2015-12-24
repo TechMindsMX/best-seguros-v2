@@ -58,9 +58,107 @@ class BootStrap {
 
   def createBanks(){
     if(!Bank.count()){
-      def banks = [new Bank(name:"Bancomer"),
-                   new Bank(name:"Santander")]
-      banks*.save()
+      [new Bank(name:"BANXICO"),
+       new Bank(name:"BANCOMEXT"),
+       new Bank(name:"BANOBRAS"),
+       new Bank(name:"BANJERCITO"),
+       new Bank(name:"NAFIN"),
+       new Bank(name:"BANSEFI"),
+       new Bank(name:"HIPOTECARIA FED"),
+       new Bank(name:"BANAMEX"),
+       new Bank(name:"BBVA BANCOMER"),
+       new Bank(name:"SANTANDER"),
+       new Bank(name:"HSBC"),
+       new Bank(name:"BAJIO"),
+       new Bank(name:"IXE"),
+       new Bank(name:"INBURSA"),
+       new Bank(name:"INTERACCIONES"),
+       new Bank(name:"MIFEL"),
+       new Bank(name:"SCOTIABANK"),
+       new Bank(name:"BANREGIO"),
+       new Bank(name:"INVEX"),
+       new Bank(name:"BANSI"),
+       new Bank(name:"AFIRME"),
+       new Bank(name:"BANORTE"),
+       new Bank(name:"INVESTA BANK"),
+       new Bank(name:"AMERICAN EXPRES"),
+       new Bank(name:"BAMSA"),
+       new Bank(name:"TOKYO"),
+       new Bank(name:"JP MORGAN"),
+       new Bank(name:"BMONEX"),
+       new Bank(name:"VE POR MAS"),
+       new Bank(name:"DEUTSCHE"),
+       new Bank(name:"CREDIT SUISSE"),
+       new Bank(name:"AZTECA"),
+       new Bank(name:"AUTOFIN"),
+       new Bank(name:"BARCLAYS"),
+       new Bank(name:"COMPARTAMOS"),
+       new Bank(name:"BANCO FAMSA"),
+       new Bank(name:"BMULTIVA"),
+       new Bank(name:"ACTINVER"),
+       new Bank(name:"WAL-MART"),
+       new Bank(name:"INTERBANCO"),
+       new Bank(name:"BANCOPPEL"),
+       new Bank(name:"ABC CAPITAL"),
+       new Bank(name:"UBS BANK"),
+       new Bank(name:"CONSUBANCO"),
+       new Bank(name:"VOLKSWAGEN"),
+       new Bank(name:"CIBANCO"),
+       new Bank(name:"BBASE"),
+       new Bank(name:"BICENTENARIO"),
+       new Bank(name:"AGROFINANZAS"),
+       new Bank(name:"PAGATODO"),
+       new Bank(name:"INMOBILIARIO"),
+       new Bank(name:"DONDE"),
+       new Bank(name:"BANCREA"),
+       new Bank(name:"MONEXCB"),
+       new Bank(name:"GBM"),
+       new Bank(name:"MASARI"),
+       new Bank(name:"VALUE"),
+       new Bank(name:"ESTRUCTURADORES"),
+       new Bank(name:"TIBER"),
+       new Bank(name:"VECTOR"),
+       new Bank(name:"B&B"),
+       new Bank(name:"ACCIVAL"),
+       new Bank(name:"MERRILL LYNCH"),
+       new Bank(name:"FINAMEX"),
+       new Bank(name:"VALMEX"),
+       new Bank(name:"UNICA"),
+       new Bank(name:"MAPFRE"),
+       new Bank(name:"PROFUTURO"),
+       new Bank(name:"CB ACTINVER"),
+       new Bank(name:"OACTIN"),
+       new Bank(name:"SKANDIA"),
+       new Bank(name:"CBDEUTSCHE"),
+       new Bank(name:"ZURICH"),
+       new Bank(name:"ZURICHVI"),
+       new Bank(name:"CB INTERCAM"),
+       new Bank(name:"CI BOLSA"),
+       new Bank(name:"FINCOMUN"),
+       new Bank(name:"HDI SEGUROS"),
+       new Bank(name:"ORDER"),
+       new Bank(name:"AKALA"),
+       new Bank(name:"CB JPMORGAN"),
+       new Bank(name:"REFORMA"),
+       new Bank(name:"STP"),
+       new Bank(name:"TELECOMM"),
+       new Bank(name:"EVERCORE"),
+       new Bank(name:"OSKNDIA"),
+       new Bank(name:"SEGMTY"),
+       new Bank(name:"ASEA"),
+       new Bank(name:"KUSPIT"),
+       new Bank(name:"SOFIEXPRESS"),
+       new Bank(name:"UNAGRA"),
+       new Bank(name:"ASP INTEGRA OPC"),
+       new Bank(name:"LIBERTAD"),
+       new Bank(name:"HUASTECAS"),
+       new Bank(name:"GNP"),
+       new Bank(name:"AXA"),
+       new Bank(name:"FICREA"),
+       new Bank(name:"CAJA POP MEXICA"),
+       new Bank(name:"SURA"),
+       new Bank(name:"CLS"),
+       new Bank(name:"INDEVAL")]*.save()
     }
   }
 
@@ -139,12 +237,12 @@ class BootStrap {
                            [new InsuredForPlan(insured:InsuredType.PRINCIPAL),new InsuredForPlan(insured:InsuredType.SPOUSE)],
                            [new InsuredForPlan(insured:InsuredType.PRINCIPAL)],
                            [new InsuredForPlan(insured:InsuredType.PRINCIPAL),new InsuredForPlan(insured:InsuredType.SPOUSE)]]
-  
+
     15.times{
       insuredsForPlan[2] << new InsuredForPlan(insured:InsuredType.CHILD)
       insuredsForPlan[3] << new InsuredForPlan(insured:InsuredType.CHILD)
     }
-    
+
     insuredsForPlan
   }
 
@@ -177,7 +275,6 @@ class BootStrap {
                               country:"México",
                               insurance:Insurance.get(1),
                               sponsor:Sponsor.get(1),
-                              periodicity:Periodicity.MONTHLY,
                               iva:false)
 
     def insuredSumsByCoverage = createInsuredSumsForFirstProduct()
@@ -256,13 +353,12 @@ class BootStrap {
                               country:"México",
                               insurance:Insurance.get(2),
                               sponsor:Sponsor.get(1),
-                              periodicity:Periodicity.MONTHLY,
                               iva:false)
 
     def insuredSumsByCoverage = createInsuredSumsForSecondProduct()
     def productBenefits = [new Benefit(name:"Plan visual"),
                            new Benefit(name:"Plan dental")]
-   
+
     def insuredsForPlan = getInsuredsForPlan()
 
     def plans = [new Plan(name:"Titular",
