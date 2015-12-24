@@ -7,7 +7,6 @@ class Product {
   Trade trade
   String coin
   String country
-  Periodicity periodicity
   Boolean iva
   Insurance insurance
   Sponsor sponsor
