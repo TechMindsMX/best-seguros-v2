@@ -1,5 +1,5 @@
 // Place your Spring DSL code here
-import com.bestseguros.routes.MyRouter
+import com.bestseguros.routes.FileRoute
 
 beans = {
 
@@ -8,6 +8,6 @@ beans = {
     java.util.Locale.setDefault(defaultLocale)
   }
 
-  myRouter(MyRouter)
+  myRouter(FileRoute)
 
 }

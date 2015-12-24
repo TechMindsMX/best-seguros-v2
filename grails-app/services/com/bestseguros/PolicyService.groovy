@@ -70,7 +70,6 @@ class PolicyService {
   def getPolicyDetail(Policy policy){
     def detail = [policyNumber:policy.id, dateCreated:policy.dateCreated]
     detail.contractingParty = policy.insureds.find{ it.insuredType == InsuredType.PRINCIPAL }
-    detail.periodicity = policy.product.periodicity.value
     detail.coin = policy.product.coin
     detail.productName = policy.product.name
     detail.benefits = policy.plan.insuredSumsByCoveragePerInsured.sort{ insuredSum -> insuredSum.insured }
