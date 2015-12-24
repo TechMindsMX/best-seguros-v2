@@ -1,21 +1,22 @@
 buildscript {
-    ext {
-        grailsVersion = project.grailsVersion
-    }
-    repositories {
-        mavenLocal()
-        maven { url "https://repo.grails.org/grails/core" }
-    }
-    dependencies {
-        classpath "org.grails:grails-gradle-plugin:$grailsVersion"
-        classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:2.5.0'
-        classpath "org.grails.plugins:hibernate:4.3.10.5"
-        classpath 'org.grails.plugins:database-migration:2.0.0.RC1'
-    }
+  ext {
+    grailsVersion = project.grailsVersion
+  }
+  repositories {
+    mavenLocal()
+    maven { url "https://repo.grails.org/grails/core" }
+  }
+
+  dependencies {
+    classpath "org.grails:grails-gradle-plugin:$grailsVersion"
+    classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:2.5.0'
+    classpath "org.grails.plugins:hibernate:4.3.10.5"
+    classpath 'org.grails.plugins:database-migration:2.0.0.RC1'
+  }
 }
 
 plugins {
-    id "io.spring.dependency-management" version "0.5.2.RELEASE"
+  id "io.spring.dependency-management" version "0.5.2.RELEASE"
 }
 
 version "0.1"
@@ -68,6 +69,8 @@ dependencies {
     }
     compile "mysql:mysql-connector-java:5.1.37"
     compile 'org.xhtmlrenderer:flying-saucer-pdf:9.0.7'
+    compile 'org.apache.camel:camel-core:2.16.1'
+    compile 'org.apache.camel:camel-spring-boot:2.16.1'
 
     runtime "org.grails.plugins:asset-pipeline"
     runtime 'org.grails.plugins:database-migration:2.0.0.RC1'
@@ -90,5 +93,5 @@ sourceSets{
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = gradleWrapperVersion
+  gradleVersion = gradleWrapperVersion
 }
