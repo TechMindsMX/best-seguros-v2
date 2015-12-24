@@ -74,12 +74,11 @@
   </div>
 
   <g:if test="${insured.insuredType == InsuredType.CONTRACTING_PARTY}">
-    <div class="form-group">
-        <label class="control-label col-sm-1">
-          Titular
-        </label>
-        <div class="checkbox">
-          <g:checkBox name="principal" checked="${principal}"  />
+    <div class="row form-row">
+      <div class="col-lg-4">
+        <div class="form-group">
+          <label class="control-label col-sm-4 col-xs-4">Titular</label>
+          <div class="col-xs-6 col-sm-8 text-left" ><g:checkBox name="principal" checked="${principal}"  /></div>
         </div>
       </div>
     </div>
