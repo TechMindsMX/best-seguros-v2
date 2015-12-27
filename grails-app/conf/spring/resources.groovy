@@ -8,6 +8,8 @@ beans = {
     java.util.Locale.setDefault(defaultLocale)
   }
 
-  myRouter(FileRoute)
+  myRouter(FileRoute){
+    grailsApplication = ref('grailsApplication')
+  }
 
 }
