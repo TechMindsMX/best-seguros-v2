@@ -22,9 +22,9 @@ class FileRoute extends SingleRouteCamelConfiguration{
     return new RouteBuilder(){
       void configure() throws Exception{
         from(grailsApplication.config.endPoint.from)
-        //.filter { exchange -> exchange.in.headers.CamelFileName.endsWith("xls") }
-        .filter { exchange -> exchange.in.headers.CamelFileName.endsWith("xls") }
+        .filter { exchange -> exchange.in.headers.CamelFileName.endsWith("xlsx") }
         //.split(body(String.class).tokenize(","))
+        .split().method("splitterBean","splitBody")
         //.aggregate(header("CamelFileName"), new StringAggregationStrategy()).completionTimeout(3000)
         .to("log:groovymail?showAll=true&multiline=true")
         .to(grailsApplication.config.endPoint.to)
