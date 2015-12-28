@@ -10,7 +10,7 @@ import org.apache.camel.spring.javaconfig.SingleRouteCamelConfiguration
 @Configuration
 class FileRoute extends SingleRouteCamelConfiguration{
 
-  def grailsApplication 
+  def grailsApplication
 
   @Override
   protected CamelContext createCamelContext(){
@@ -21,13 +21,13 @@ class FileRoute extends SingleRouteCamelConfiguration{
   public RouteBuilder route(){
     return new RouteBuilder(){
       void configure() throws Exception{
-        from("file:///Users/egjimenezg/Documents/SoftwareDevelopment/MakingDevs/TechMindsMX/filesToProcess?delete=true")
+        from(grailsApplication.config.endPoint.from)
         //.filter { exchange -> exchange.in.headers.CamelFileName.endsWith("xls") }
-        .filter { exchange -> exchange.in.headers.CamelFileName.endsWith("csv") }
+        .filter { exchange -> exchange.in.headers.CamelFileName.endsWith("xls") }
         //.split(body(String.class).tokenize(","))
         //.aggregate(header("CamelFileName"), new StringAggregationStrategy()).completionTimeout(3000)
         .to("log:groovymail?showAll=true&multiline=true")
-        .to("file:///Users/egjimenezg/Documents/SoftwareDevelopment/MakingDevs/TechMindsMX/exported")
+        .to(grailsApplication.config.endPoint.to)
       }
     }
   }
