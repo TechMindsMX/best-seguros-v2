@@ -6,6 +6,7 @@ import org.apache.camel.CamelContext
 import org.apache.camel.spring.SpringCamelContext
 import org.springframework.context.annotation.Configuration
 import org.apache.camel.spring.javaconfig.SingleRouteCamelConfiguration
+import com.bestseguros.bean.PolicyAggregationStrategy
 
 @Configuration
 class FileRoute extends SingleRouteCamelConfiguration{
@@ -21,13 +22,16 @@ class FileRoute extends SingleRouteCamelConfiguration{
   public RouteBuilder route(){
     return new RouteBuilder(){
       void configure() throws Exception{
+        //.to(grailsApplication.config.endPoint.to)
+        //.to("mock:result")
         from(grailsApplication.config.endPoint.from)
-        .filter { exchange -> exchange.in.headers.CamelFileName.endsWith("xlsx") }
-        //.split(body(String.class).tokenize(","))
+        .filter { exchange ->
+          exchange.in.headers.CamelFileName.endsWith("xlsx")
+        }
         .split().method("splitterBean","splitBody")
-        //.aggregate(header("CamelFileName"), new StringAggregationStrategy()).completionTimeout(3000)
-        .to("log:groovymail?showAll=true&multiline=true")
-        .to(grailsApplication.config.endPoint.to)
+        .aggregate(header("CamelFileName"), new PolicyAggregationStrategy()).completionTimeout(3000)
+        .to("mock:result")
+
       }
     }
   }
