@@ -36,19 +36,24 @@ class SplitterBean{
 
   private Policy getPolicyFromRows(def rows){
     def insurance = Insurance.withTransaction{ status ->
-      Insurance.findByName(rows[2].getCell(0).stringCellValue)
+      Insurance.findByNameIlike("%${rows[2].getCell(0).stringCellValue}%")
     }
 
-    def productName = rows[2].getCell(1).stringCellValue
+    println "Insurance ${insurance}"
+
+    def productName = normalizeString(rows[2].getCell(1)?.stringCellValue)
 
     def product = Product.withTransaction{ status ->
-      Product.where{
-        name.toLowerCase() == Normalizer.normalize(productName,Form.NFD).replaceAll(/\p{InCombiningDiacriticalMarks}+/,'')
-        insurance.id == insurance.id
+      Product.list().find{ p ->
+        normalizeString(p.name).matches(".*${productName}.*") && p.insurance.id == insurance.id
       }
     }
 
     def policy = new Policy()
+  }
+
+  private String normalizeString(String notNormalizedString){
+    notNormalizedString ? Normalizer.normalize(notNormalizedString?.toLowerCase() ?: "",Form.NFD).replaceAll(/\p{InCombiningDiacriticalMarks}+/,'') : null
   }
 
 }
