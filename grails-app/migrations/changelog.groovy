@@ -477,4 +477,5 @@ databaseChangeLog = {
   include file: 'removing-maximum-number.groovy'
   include file: 'adding-dates-to-domain-classes.groovy'
   include file: 'deleting-periodicity.groovy'
+  include file: 'updating-rfc-constraint.groovy'
 }
