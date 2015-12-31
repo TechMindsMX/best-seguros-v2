@@ -4,6 +4,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook
 import org.apache.poi.xssf.usermodel.XSSFRow
 import org.apache.poi.xssf.usermodel.XSSFSheet
 import org.apache.poi.xssf.usermodel.XSSFCell
+import org.apache.poi.hssf.usermodel.HSSFDateUtil
 import com.bestseguros.Policy
 import com.bestseguros.PolicyStatus
 import com.bestseguros.Insurance
@@ -57,9 +58,10 @@ class SplitterBean{
       }
     }
 
-
     def contractingPartyInfoRow = rows[rows.indexOf(rows.find{ it.getCell(0)?.stringCellValue == "Contratante" })+2]
     def contractingPartyInfo = getInsuredInfoFromRow(contractingPartyInfoRow,contractingPartyInfoRow.firstCellNum,contractingPartyInfoRow.lastCellNum-1)
+    def isTitular = contractingPartyInfo.remove(contractingPartyInfo.size() - 1)
+    def contractingParty = createInsured(contractingPartyInfo,InsuredType.CONTRACTING_PARTY)
 
     def policy = new Policy(product:product,
                             policyStatus:PolicyStatus.CREATED,
@@ -81,21 +83,33 @@ class SplitterBean{
   }
 
   private def getCellValue(XSSFCell cell){
-    if(cell.cellType == XSSFCell.CELL_TYPE_NUMERIC)
-      cell.setCellType(XSSFCell.CELL_TYPE_STRING)
 
-    cell.stringCellValue
+    if(cell?.cellType == XSSFCell.CELL_TYPE_NUMERIC){
+      if(HSSFDateUtil.isCellDateFormatted(cell))
+        return cell?.dateCellValue ?: ""
+
+      cell.setCellType(XSSFCell.CELL_TYPE_STRING)
+    }
+
+    cell?.stringCellValue ?: ""
   }
 
   def createInsured(def insuredRow,InsuredType insuredType){
     new Insured(name:insuredRow[0],
                 lastName:insuredRow[1],
                 motherLastName:insuredRow[2],
-                phone:insuredRow[3],
-                rfc:insuredRow[4],
-                email:insuredRow[5],
-                address:insuredRow[6],
-                insuredType:insuredRow[7])
+                birthDate:insuredRow[3],
+                phone:insuredRow[4],
+                rfc:insuredRow[5],
+                email:insuredRow[6],
+                cp:insuredRow[7],
+                address:insuredRow[8],
+                country:insuredRow[9],
+                state:insuredRow[10],
+                town:insuredRow[11],
+                colony:insuredRow[12],
+                city:insuredRow[13],
+                insuredType:insuredType)
   }
 
 }
