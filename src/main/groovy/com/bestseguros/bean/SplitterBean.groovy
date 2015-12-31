@@ -44,6 +44,7 @@ class SplitterBean{
 
     def product = null
     def plan = null
+    def insureds = []
 
     def planName = rows[2].getCell(2)?.stringCellValue
     def productName = normalizeString(rows[2].getCell(1)?.stringCellValue)
@@ -60,8 +61,12 @@ class SplitterBean{
 
     def contractingPartyInfoRow = rows[rows.indexOf(rows.find{ it.getCell(0)?.stringCellValue == "Contratante" })+2]
     def contractingPartyInfo = getInsuredInfoFromRow(contractingPartyInfoRow,contractingPartyInfoRow.firstCellNum,contractingPartyInfoRow.lastCellNum-1)
-    def isTitular = contractingPartyInfo.remove(contractingPartyInfo.size() - 1)
-    def contractingParty = createInsured(contractingPartyInfo,InsuredType.CONTRACTING_PARTY)
+    def principalCell = contractingPartyInfo.remove(contractingPartyInfo.size() - 1)
+    insureds << createInsured(contractingPartyInfo,InsuredType.CONTRACTING_PARTY)
+
+    if(isPricipal(principalCell))
+      insureds << createInsured(contractingPartyInfo,InsuredType.PRINCIPAL)
+
 
     def policy = new Policy(product:product,
                             policyStatus:PolicyStatus.CREATED,
@@ -80,6 +85,10 @@ class SplitterBean{
     }
 
     insuredInfo
+  }
+
+  private Boolean isPrincipal(String principal){
+    principal == "SI" ? true : false
   }
 
   private def getCellValue(XSSFCell cell){
