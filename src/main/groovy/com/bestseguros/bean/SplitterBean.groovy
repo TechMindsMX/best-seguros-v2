@@ -113,7 +113,7 @@ class SplitterBean{
     def insureds = []
 
     rows.each{ row ->
-      insuredType = InsuredType.values().find{ it == row.getCell(0)?.stringCellValue }
+      insuredType = InsuredType.values().find{ it.value == row.getCell(0)?.stringCellValue }
       insuredInfo = getInsuredInfoFromRow(row,row.firstCellNum+1,row.lastCellNum)
       insureds << createInsured(insuredInfo,insuredType)
     }

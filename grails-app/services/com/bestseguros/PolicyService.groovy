@@ -48,7 +48,7 @@ class PolicyService {
     if(!policy.product)
       return false
 
-    def plan = policy.plan
+    def plan = Plan.get(policy.plan.id)
     def policyInsureds = policy.insureds
     def planInsureds = plan.insureds*.insured
     def insureds = plan.insureds*.insured.unique()
