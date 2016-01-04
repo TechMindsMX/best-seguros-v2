@@ -41,7 +41,7 @@ class SplitterBean{
     def insurance = Insurance.withTransaction{ status ->
       Insurance.findByNameIlike("%${rows[2].getCell(0).stringCellValue}%")
     }
-
+    
     def product = null
     def plan = null
     def insureds = []
@@ -73,6 +73,8 @@ class SplitterBean{
 
     if(insuredsRowIndex < rows.size())
       insuredsRows += rows[insuredsRowIndex..(rows.size()-1)]
+    
+    getInsuredsFromRows(insuredsRows)
 
     def policy = new Policy(product:product,
                             policyStatus:PolicyStatus.CREATED,
@@ -99,7 +101,10 @@ class SplitterBean{
 
 
   private def getInsuredsFromRows(def rows){
-
+    rows.each{ row ->
+      def insuredType = InsuredType.values().find{ it == row.getCell(0)?.stringCellValue) }
+      def insuredInfo = getInsuredInfoFromRow(row,row.firstCellNum+1,row.lastCellNum)
+    }
   }
 
   private def getCellValue(XSSFCell cell){
