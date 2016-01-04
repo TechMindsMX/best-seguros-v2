@@ -44,14 +44,19 @@ class PoliciesFileServiceSpec extends Specification {
       def policy = new Policy(product:product,
                               policyStatus:PolicyStatus.CREATED)
 
-    and:
+    and:"the exchange"
       CamelContext context = new DefaultCamelContext()
       def exchange = new DefaultExchange(context)
       exchange.in.setBody([policy])
+
+    and:"the policy service"
+      def policyService = Mock(PolicyService)
+      service.policyService = policyService
     when:
       service.savePolicies(exchange)
     then:
       Policy.list().size() == 2
+      1 * policyService.isThePolicyValid(_)
   }
 
   private def createInsured(InsuredType insuredType){
