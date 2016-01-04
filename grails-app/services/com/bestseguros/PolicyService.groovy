@@ -50,6 +50,10 @@ class PolicyService {
 
     def plan = Plan.get(policy.plan.id)
     def policyInsureds = policy.insureds
+
+    if(!policyInsureds.find{ it.insuredType == InsuredType.CONTRACTING_PARTY})
+      return false
+
     def planInsureds = plan.insureds*.insured
     def insureds = plan.insureds*.insured.unique()
 
