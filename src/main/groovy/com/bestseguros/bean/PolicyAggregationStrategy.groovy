@@ -13,11 +13,11 @@ class PolicyAggregationStrategy implements AggregationStrategy{
     if(!oldExchange){
       policies = new ArrayList<Policy>()
       policies << newPolicy
-      newExchange.getIn().setBody(policies)
+      newExchange.in.setBody(policies)
       newExchange
     }
     else{
-      policies = oldExchange.getIn().getBody(ArrayList.class);
+      policies = oldExchange.in.getBody(ArrayList.class);
       policies << newPolicy
       oldExchange
     }
