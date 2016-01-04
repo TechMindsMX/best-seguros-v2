@@ -7,10 +7,20 @@ import org.apache.camel.processor.aggregate.AggregationStrategy
 class PolicyAggregationStrategy implements AggregationStrategy{
 
   public Exchange aggregate(Exchange oldExchange, Exchange newExchange) {
-    if(!oldExchange)
-      return newExchange
+    def policies = null
+    Policy newPolicy = newExchange.getIn().getBody(Policy.class)
 
-    oldExchange
+    if(!oldExchange){
+      policies = new ArrayList<Policy>()
+      policies << newPolicy
+      newExchange.getIn().setBody(policies)
+      newExchange
+    }
+    else{
+      policies = oldExchange.getIn().getBody(ArrayList.class);
+      policies << newPolicy
+      oldExchange
+    }
   }
 
 }
