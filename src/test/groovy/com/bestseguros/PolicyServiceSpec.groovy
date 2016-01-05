@@ -80,7 +80,7 @@ class PolicyServiceSpec extends Specification {
       def product = new Product()
       product.addToPlans(plan)
       product.save(validate:false)
-      println "Plan ${"*"*30} ${plan}" 
+
       def policy = new Policy(product:product,
                               plan:plan)
 
