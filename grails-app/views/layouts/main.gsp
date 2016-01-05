@@ -13,10 +13,10 @@
       <!-- begin BRAND HEADING -->
       <div class="navbar-header">
         <button type="button" class="navbar-toggle pull-right" data-toggle="collapse" data-target=".sidebar-collapse">
-          <i class="fa fa-bars"></i> Menu
+          <i class="fa fa-bars"></i> 
         </button>
-        <div class="navbar-brand">
-          <a href="index.html"></a>
+        <div class="navbar-brand image">
+          <img src="${asset.assetPath(src:'best_seguros.png')}" alt=""/>
         </div>
       </div>
 
