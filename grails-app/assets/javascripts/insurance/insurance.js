@@ -1,4 +1,5 @@
 var Insurance = {
+  id:'',
   name:'',
 
   create:function(data){
