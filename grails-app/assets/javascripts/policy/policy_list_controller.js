@@ -1,4 +1,5 @@
 //= require insurance/insurance.js
+//= require policy/policy_search_view.js
 
 var PolicyListController = (function(){
   var settings = {
@@ -6,7 +7,7 @@ var PolicyListController = (function(){
   };
   
   var success = function(data){
-    console.log(data); 
+    PolicySearchView.render(data); 
   };
   
   var failure = function(data){
