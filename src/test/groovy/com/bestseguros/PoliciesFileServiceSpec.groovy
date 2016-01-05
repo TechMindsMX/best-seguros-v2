@@ -55,8 +55,8 @@ class PoliciesFileServiceSpec extends Specification {
     when:
       service.savePolicies(exchange)
     then:
-      Policy.list().size() == 2
-      1 * policyService.isThePolicyValid(_)
+      Policy.list().size() == 1
+      1 * policyService.isThePolicyValid(_) >> true
   }
 
   private def createInsured(InsuredType insuredType){
