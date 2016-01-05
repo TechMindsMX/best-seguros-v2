@@ -13,7 +13,8 @@ class InsuranceMarshaller implements ObjectMarshaller<JSON>{
   void marshalObject(Object object,JSON json){
     def insurance = object as Insurance
     def insuranceValues = [name:insurance.name]
-    json.convertAnother(insurance)
+
+    json.convertAnother(insuranceValues)
   }
 
 }
