@@ -68,16 +68,19 @@ class PolicyServiceSpec extends Specification {
   Should "validate the policy"(){
     given:"the plan"
       def plan = new Plan()
+      
       def insureds = _insuredsForPlan
       insureds.each{ insured ->
         plan.addToInsureds(insured)
       }
 
+      plan.save(validate:false)
+
     and:"a product"
       def product = new Product()
       product.addToPlans(plan)
       product.save(validate:false)
-
+      println "Plan ${"*"*30} ${plan}" 
       def policy = new Policy(product:product,
                               plan:plan)
 
@@ -95,8 +98,9 @@ class PolicyServiceSpec extends Specification {
       [new InsuredForPlan(insured:InsuredType.PRINCIPAL),new InsuredForPlan(insured:InsuredType.CHILD)]  | [new Insured(insuredType:InsuredType.PRINCIPAL)]  || false
       [new InsuredForPlan(insured:InsuredType.PRINCIPAL),
         new InsuredForPlan(insured:InsuredType.CHILD),
-        new InsuredForPlan(insured:InsuredType.CHILD)]                                                   | [new Insured(insuredType:InsuredType.PRINCIPAL),
-                                                                                                             new Insured(insuredType:InsuredType.CHILD)]      || true
+        new InsuredForPlan(insured:InsuredType.CHILD)]                                                   | [new Insured(insuredType:InsuredType.CONTRACTING_PARTY),
+                                                                                                            new Insured(insuredType:InsuredType.PRINCIPAL),
+                                                                                                            new Insured(insuredType:InsuredType.CHILD)]      || true
   }
 
   Should "get the contracting party"(){
