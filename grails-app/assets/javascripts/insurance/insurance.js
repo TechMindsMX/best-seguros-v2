@@ -2,7 +2,19 @@ var Insurance = {
   name:'',
 
   create:function(data){
-    $.extend({},this,data);
+    return $.extend({},this,data);
+  },
+  
+  deserialize:function(data){
+    var _self = Insurance.create({});
+
+    Object.keys(_self).forEach(function(key){
+      if(typeof _self[key] !== 'function'){
+        _self[key] = data.insurance[key];
+      }
+    });
+  
+    return _self;
   },
 
   list:function(params){
@@ -14,7 +26,13 @@ var Insurance = {
         contentType:'application/json; charset=utf8'
       })
       .done(function(response){
-        resolve(response);
+        var model = {insurances:[]};
+
+        response.forEach(function(item){
+          model.insurances.push(Insurance.deserialize({insurance:item}));           
+        });
+
+        resolve(model);
       })
       .fail(function(response){
         reject(response);
