@@ -41,6 +41,12 @@
               <i class=" fa fa-sticky-note"></i> Nueva Póliza
             </g:link>
           </li>
+          <li>
+            <a href="#" id="searchPolicy"> 
+              <i class="fa fa-list-alt"></i> Buscar pólizas 
+            </a> 
+            <input type="hidden" id="insuranceLink" value="${createLink(controller:'insurance',action:'index')}" />
+          </li>
         </ul>
       </div>
     </nav> <!--ENDOF NAVBAR-SIDE -->
