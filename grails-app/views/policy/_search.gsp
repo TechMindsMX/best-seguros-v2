@@ -31,7 +31,7 @@
           </div>
 
           <div class="col-lg-1">
-            <button class="btn btn-blue btn-square pull-right">
+            <button class="btn btn-blue btn-square pull-right hidden" id="searchButton">
               <i class="fa fa-search"></i>
               Buscar
             </button>
