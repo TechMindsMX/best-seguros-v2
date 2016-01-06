@@ -478,4 +478,5 @@ databaseChangeLog = {
   include file: 'adding-dates-to-domain-classes.groovy'
   include file: 'deleting-periodicity.groovy'
   include file: 'updating-rfc-constraint.groovy'
+  include file: 'adding-uuid-to-the-policy.groovy'
 }
