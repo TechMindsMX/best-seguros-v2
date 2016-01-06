@@ -1,3 +1,4 @@
+<script id="search-policy-template" type="text/x-handlebars-template">
 <div class="row">
   <div class="col-lg-12">
     <div class="page-title">
@@ -5,7 +6,7 @@
     </div>
   </div>
 </div>
-    
+
 <div class="row">
   <div class="col-lg-12">
     <div class="portlet portlet-default">
@@ -18,14 +19,27 @@
                 <select name="insurance" class="form-control">
                   <option value>--Seleccionar--</option>
                   {{#each insurances}}
-                  <option value="{{id}}">{{name}}</option> 
+                  <option value="{{id}}">{{name}}</option>
                   {{/each}}
-                </select> 
+                </select>
+                <input type="hidden" id="productLink" value="${createLink(controller:'product',action:'index')}" />
               </div>
             </div> <!--ENDOF FORM-GROUP -->
-          </div>  
+          </div> <!--ENDOF DIV.FORM-HORIZONTAL -->
+
+          <div class="col-lg-5 productListDiv form-horizontal">
+          </div>
+
+          <div class="col-lg-1">
+            <button class="btn btn-blue btn-square pull-right">
+              <i class="fa fa-search"></i>
+              Buscar
+            </button>
+          </div>
         </div>
+
       </div>
     </div>
   </div><!--ENDOF ROW COL-LG-12 -->
 </div><!--ENDOF ROW-->
+</script>
