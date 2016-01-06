@@ -6,7 +6,7 @@ import spock.lang.Specification
 import java.lang.Void as Should
 
 @TestFor(PolicyService)
-@Mock([Policy,Plan,Product,InsuredForPlan,Insured])
+@Mock([Policy,Plan,Product,InsuredForPlan,Insured,Insurance])
 class PolicyServiceSpec extends Specification {
 
   Should "create a new Policy"(){
@@ -68,7 +68,7 @@ class PolicyServiceSpec extends Specification {
   Should "validate the policy"(){
     given:"the plan"
       def plan = new Plan()
-      
+
       def insureds = _insuredsForPlan
       insureds.each{ insured ->
         plan.addToInsureds(insured)
@@ -119,6 +119,29 @@ class PolicyServiceSpec extends Specification {
       def contractingParty = service.getContractingParty(policy)
     then:
       contractingParty.insuredType == InsuredType.CONTRACTING_PARTY
+  }
+
+  Should "get the policies"(){
+    given:"the insurance and the product"
+      def insurance = new Insurance(name:"Thona")
+      insurance.save(validate:false)
+
+      def product = new Product(name:"Renta diaria por Hospitalización",
+                                insurance:insurance)
+
+      product.save(validate:false)
+
+    and:"the policies"
+      def policies = [new Policy(product:product,policyStatus:PolicyStatus.CREATED),
+                      new Policy(product:product,policyStatus:PolicyStatus.CREATED)]
+
+      policies.each{ policy ->
+        policy.save(validate:false)
+      }
+    when:
+      def productPolicies = service.findProductPolicies(product.id)
+    then:
+      productPolicies.size() == 2
   }
 
 }
