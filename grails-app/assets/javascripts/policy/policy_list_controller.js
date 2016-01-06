@@ -2,6 +2,7 @@
 //= require product/product.js
 //= require policy/policy_search_view.js
 //= require product/product_list_view.js
+//= require policy/policy_search_controller.js
 
 var PolicyListController = (function(){
   var settings = {
@@ -19,6 +20,7 @@ var PolicyListController = (function(){
 
   var productListSuccess = function(data){
     ProductListView.render(data,settings.productListDiv);
+    PolicySearchController.start();
   };
 
   var failure = function(data){
@@ -31,10 +33,9 @@ var PolicyListController = (function(){
 
   var showButton = function(){
     if($(this).val() != '')
-      $(searchButton).removeClass('hidden');
+      $(settings.searchButton).removeClass('hidden');
     else
-      $(searchButton).addClass('hidden');
-
+      $(settings.searchButton).addClass('hidden');
   };
 
   var bindEvents = function(){
