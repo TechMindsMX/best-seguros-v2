@@ -2,6 +2,7 @@ package com.bestseguros
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
+import grails.converters.JSON
 
 @Transactional
 class PolicyController {
@@ -10,7 +11,14 @@ class PolicyController {
   static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
   def index() {
-    respond Policy.list(params), model:[policyCount: Policy.count()]
+    def policies = policyService.findProductPolicies(params.product)
+
+    withFormat{
+      json{
+        JSON.use('policy')
+        render policies as JSON
+      }
+    }
   }
 
   def show(Policy policy) {

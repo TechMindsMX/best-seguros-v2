@@ -12,7 +12,8 @@ class PolicyMarshaller implements ObjectMarshaller<JSON>{
 
   void marshalObject(Object object,JSON json){
     def policy = object as Policy
-    def policyValues = [product:policy.product,
+    def policyValues = [uuid:policy.uuid,
+                        product:policy.product,
                         plan:policy.plan,
                         status:policy.policyStatus.value]
 
