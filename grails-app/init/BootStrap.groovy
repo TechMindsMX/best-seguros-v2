@@ -32,6 +32,7 @@ class BootStrap {
       it.registerObjectMarshaller(new RangeAgeByBeneficiaryMarshaller())
       it.registerObjectMarshaller(new InsuranceCostPerInsuredMarshaller())
       it.registerObjectMarshaller(new InsuranceMarshaller())
+      it.registerObjectMarshaller(new PolicyMarshaller())
     }
   }
 
