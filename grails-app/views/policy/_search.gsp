@@ -11,6 +11,7 @@
   <div class="col-lg-12">
     <div class="portlet portlet-default">
       <div class="portlet-body">
+        <g:form controller="policy" action="index">
         <div class="row">
           <div class="col-lg-6 form-horizontal">
             <div class="form-group">
@@ -37,6 +38,7 @@
             </button>
           </div>
         </div>
+        </g:form>
 
       </div>
     </div>
