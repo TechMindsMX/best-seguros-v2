@@ -38,6 +38,13 @@
             </button>
           </div>
         </div>
+
+        <div class="row">
+          <div class="col-lg-12 resultsDiv">
+
+          </div>
+        </div>
+
         </g:form>
 
       </div>
