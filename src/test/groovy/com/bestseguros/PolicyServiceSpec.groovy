@@ -139,7 +139,7 @@ class PolicyServiceSpec extends Specification {
         policy.save(validate:false)
       }
     when:
-      def productPolicies = service.findProductPolicies(product.id)
+      def productPolicies = service.findProductPolicies(product.uuid)
     then:
       productPolicies.size() == 2
   }
