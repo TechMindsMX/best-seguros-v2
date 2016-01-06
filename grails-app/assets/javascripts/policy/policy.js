@@ -1,7 +1,7 @@
 var Policy = {
-  product:'',
-  plan:'',
-  policyStatus:'',
+  product:null,
+  plan:null,
+  status:'',
 
   create:function(data){
     return $.extend({},this,data);
@@ -29,7 +29,11 @@ var Policy = {
         contentType:'application/json; charset=utf-8'
       })
       .done(function(response){
-        resolve(response);
+        var model = {policies:[]};
+        response.forEach(function(item){
+          model.policies.push(Policy.deserialize({policy:item}));
+        });
+        resolve(model);
       })
       .fail(function(response){
         reject(response);
