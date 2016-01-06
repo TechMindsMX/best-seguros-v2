@@ -9,8 +9,7 @@ class PolicyController {
   def policyService
   static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-  def index(Integer max) {
-    params.max = Math.min(max ?: 10, 100)
+  def index() {
     respond Policy.list(params), model:[policyCount: Policy.count()]
   }
 

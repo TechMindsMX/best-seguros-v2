@@ -2,8 +2,7 @@ package com.bestseguros
 
 class HomeController {
 
-  def index(){ 
-    
+  def index(){
   }
 
 }
