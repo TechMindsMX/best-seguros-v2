@@ -1,4 +1,5 @@
 var Policy = {
+  uuid:'',
   product:null,
   plan:null,
   status:'',
@@ -30,9 +31,11 @@ var Policy = {
       })
       .done(function(response){
         var model = {policies:[]};
+
         response.forEach(function(item){
           model.policies.push(Policy.deserialize({policy:item}));
         });
+
         resolve(model);
       })
       .fail(function(response){
