@@ -1,12 +1,10 @@
-//= require policy/policy_list_controller.js
-
 var HomeController = (function(){
 
   var selectors = {
     sidebar_toggle:'#sidebar-toggle',
     navbar_side:'.navbar-side',
     page_wrapper:'#page-wrapper',
-    searchPolicyLink:'#searchPolicy'    
+    searchPolicyLink:'#searchPolicy'
   };
 
   var toggleDiv = function(){
@@ -16,8 +14,7 @@ var HomeController = (function(){
 
   var getSearchContent = function(event){
     event.preventDefault();
-    PolicyListController.start();
-  }; 
+  };
 
   var bindEvents = function(){
     $(selectors.sidebar_toggle).on('click',toggleDiv);

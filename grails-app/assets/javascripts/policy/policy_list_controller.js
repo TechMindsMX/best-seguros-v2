@@ -53,3 +53,7 @@ var PolicyListController = (function(){
   };
 
 }());
+
+jQuery(function($){
+  PolicyListController.start();
+});
