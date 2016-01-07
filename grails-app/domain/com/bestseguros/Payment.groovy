@@ -1,11 +1,12 @@
 package com.bestseguros
 
-class Payment {
+class Payment{
 
-  Periodicity periodicity
-  PaymentMethod paymentMethod
+  Long responseRef
+  String type
 
   static constraints = {
+    responseRef nullable:false
   }
 
 }
