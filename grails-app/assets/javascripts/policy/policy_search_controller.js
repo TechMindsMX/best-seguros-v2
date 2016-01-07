@@ -1,4 +1,5 @@
 //= require policy/policy.js
+//= require policy/policy_list_view.js
 
 var PolicySearchController = (function(){
 
@@ -8,7 +9,7 @@ var PolicySearchController = (function(){
   };
 
   var success = function(data){
-    console.log(data);
+    PolicyListView.render(data);
   };
 
   var failure = function(data){

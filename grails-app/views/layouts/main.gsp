@@ -54,9 +54,12 @@
     <div id="page-wrapper">
       <div class="page-content page-content-ease-in">
         <div class="row">
-          <div class="col-lg-12">
+          <div class="col-lg-12" id="applicationDiv">
             <g:layoutBody/>
+
           </div>
+          <g:render template="/policy/search" />
+          <g:render template="/product/list" />
         </div>
       </div>
     </div><!-- ENDOF PAGE-WRAPPER -->
