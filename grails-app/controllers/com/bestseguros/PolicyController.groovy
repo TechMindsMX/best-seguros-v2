@@ -22,12 +22,16 @@ class PolicyController {
   }
 
   def show(Policy policy) {
-    respond policy
+    def policyDetail = policyService.getPolicyDetail(policy)
+    renderPdf(template:"/pdfs/report",model:[policyDetail:policyDetail])
   }
 
   def create() {
     def policy = policyService.createPolicy()
     redirect(action:"edit",id:policy.id)
+  }
+
+  def list(){
   }
 
   def edit(Policy policy) {
@@ -60,8 +64,7 @@ class PolicyController {
     }
     else{
       policyService.updatePolicyStatus(policy)
-      def policyDetail = policyService.getPolicyDetail(policy)
-      renderPdf(template:"/pdfs/report",model:[policyDetail:policyDetail])
+      redirect(controller:"policy",action:"show",id:policy.id)
     }
   }
 
