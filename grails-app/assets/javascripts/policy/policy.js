@@ -1,4 +1,5 @@
 var Policy = {
+  id:'',
   uuid:'',
   product:null,
   plan:null,
