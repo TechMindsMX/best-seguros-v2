@@ -23,9 +23,13 @@
         </td>
         <td>
           {{#showEditButton status}}
-            <button type="button">Editar</button>
+          <a href="${createLink(controller:'policy',action:'edit')}/{{id}}" class="btn btn-default btn-square">
+            Editar
+          </a>
           {{else}}
-            <button type="button">Ver póliza</button>
+          <a href="${createLink(controller:'policy',action:'show')}/{{id}}" class="btn btn-default btn-square">
+            Ver póliza
+          </a>
           {{/showEditButton}}
         </td>
       </tr>

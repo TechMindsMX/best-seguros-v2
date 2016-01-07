@@ -42,10 +42,9 @@
             </g:link>
           </li>
           <li>
-            <a href="#" id="searchPolicy">
+            <g:link controller="policy" action="list">
               <i class="fa fa-list-alt"></i> Buscar pólizas
-            </a>
-            <input type="hidden" id="insuranceLink" value="${createLink(controller:'insurance',action:'index')}" />
+            </g:link>
           </li>
         </ul>
       </div>
@@ -54,12 +53,9 @@
     <div id="page-wrapper">
       <div class="page-content page-content-ease-in">
         <div class="row">
-          <div class="col-lg-12" id="applicationDiv">
+          <div class="col-lg-12">
             <g:layoutBody/>
-
           </div>
-          <g:render template="/policy/search" />
-          <g:render template="/product/list" />
         </div>
       </div>
     </div><!-- ENDOF PAGE-WRAPPER -->
