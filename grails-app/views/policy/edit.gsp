@@ -31,6 +31,20 @@
                     <div class="row">
                       <div class="col-lg-12">
                         <input type="hidden" id="sepomexUrl" name="sepomexUrl" value="${sepomexUrl}" />
+                        <div id="create-policy" class="content scaffold-create" role="main">
+                          <g:if test="${flash.message}">
+                            <div class="alert alert-danger">
+                              <i class="fa fa-exclamation-triangle"></i> ${flash.message}
+                            </div>
+                          </g:if>
+                          <g:hasErrors bean="${this.policy}">
+                            <ul class="errors" role="alert">
+                              <g:eachError bean="${this.policy}" var="error">
+                                <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
+                              </g:eachError>
+                            </ul>
+                          </g:hasErrors>
+                        </div>
                         <g:render template="/policy/form" />
                       </div>
                     </div>
@@ -43,17 +57,6 @@
       </div>
     </div>
 
-    <div id="create-policy" class="content scaffold-create" role="main">
-      <g:if test="${flash.message}">
-      <div class="message" role="status">${flash.message}</div>
-      </g:if>
-      <g:hasErrors bean="${this.policy}">
-      <ul class="errors" role="alert">
-        <g:eachError bean="${this.policy}" var="error">
-          <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
-        </g:eachError>
-      </ul>
-      </g:hasErrors>
-    </div>
+
   </body>
 </html>
