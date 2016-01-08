@@ -1,3 +1,5 @@
+//= require third_party/accounting.js/accounting.js
+
 var HelperController = (function(){
 
   var policyStatusLabelClass = {
@@ -6,8 +8,8 @@ var HelperController = (function(){
   };
 
   var initHelpers = function(){
-    Handlebars.registerHelper('showProperty',function(obj,field,options){
-      return obj[field][options.hash.property];
+    Handlebars.registerHelper('showProperty',function(object,field,options){
+      return object[field][options.hash.property];
     });
 
     Handlebars.registerHelper('labelType',function(object){
@@ -23,6 +25,14 @@ var HelperController = (function(){
         return options.fn(this);
       else
         return options.inverse(this);
+    });
+
+    Handlebars.registerHelper('currencyFormatForProperty',function(object,field,options){
+      return accounting.formatMoney(object[field][options.hash.property]);
+    });
+
+    Handlebars.registerHelper('currencyFormat',function(context,options){
+      return accounting.formatMoney(context);
     });
   };
 
