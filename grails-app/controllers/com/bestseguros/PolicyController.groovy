@@ -31,7 +31,15 @@ class PolicyController {
     redirect(action:"edit",id:policy.id)
   }
 
-  def list(){
+  def list(){ }
+
+  def paymentMethod(Policy policy){
+    if(!policyService.isThePolicyValid(policy)){
+      redirect(action:"edit",id:policy.id)
+      flash.message = "Falta capturar información para la póliza"
+      return
+    }
+
   }
 
   def edit(Policy policy) {
@@ -77,4 +85,5 @@ class PolicyController {
       '*'{ render status: NOT_FOUND }
     }
   }
+
 }
