@@ -2,11 +2,12 @@ package com.bestseguros
 
 class Payment{
 
-  Long responseRef
+  Long paymentMethodRef
   String type
 
   static constraints = {
-    responseRef nullable:false
+    paymentMethodRef nullable:false,blank:false
+    type nullable:false,blank:false
   }
 
 }
