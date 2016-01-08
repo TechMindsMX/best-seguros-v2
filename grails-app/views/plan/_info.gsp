@@ -61,7 +61,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-12 col-xs-12">
       <g:form controller="policy" action="addProduct" id="${policy.id}">
         <input type="hidden" name="plan" value="{{plan}}"/>
         <input type="hidden" name="product" value="{{product}}" />
