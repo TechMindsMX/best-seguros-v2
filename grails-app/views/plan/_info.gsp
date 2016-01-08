@@ -33,7 +33,7 @@
                   {{#each this}}
                   <tr>
                     <td>{{coverage.name}}</td>
-                    <td>{{insuredSum}}</td>
+                    <td>{{currencyFormat insuredSum}}</td>
                   </tr>
                   {{/each}}
                   <tr>
@@ -47,7 +47,7 @@
                       <tbody>
                         <tr>
                           <td>{{showProperty ../rangeAgesByBeneficiary @index property='minAge'}} a {{showProperty ../rangeAgesByBeneficiary @index property='maxAge'}}</td>
-                          <td>{{showProperty ../insuranceCostsPerInsured @index property='insuranceCost'}}</td>
+                          <td>{{currencyFormatForProperty ../insuranceCostsPerInsured @index property='insuranceCost'}}</td>
                         </tr>
                       </tbody>
                     </table>

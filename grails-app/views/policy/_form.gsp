@@ -102,8 +102,7 @@
           <g:else>
             <g:render template="/insured/form" model="[insured:contractingParty,policy:policy]"/>
           </g:else>
-        </div>
-
+        </div><!--ENDOF PORTLET-BODY -->
       </div>
     </div>
   </div>
@@ -155,5 +154,3 @@
   </g:if>
 
 </g:else>
-
-
