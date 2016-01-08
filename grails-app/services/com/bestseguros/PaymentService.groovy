@@ -5,7 +5,7 @@ import grails.transaction.Transactional
 @Transactional
 class PaymentService {
 
-  def createResponseForInstance(instance){
+  def createPaymentForInstance(instance){
     if(!PaymentMethod.class.isAssignableFrom(instance.class))
       throw new Exception("PaymentMethod is not assignable from ${instance.class}")
 
