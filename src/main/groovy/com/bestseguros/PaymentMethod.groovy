@@ -1,4 +1,4 @@
 package com.bestseguros
 
-inteface PaymentMethod{
+interface PaymentMethod{
 }
