@@ -13,10 +13,10 @@
       <!-- begin BRAND HEADING -->
       <div class="navbar-header">
         <button type="button" class="navbar-toggle pull-right" data-toggle="collapse" data-target=".sidebar-collapse">
-          <i class="fa fa-bars"></i> Menu
+          <i class="fa fa-bars"></i>
         </button>
-        <div class="navbar-brand">
-          <a href="index.html"></a>
+        <div class="navbar-brand image">
+          <img src="${asset.assetPath(src:'best_seguros.png')}" alt=""/>
         </div>
       </div>
 
@@ -41,6 +41,11 @@
               <i class=" fa fa-sticky-note"></i> Nueva Póliza
             </g:link>
           </li>
+          <li>
+            <g:link controller="policy" action="list">
+              <i class="fa fa-list-alt"></i> Buscar pólizas
+            </g:link>
+          </li>
         </ul>
       </div>
     </nav> <!--ENDOF NAVBAR-SIDE -->
@@ -54,7 +59,6 @@
         </div>
       </div>
     </div><!-- ENDOF PAGE-WRAPPER -->
-
 
     <div class="footer" role="contentinfo"></div>
     <div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>

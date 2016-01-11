@@ -7,12 +7,13 @@ class UrlMappings {
       }
     }
 
-    "/"(view:"/index")
+    "/"(controller:"home")
     "500"(view:'/error')
     "404"(view:'/notFound')
 
     "/products"(resources:'product')
     "/plans"(resources:'plan')
+    "/policies"(resources:'policy')
   }
-  
+
 }

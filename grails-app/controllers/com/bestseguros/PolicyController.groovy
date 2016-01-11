@@ -2,6 +2,7 @@ package com.bestseguros
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
+import grails.converters.JSON
 
 @Transactional
 class PolicyController {
@@ -9,18 +10,28 @@ class PolicyController {
   def policyService
   static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-  def index(Integer max) {
-    params.max = Math.min(max ?: 10, 100)
-    respond Policy.list(params), model:[policyCount: Policy.count()]
+  def index() {
+    def policies = policyService.findProductPolicies(params.product)
+
+    withFormat{
+      json{
+        JSON.use('policy')
+        render policies as JSON
+      }
+    }
   }
 
   def show(Policy policy) {
-    respond policy
+    def policyDetail = policyService.getPolicyDetail(policy)
+    renderPdf(template:"/pdfs/report",model:[policyDetail:policyDetail])
   }
 
   def create() {
     def policy = policyService.createPolicy()
     redirect(action:"edit",id:policy.id)
+  }
+
+  def list(){
   }
 
   def edit(Policy policy) {
@@ -53,8 +64,7 @@ class PolicyController {
     }
     else{
       policyService.updatePolicyStatus(policy)
-      def policyDetail = policyService.getPolicyDetail(policy)
-      renderPdf(template:"/pdfs/report",model:[policyDetail:policyDetail])
+      redirect(controller:"policy",action:"show",id:policy.id)
     }
   }
 

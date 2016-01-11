@@ -3,7 +3,8 @@ var HomeController = (function(){
   var selectors = {
     sidebar_toggle:'#sidebar-toggle',
     navbar_side:'.navbar-side',
-    page_wrapper:'#page-wrapper'
+    page_wrapper:'#page-wrapper',
+    searchPolicyLink:'#searchPolicy'
   };
 
   var toggleDiv = function(){
@@ -11,8 +12,13 @@ var HomeController = (function(){
     $(selectors.page_wrapper).toggleClass("collapsed");
   };
 
+  var getSearchContent = function(event){
+    event.preventDefault();
+  };
+
   var bindEvents = function(){
-    $(selectors.sidebar_toggle).on("click",toggleDiv);
+    $(selectors.sidebar_toggle).on('click',toggleDiv);
+    $(selectors.searchPolicyLink).on('click',getSearchContent);
   };
 
   var start = function(){

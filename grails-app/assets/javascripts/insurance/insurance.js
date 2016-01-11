@@ -1,45 +1,44 @@
-var Product = {
+var Insurance = {
   id:'',
   name:'',
-  
-  create: function(data){
+
+  create:function(data){
     return $.extend({},this,data);
   },
-
+  
   deserialize:function(data){
-    var _self = Product.create({});
+    var _self = Insurance.create({});
 
     Object.keys(_self).forEach(function(key){
-      if(typeof _self[key] != 'function'){
-        _self[key] = data.product[key];
+      if(typeof _self[key] !== 'function'){
+        _self[key] = data.insurance[key];
       }
     });
-    
+  
     return _self;
   },
 
-  list: function(params){
+  list:function(params){
     return new RSVP.Promise(function(resolve,reject){
       $.ajax({
         url:params.url,
         type:'GET',
-        data:params.data,
         datatype:'json',
-        contentType:'application/json; charset=utf-8'
+        contentType:'application/json; charset=utf8'
       })
       .done(function(response){
-        var model = { products:[] };
+        var model = {insurances:[]};
 
         response.forEach(function(item){
-          model.products.push(Product.deserialize({product:item}));
+          model.insurances.push(Insurance.deserialize({insurance:item}));           
         });
 
         resolve(model);
       })
       .fail(function(response){
         reject(response);
-      });
+      }); 
     });
-  }    
-   
-};
+  }
+
+}

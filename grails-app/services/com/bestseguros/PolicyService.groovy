@@ -91,4 +91,10 @@ class PolicyService {
     policy.insureds.find{ it.insuredType == InsuredType.CONTRACTING_PARTY }
   }
 
+  def findProductPolicies(String productUuid){
+    def policies = Policy.findAll{
+      product.uuid == productUuid
+    }
+  }
+
 }
