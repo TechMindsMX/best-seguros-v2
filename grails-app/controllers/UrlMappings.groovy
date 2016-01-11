@@ -13,6 +13,7 @@ class UrlMappings {
 
     "/products"(resources:'product')
     "/plans"(resources:'plan')
+    "/banks"(resources:'bank')
     "/policies"(resources:'policy')
   }
 
