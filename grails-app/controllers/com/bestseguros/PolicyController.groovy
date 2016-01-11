@@ -8,6 +8,7 @@ import grails.converters.JSON
 class PolicyController {
 
   def policyService
+
   static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
   def index() {

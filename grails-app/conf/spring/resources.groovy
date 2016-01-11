@@ -1,9 +1,9 @@
 // Place your Spring DSL code here
 import com.bestseguros.routes.FileRoute
 import com.bestseguros.bean.SplitterBean
-import org.apache.activemq.ActiveMQConnectionFactory
-import org.springframework.jms.config.JmsListenerContainerFactory
+import com.bestseguros.bean.PolicySplitter
 import org.springframework.jms.config.SimpleJmsListenerContainerFactory
+import org.springframework.jms.config.DefaultJmsListenerContainerFactory
 
 beans = {
 
@@ -18,12 +18,5 @@ beans = {
     grailsApplication = ref('grailsApplication')
   }
 
-  jmsConnectionFactory(ActiveMQConnectionFactory) {
-    brokerURL = "tcp://localhost:61616"
-  }
-
-  jmsListenerContainerFactory(SimpleJmsListenerContainerFactory){
-    connectionFactory = ref('jmsConnectionFactory')
-  }
 
 }
