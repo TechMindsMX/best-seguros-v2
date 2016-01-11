@@ -12,7 +12,8 @@ class BankMarshaller implements ObjectMarshaller<JSON>{
 
   void marshalObject(Object object,JSON json){
     def bank = object as Bank
-    def bankValues = [name:bank.name]
+    def bankValues = [id:bank.id,
+                      name:bank.name]
 
     json.convertAnother(bankValues)
   }
