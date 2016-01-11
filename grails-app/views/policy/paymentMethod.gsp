@@ -31,6 +31,7 @@
                 <g:select id="periodicity" name="periodicity" from="${Periodicity.values()}" optionKey="key" optionValue="value" class="form-control" />
               </div>
             </div>
+
             <div class="form-group">
               <div class="col-lg-1">
                 <label for="" class="control-label">Medio de pago</label>
@@ -39,11 +40,16 @@
                 <g:select id="paymentType" name="paymentType" from="${PaymentType.values()}" optionKey="key" optionValue="value" class="form-control" />
               </div>
             </div>
+
+            <div class="form-group bankOrCardList">
+            </div>
           </g:form>
         </div>
       </div>
     </div>
   </div>
+
+  <g:render template="/bank/list" />
 
 </body>
 </html>
