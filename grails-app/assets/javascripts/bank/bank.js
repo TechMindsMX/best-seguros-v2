@@ -1,4 +1,5 @@
 var Bank = {
+  id:'',
   name:'',
 
   create: function(data){
@@ -19,23 +20,25 @@ var Bank = {
 
   list:function(params){
     return new RSVP.Promise(function(resolve,reject){
-      url:params.url,
-      type:'GET',
-      datatype:'json',
-      contentType:'application/json; charset=utf8'
-    })
-    .done(function(response){
-      var model = {banks:[]};
+      $.ajax({
+        url:params.url,
+        type:'GET',
+        datatype:'json',
+        contentType:'application/json; charset=utf8'
+      })
+      .done(function(response){
+        var model = {banks:[]};
 
-      response.forEach(function(item){
-        model.banks.push(Bank.deserialize({bank:item}));
+        response.forEach(function(item){
+          model.banks.push(Bank.deserialize({bank:item}));
+        });
+
+        resolve(model);
+      })
+      .fail(function(response){
+        reject(response);
       });
-
-      resolve(model);
     })
-    .fail(function(response){
-      reject(response);
-    });
   }
 
 }
