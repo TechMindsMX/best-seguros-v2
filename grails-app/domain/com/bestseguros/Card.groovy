@@ -11,7 +11,7 @@ class Card implements PaymentMethod{
   Date lastUpdated
 
   static constraints = {
-    cardNumber blank:false,nullable:false,min:15,max:16
+    cardNumber blank:false,nullable:false,size:15..16
   }
 
 }
