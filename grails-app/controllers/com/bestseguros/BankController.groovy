@@ -8,7 +8,7 @@ class BankController {
     withFormat{
       json{
         JSON.use('policy')
-        render Bank.list() as JSON
+        render Bank.list().sort{ bank -> bank.name } as JSON
       }
     }
   }
