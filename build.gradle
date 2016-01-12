@@ -64,6 +64,7 @@ dependencies {
     compile "org.grails.plugins:cache"
     compile "org.hibernate:hibernate-ehcache"
     compile "org.grails.plugins:scaffolding"
+    compile "org.grails.plugins:mail:2.0.0.RC2"
     compile("org.grails.plugins:rendering:2.0.0-SNAPSHOT") {
       exclude module:'core-renderer'
     }
