@@ -13,7 +13,10 @@ beans = {
   }
 
   splitterBean(SplitterBean)
-  mailSenderActor(MailSenderActor)
+
+  mailSenderActor(MailSenderActor){
+    notificationService = ref('notificationService')
+  }
 
   myRouter(FileRoute){
     grailsApplication = ref('grailsApplication')
