@@ -7,9 +7,10 @@ import com.bestseguros.actor.MailSender
 
 class MessageService {
 
+  def mailSender
+
   def sendPolicyMail(Exchange exchange){
     def policy = exchange.getIn().getBody(Policy.class)
-    MailSender mailSender = MailSender.instance
 
     if(!mailSender.isActive())
       mailSender.start()

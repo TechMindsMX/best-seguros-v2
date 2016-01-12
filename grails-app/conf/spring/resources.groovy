@@ -1,7 +1,6 @@
 // Place your Spring DSL code here
 import com.bestseguros.routes.FileRoute
 import com.bestseguros.bean.SplitterBean
-import com.bestseguros.bean.PolicySplitter
 import org.springframework.jms.config.SimpleJmsListenerContainerFactory
 import org.springframework.jms.config.DefaultJmsListenerContainerFactory
 

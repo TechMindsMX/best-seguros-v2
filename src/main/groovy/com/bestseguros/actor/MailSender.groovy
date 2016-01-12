@@ -1,8 +1,9 @@
 package com.bestseguros.actor
 
 import groovyx.gpars.actor.DefaultActor
+import org.springframework.stereotype.Component
 
-@Singleton
+@Component
 class MailSender extends DefaultActor{
 
   void act(){
@@ -12,4 +13,5 @@ class MailSender extends DefaultActor{
       }
     }
   }
+
 }
