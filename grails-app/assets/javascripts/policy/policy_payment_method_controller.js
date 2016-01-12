@@ -1,4 +1,5 @@
 //= require bank/bank_list_controller.js
+//= require card/provider_list_controller.js
 
 var PolicyPaymentMethodController = (function(){
 
@@ -11,21 +12,19 @@ var PolicyPaymentMethodController = (function(){
     bankAccounts:['CHECK','REFERENCED_DEPOSIT']
   }
 
-  var start = function(){
-    bindEvents();
-  };
-
   var showBanksOrProviders = function(){
-    if(paymentTypes.cards.indexOf($(this).val()) >= 0){
-
-    }
-    else if(paymentTypes.bankAccounts.indexOf($(this).val()) >= 0){
+    if(paymentTypes.cards.indexOf($(this).val()) >= 0)
+      ProviderListController.start();       
+    else if(paymentTypes.bankAccounts.indexOf($(this).val()) >= 0)
       BankListController.start();
-    }
   };
 
   var bindEvents = function(){
     $(settings.paymentType).on("change",showBanksOrProviders);
+  };
+
+  var start = function(){
+    bindEvents();
   };
 
   return{
