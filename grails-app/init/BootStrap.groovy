@@ -35,6 +35,7 @@ class BootStrap {
       it.registerObjectMarshaller(new PolicyMarshaller())
       it.registerObjectMarshaller(new BankMarshaller())
     }
+    new CardProviderMarshaller().register()
   }
 
   def destroy = {
