@@ -7,6 +7,7 @@ import org.apache.camel.spring.SpringCamelContext
 import org.springframework.context.annotation.Configuration
 import org.apache.camel.spring.javaconfig.SingleRouteCamelConfiguration
 import com.bestseguros.bean.PolicyAggregationStrategy
+import org.springframework.jms.annotation.EnableJms
 
 @Configuration
 class FileRoute extends SingleRouteCamelConfiguration{
@@ -31,8 +32,8 @@ class FileRoute extends SingleRouteCamelConfiguration{
         .split().method("splitterBean","splitBody")
         .aggregate(header("CamelFileName"), new PolicyAggregationStrategy()).completionTimeout(3000)
         .to("bean:policiesFileService?method=savePolicies(*)")
-        .to("mock:result")
-
+        .split(body())
+        .to("bean:messageService?method=sendPolicyMail(*)")
       }
     }
   }

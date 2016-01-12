@@ -12,7 +12,9 @@ spring:
     groovy:
         template:
             check-template-location: false
-
+    activemq:
+        broker-url: 'vm://localhost?broker.deleteAllMessagesOnStartup=true&broker.persistent=false'
+        in-memory: true
 ---
 grails:
     mime:

@@ -10,11 +10,16 @@ class PoliciesFileService {
 
   def savePolicies(Exchange exchange){
     def policies = exchange.getIn().getBody(ArrayList.class)
+    def savedPolicies = []
+
     policies.each{ policy ->
-      if(policyService.isThePolicyValid(policy))
+      if(policyService.isThePolicyValid(policy)){
         policy.save()
+        savedPolicies << policy
+      }
     }
 
+    savedPolicies
   }
 
 }
