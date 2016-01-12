@@ -1,5 +1,5 @@
 <script id="bank-template" type="text/x-handlebars-template">
-  <div class="col-lg-1">
+  <div class="col-lg-2">
     <label for="bank" class="control-label">Banco</label>
   </div>
   <div class="col-lg-2">

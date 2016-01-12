@@ -21,8 +21,8 @@
 
     <script id="plans-select-template" type="text/x-handlebars-template">
       <div class="row">
-        <label class="col-lg-2 control-label" for="plan">Planes</label>
-        <div class="col-lg-10">
+        <label class="col-lg-3 control-label" for="plan">Planes</label>
+        <div class="col-lg-9">
           <select class="form-control" name="plan">
             <option value="">--Seleccionar--</option>
             {{#each this}}
