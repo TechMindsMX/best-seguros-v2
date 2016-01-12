@@ -1,10 +1,8 @@
 package com.bestseguros.actor
 
 import groovyx.gpars.actor.DefaultActor
-import org.springframework.stereotype.Component
 
-@Component
-class MailSender extends DefaultActor{
+class MailSenderActor extends DefaultActor{
 
   void act(){
     loop{
