@@ -34,8 +34,8 @@ class BootStrap {
       it.registerObjectMarshaller(new InsuranceMarshaller())
       it.registerObjectMarshaller(new PolicyMarshaller())
       it.registerObjectMarshaller(new BankMarshaller())
+      it.registerObjectMarshaller(new CardProviderMarshaller())
     }
-    new CardProviderMarshaller().register()
   }
 
   def destroy = {

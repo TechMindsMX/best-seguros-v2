@@ -36,8 +36,8 @@ class PolicyController {
 
   def paymentMethod(Policy policy){
     if(!policyService.isThePolicyValid(policy)){
-      redirect(action:"edit",id:policy.id)
       flash.message = "Falta capturar información para la póliza"
+      redirect(action:"edit",id:policy.id)
       return
     }
 
@@ -62,6 +62,10 @@ class PolicyController {
   def addProduct(Policy policy){
     policyService.addProductAndPlanToPolicy(policy.id,[product:params.long("product"),plan:params.long("plan")])
     redirect(action:"edit",id:policy.id)
+  }
+
+  def addPaymentMethod(PaymentMethodCommand paymentMethod){
+
   }
 
   @Transactional
