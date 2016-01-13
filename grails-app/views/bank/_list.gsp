@@ -10,4 +10,15 @@
       {{/each}}
     </select>
   </div>
+
+  <div class="col-lg-7">
+    <div class="row">
+      <div class="col-lg-2">
+        <label for="accountNumber" class="control-label">Cuenta Bancaria</label>
+      </div>
+      <div class="col-lg-4">
+        <input type="text" class="form-control" name="accountNumber" maxlength="16" />
+      </div>
+    </div>
+  </div>
 </script>
