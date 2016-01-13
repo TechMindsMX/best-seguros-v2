@@ -22,7 +22,7 @@
     <div class="col-lg-12">
       <div class="portlet portlet-default">
         <div class="portlet-body">
-          <g:form class="form-horizontal">
+          <g:form class="form-horizontal" controller="policy" action="addPaymentMethod" name="paymentMethodForm">
             <div class="form-group">
               <div class="col-lg-2">
                 <label for="periodicity" class="control-label">Periodicidad</label>
@@ -42,7 +42,12 @@
             </div>
 
             <div class="form-group bankOrCardList">
+            </div>
 
+            <div class="form-group">
+              <div class="col-lg-12">
+                <button class="btn btn-primary pull-right">Guardar y Finalizar</button>
+              </div>
             </div>
           </g:form>
         </div>
