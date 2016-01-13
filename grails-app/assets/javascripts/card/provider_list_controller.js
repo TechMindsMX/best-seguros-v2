@@ -5,7 +5,7 @@ var ProviderListController = (function(){
 
   var success = function(data){
     ProviderListView.render(data);
-  };  
+  };
 
   var failure = function(data){
     console.log("Error " + data);

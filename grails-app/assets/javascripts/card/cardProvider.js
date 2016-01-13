@@ -1,14 +1,14 @@
 var CardProvider = {
-  key:'',
+  id:'',
   value:'',
- 
+
   create:function(data){
     return $.extend({},this,data);
   },
 
   deserialize:function(data){
     var _self = CardProvider.create({});
-    
+
     Object.keys(_self).forEach(function(key){
       if(typeof _self[key] !== 'function'){
         _self[key] = data.cardProvider[key];
@@ -16,7 +16,7 @@ var CardProvider = {
     });
 
     return _self;
-  }, 
+  },
 
   list: function(params){
     return new RSVP.Promise(function(resolve,reject){
@@ -26,11 +26,10 @@ var CardProvider = {
         data:params.data,
         datatype:'json',
         contentType:'application/json; charset=utf-8'
-      }) 
+      })
       .done(function(response){
-        console.log(response); 
 
-        var model = {cardProviders:[]}; 
+        var model = {cardProviders:[]};
 
         response.forEach(function(item){
           model.cardProviders.push(CardProvider.deserialize({cardProvider:item}));
@@ -41,7 +40,7 @@ var CardProvider = {
       .fail(function(response){
         reject(response);
       });
-    });  
+    });
   }
 
 };
