@@ -4,10 +4,6 @@ import grails.converters.JSON
 
 class PaymentController {
 
-  def index() {
-
-  }
-
   def providers(){
     def cardProviders = CardProvider.values()
 
