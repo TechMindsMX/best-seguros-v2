@@ -24,7 +24,7 @@
         <div class="portlet-body">
           <g:form class="form-horizontal">
             <div class="form-group">
-              <div class="col-lg-1">
+              <div class="col-lg-2">
                 <label for="periodicity" class="control-label">Periodicidad</label>
               </div>
               <div class="col-lg-2">
@@ -33,7 +33,7 @@
             </div>
 
             <div class="form-group">
-              <div class="col-lg-1">
+              <div class="col-lg-2">
                 <label for="" class="control-label">Medio de pago</label>
               </div>
               <div class="col-lg-2">
