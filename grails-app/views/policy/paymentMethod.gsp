@@ -34,14 +34,15 @@
 
             <div class="form-group">
               <div class="col-lg-2">
-                <label for="" class="control-label">Medio de pago</label>
+                <label for="paymentType" class="control-label">Medio de pago</label>
               </div>
               <div class="col-lg-2">
-                <g:select id="paymentType" name="paymentType" from="${PaymentType.values()}" optionKey="key" optionValue="value" class="form-control" />
+                <g:select id="paymentType" name="paymentType" from="${PaymentType.values()}" optionKey="key" optionValue="value" class="form-control" noSelection="['':'--Seleccionar--']"/>
               </div>
             </div>
 
             <div class="form-group bankOrCardList">
+
             </div>
           </g:form>
         </div>
@@ -50,6 +51,7 @@
   </div>
 
   <g:render template="/bank/list" />
+  <g:render template="/provider/list" />
 
 </body>
 </html>
