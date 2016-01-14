@@ -22,21 +22,22 @@ var PolicyPaymentMethodController = (function(){
   };
 
   var initValidation = function(){
+    jQuery.extend(jQuery.validator.messages,{
+      required:''
+    });
+
     $(settings.paymentMethodForm).validate({
       rules:{
         paymentType:"required"
+      },
+      errorPlacement:function(error,element){
+        element.closest("div").addClass("has-error");
       }
     });
   };
 
-  var validatePaymentMethod = function(event){
-    event.preventDefault();
-    console.log("Payment Method");
-  }
-
   var bindEvents = function(){
     $(settings.paymentType).on("change",showBanksOrProviders);
-    //$(settings.paymentMethodForm).on("submit",validatePaymentMethod);
   };
 
   var start = function(){
