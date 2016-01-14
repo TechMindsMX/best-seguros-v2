@@ -1,6 +1,8 @@
 package com.bestseguros
 
-class PaymentMethodCommand{
+import grails.validation.Validateable
+
+class PaymentMethodCommand implements Validateable{
   String cardNumber
   String accountNumber
   PaymentType paymentType
