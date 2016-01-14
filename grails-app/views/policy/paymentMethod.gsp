@@ -22,7 +22,7 @@
     <div class="col-lg-12">
       <div class="portlet portlet-default">
         <div class="portlet-body">
-          <g:form class="form-horizontal" controller="policy" action="addPaymentMethod" name="paymentMethodForm">
+          <g:form class="form-horizontal" controller="policy" action="addPaymentMethod" name="paymentMethodForm" >
             <div class="form-group">
               <div class="col-lg-2">
                 <label for="periodicity" class="control-label">Periodicidad</label>
@@ -40,6 +40,8 @@
                 <g:select id="paymentType" name="paymentType" from="${PaymentType.values()}" optionKey="key" optionValue="value" class="form-control" noSelection="['':'--Seleccionar--']"/>
               </div>
             </div>
+
+            <input type="hidden" name="policy" value="${policy.id}" />
 
             <div class="form-group bankOrCardList">
             </div>

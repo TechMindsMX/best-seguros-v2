@@ -9,4 +9,5 @@ class PaymentMethodCommand implements Validateable{
   Periodicity periodicity
   CardProvider cardProvider
   Bank bank
+  Policy policy
 }
