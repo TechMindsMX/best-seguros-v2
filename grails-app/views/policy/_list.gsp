@@ -23,15 +23,13 @@
             </span>
           </td>
           <td>
-            {{#showEditButton status}}
             <a href="${createLink(controller:'policy',action:'edit')}/{{id}}" class="btn btn-default btn-square">
+            {{#showEditButton status}}
               Editar
-            </a>
             {{else}}
-            <a href="${createLink(controller:'policy',action:'show')}/{{id}}" class="btn btn-default btn-square">
               Ver póliza
-            </a>
             {{/showEditButton}}
+            </a>
           </td>
         </tr>
         {{/each}}
