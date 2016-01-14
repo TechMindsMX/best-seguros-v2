@@ -8,6 +8,7 @@ import grails.converters.JSON
 class PolicyController {
 
   def policyService
+  def paymentMethodService
 
   static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -41,6 +42,7 @@ class PolicyController {
       return
     }
 
+    [policy:policy]
   }
 
   def edit(Policy policy) {
@@ -65,7 +67,9 @@ class PolicyController {
   }
 
   def addPaymentMethod(PaymentMethodCommand paymentMethod){
-
+    def policy = paymentMethodService.addPaymentMethodToPolicy(paymentMethod.policy,paymentMethod);
+    policyService.updatePolicyStatus(policy)
+    redirect(action:"edit",id:policy.id)
   }
 
   @Transactional
