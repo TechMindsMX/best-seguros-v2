@@ -8,6 +8,7 @@ class NotificationService {
   def mailService
   def pdfRenderingService
   def policyService
+  def grailsApplication
 
   def sendPolicyPDF(Long policyId){
     def policy = Policy.get(policyId)
@@ -19,7 +20,7 @@ class NotificationService {
     mailService.sendMail{
       multipart true
       to email
-      from "egjimenezg@gmail.com"
+      from grailsApplication.config.mail.from
       subject "Póliza BestSeguros"
       body 'Póliza de seguros'
       attachBytes "Policy.pdf","application/pdf",bytes.toByteArray()
