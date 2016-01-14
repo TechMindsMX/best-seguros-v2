@@ -42,6 +42,7 @@ var PolicyPaymentMethodController = (function(){
 
   var start = function(){
     bindEvents();
+    $(settings.paymentType).trigger("change");
     initValidation();
   };
 
