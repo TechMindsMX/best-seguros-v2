@@ -262,14 +262,14 @@
             </div>
 
             <div class="row header">
-              <div class="col-print-6"><b>Nombre</b></div>
+              <div class="col-print-4"><b>Nombre</b></div>
               <div class="col-print-3"><b>Parentesco</b></div>
               <div class="col-print-3"><b>Fecha de Nacimiento</b></div>
             </div>
 
             <div class="row body">
               <g:each var="insured" in="${policyDetail.insureds}">
-                <div class="col-print-6">
+                <div class="col-print-4">
                   <span class="leftSpan">${insured?.name} ${insured?.lastName} ${insured?.motherLastName}</span>
                 </div>
                 <div class="col-print-3 text-center">${insured?.insuredType.value} </div>
