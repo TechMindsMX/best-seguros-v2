@@ -145,9 +145,14 @@
       </div>
     </div>
 
-    <g:form controller="policy" action="paymentMethod" id="${policy.id}">
-      <button type="submit" class="btn btn-default pull-right">Agregar método de pago</button>
-    </g:form>
+    <g:if test="${!policy.payment}">
+      <g:form controller="policy" action="paymentMethod" id="${policy.id}">
+        <button type="submit" class="btn btn-default pull-right">Agregar método de pago</button>
+      </g:form>
+    </g:if>
+    <g:else>
+      <button type="submit" class="btn btn-default pull-right">Enviar Póliza</button>
+    </g:else>
   </g:if>
 
 </g:else>
