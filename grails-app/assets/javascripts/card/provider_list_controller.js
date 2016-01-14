@@ -13,6 +13,7 @@ var ProviderListController = (function(){
     $(settings.paymentMethodForm).validate();
     $(settings.cardProviderSelector).rules("add","required");
     $(settings.cardNumberSelector).rules("add","required");
+    $(settings.cardNumberSelector).rules("add",{ minlength:15 });
   };
 
   var success = function(data){
