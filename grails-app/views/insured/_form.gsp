@@ -23,19 +23,20 @@
   </div>
 
   <div class="row form-row">
-    <div class="col-lg-4">
+    <div class="col-lg-4" >
       <div class="form-group">
-        <label for="name" class="col-sm-4 control-label">Fecha de Nacimiento</label>
-        <div class="col-sm-8">
-          <input type="text" class="col-sm-9 form-control datePicker" id="birthDate" name="insured.birthDate" value="${formatDate(format:'dd/MM/yyyy',date:insured.birthDate)}"/>
+        <label for="name" class="col-sm-5 col-md-4 col-lg-4 control-label">Fecha de Nacimiento</label>
+        <div class="col-sm-7 col-md-8 col-lg-8">
+          <input type="text" class="form-control datePicker" id="birthDate" name="insured.birthDate" value="${formatDate(format:'dd/MM/yyyy',date:insured.birthDate)}"/>
         </div>
       </div>
     </div>
-    <div class="col-lg-4">
-      <f:field bean="insured" property="phone" wrapper="form" label="${message(code:"insured.phone")}" maxlength="10" />
-    </div>
+
     <div class="col-lg-4">
       <f:field bean="insured" property="rfc" wrapper="form" label="${message(code:"insured.rfc")}" maxlength="13" />
+    </div>
+    <div class="col-lg-4">
+      <f:field bean="insured" property="phone" wrapper="form" label="${message(code:"insured.phone")}" maxlength="10" />
     </div>
   </div>
 
@@ -77,8 +78,9 @@
     <div class="row form-row">
       <div class="col-lg-4">
         <div class="form-group">
-          <label class="control-label col-sm-4 col-xs-4">Titular</label>
-          <div class="col-xs-6 col-sm-8 text-left" ><g:checkBox name="principal" checked="${principal}"  /></div>
+          <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 text-left" ><g:checkBox name="principal" checked="${principal}"  /></div>
+          <label class="control-label col-sm-8 col-md-8 col-lg-8 col-xs-8">Registrar como titular</label>
+
         </div>
       </div>
     </div>

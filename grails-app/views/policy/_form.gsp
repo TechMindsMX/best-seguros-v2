@@ -132,7 +132,6 @@
                       </g:each>
 
                       <g:if test="${insureds.unsavedInsureds[insured]}">
-                        <!--TODO: Enviar los insureds desde el controller -->
                         <g:render template="/insured/form" model="[insured:insureds.unsavedInsureds[insured].first(),policy:policy]"/>
                       </g:if>
                     </div>
