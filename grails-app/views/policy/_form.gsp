@@ -151,7 +151,19 @@
       </g:form>
     </g:if>
     <g:else>
-      <button type="submit" class="btn btn-default pull-right">Enviar Póliza</button>
+      <div class="row-fluid">
+        <g:form controller="notification" action="sendPolicyMail" id="${policy.id}">
+          <g:link controller="policy" action="create" class="btn btn-default">Nueva Póliza</g:link>
+          <button type="submit" class="btn btn-default pull-right">Enviar Póliza</button>
+        </g:form>
+      </div>
+      <g:if test="${flash.sent}">
+      <div class="row-fluid" id="sentMessage">
+        <div class="alert alert-info">
+          ${flash.sent}
+        </div>
+      </div>
+      </g:if>
     </g:else>
   </g:if>
 
