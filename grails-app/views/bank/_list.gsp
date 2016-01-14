@@ -17,7 +17,7 @@
         <label for="accountNumber" class="control-label">Cuenta Bancaria</label>
       </div>
       <div class="col-lg-4">
-        <input type="text" class="form-control" name="accountNumber" maxlength="16" />
+        <input type="text" class="form-control" name="accountNumber" maxlength="30" autocomplete="off" />
       </div>
     </div>
   </div>

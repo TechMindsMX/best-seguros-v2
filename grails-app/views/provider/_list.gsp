@@ -17,7 +17,7 @@
         <label for="cardNumber" class="control-label">Número de Tarjeta</label>
       </div>
       <div class="col-lg-4">
-        <input type="text" class="form-control" name="cardNumber" maxlength="16" />
+        <input type="text" class="form-control" name="cardNumber" maxlength="16" autocomplete="off" />
       </div>
     </div>
   </div>
