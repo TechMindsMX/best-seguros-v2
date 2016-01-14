@@ -9,15 +9,15 @@ var ProviderListController = (function(){
     cardNumberSelector:'input[name=cardNumber]'
   };
 
-  var success = function(data){
-    ProviderListView.render(data);
-    initValidation();
-  };
-
-  var initValidation = function(){
+  var addValidations = function(){
     $(settings.paymentMethodForm).validate();
     $(settings.cardProviderSelector).rules("add","required");
     $(settings.cardNumberSelector).rules("add","required");
+  };
+
+  var success = function(data){
+    ProviderListView.render(data);
+    addValidations();
   };
 
   var failure = function(data){
