@@ -82,8 +82,12 @@ class PolicyService {
     detail.insureds = policy.insureds.findAll{ insured -> insured.insuredType != InsuredType.CONTRACTING_PARTY }.sort{ it.insuredType }
     detail.monthlyInsuranceCost = 0
 
-    detail.insureds.each{ insured ->
+    detail.insureds.findAll{ it.insuredType != InsuredType.CHILD }.each{ insured ->
       detail.monthlyInsuranceCost += policy.product.insuranceCostsPerInsured.find{ it.insured == insured.insuredType }*.insuranceCost.sum()
+    }
+
+    if(detail.insureds.find{ it.insuredType == InsuredType.CHILD}){
+      detail.monthlyInsuranceCost += policy.product.insuranceCostsPerInsured.find{ it.insured == InsuredType.CHILD }*.insuranceCost.sum()
     }
 
     detail
