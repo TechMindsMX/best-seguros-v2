@@ -5,6 +5,8 @@ import grails.transaction.Transactional
 @Transactional
 class PolicyService {
 
+  def paymentService
+
   def createPolicy(){
     def policy = new Policy(policyStatus:PolicyStatus.CREATED)
     policy.save()
@@ -74,13 +76,14 @@ class PolicyService {
   }
 
   def getPolicyDetail(Policy policy){
-    def detail = [policyNumber:policy.id, dateCreated:policy.dateCreated]
+    def detail = [policyNumber:policy.id, dateCreated:policy.dateCreated,taxes:0,totalInsuranceCost:0]
     detail.contractingParty = policy.insureds.find{ it.insuredType == InsuredType.PRINCIPAL }
     detail.coin = policy.product.coin
     detail.productName = policy.product.name
     detail.benefits = policy.plan.insuredSumsByCoveragePerInsured.sort{ insuredSum -> insuredSum.insured }
     detail.insureds = policy.insureds.findAll{ insured -> insured.insuredType != InsuredType.CONTRACTING_PARTY }.sort{ it.insuredType }
     detail.monthlyInsuranceCost = 0
+    detail.payment = paymentService.findPaymentInstance(policy.payment.paymentMethodRef)?.periodicity.value
 
     detail.insureds.findAll{ it.insuredType != InsuredType.CHILD }.each{ insured ->
       detail.monthlyInsuranceCost += policy.product.insuranceCostsPerInsured.find{ it.insured == insured.insuredType }*.insuranceCost.sum()
@@ -90,6 +93,10 @@ class PolicyService {
       detail.monthlyInsuranceCost += policy.product.insuranceCostsPerInsured.find{ it.insured == InsuredType.CHILD }*.insuranceCost.sum()
     }
 
+    if(policy.product.iva)
+      detail.taxes = detail.monthlyInsuranceCost*0.16
+
+    detail.totalInsuranceCost = detail.monthlyInsuranceCost + detail.taxes
     detail
   }
 
