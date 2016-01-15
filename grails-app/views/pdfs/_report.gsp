@@ -178,7 +178,7 @@
                 <div class="col-print-5">
                   <span class="dataLabel">Forma de Pago:</span>
                 </div>
-                <div class="col-print-7">${policyDetail?.periodicity}</div>
+                <div class="col-print-7">${policyDetail?.payment}</div>
 
                 <div class="col-print-5">
                   <span class="dataLabel">Moneda:</span>
