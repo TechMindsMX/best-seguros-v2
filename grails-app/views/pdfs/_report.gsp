@@ -285,14 +285,26 @@
               </div>
               <div class="col-print-6">
                 <div class="row">
-                  <div class="col-print-8 text-right">Prima neta anual</div>
-                  <div class="col-print-4 text-right">
+                  <div class="col-print-9 text-right">Prima neta anual</div>
+                  <div class="col-print-3 text-right">
                     <g:formatNumber number="${policyDetail?.monthlyInsuranceCost * 12}" type="currency" />
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-print-8 text-right">Prima mensual a pagar</div>
-                  <div class="col-print-4 text-right">
+                  <div class="col-print-9 text-right">IVA</div>
+                  <div class="col-print-3 text-right">
+                    <g:formatNumber number="${policyDetail?.taxes}" type="currency" />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-print-9 text-right">Prima total</div>
+                  <div class="col-print-3 text-right">
+                    <g:formatNumber number="${policyDetail?.totalInsuranceCost}" type="currency" />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-print-9 text-right">Prima mensual a pagar</div>
+                  <div class="col-print-3 text-right">
                     <g:formatNumber number="${policyDetail?.monthlyInsuranceCost}" type="currency" />
                   </div>
                 </div>
@@ -303,7 +315,7 @@
 
         <div class="row">
           <div class="col-print-12 text-justify">
-            <p>Si el contenido de esta Póliza o sus modificaciones no concordaren con la oferta, el Contratante podrá pedir la rectificación correspondiente dentro de los treinta días que sigan al día en que reciba la Póliza. Transcurrido este plazo se considerarán aceptadas las estipulaciones de la Póliza o de sus modificaciones</p>
+            <p><strong>Si el contenido de esta Póliza o sus modificaciones no concordaren con la oferta, el Contratante podrá pedir la rectificación correspondiente dentro de los treinta días que sigan al día en que reciba la Póliza. Transcurrido este plazo se considerarán aceptadas las estipulaciones de la Póliza o de sus modificaciones.</strong></p>
           </div>
         </div>
 
