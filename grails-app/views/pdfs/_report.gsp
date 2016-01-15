@@ -315,11 +315,12 @@
               </div>
             </div>
 
-            <div class="row" style="margin-top:80px;">
+            <div class="row" style="margin-top:10px;">
               <div class="col-print-5">
                 <p></p>
               </div>
               <div class="col-print-7">
+                <img src="${grailsApplication.config.grails.serverUrl}/assets/signature.png" height="90" width="160" />
                 <hr style="border-top: 1px solid #000 !important;"></hr>
                 <p>Pan-American México, Compañía de Seguros, S.A. de C.V.</p>
               </div>
