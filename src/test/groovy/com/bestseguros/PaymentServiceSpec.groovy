@@ -5,9 +5,10 @@ import grails.test.mixin.Mock
 import spock.lang.Specification
 import java.lang.Void as Should
 import spock.lang.FailsWith
+import org.codehaus.groovy.grails.commons.GrailsDomainClass
 
 @TestFor(PaymentService)
-@Mock([Payment,Bank,BankAccount])
+@Mock([Payment,Bank,BankAccount,Card])
 class PaymentServiceSpec extends Specification {
 
   Should "create a payment for instance with interface payment Method"(){
@@ -34,5 +35,22 @@ class PaymentServiceSpec extends Specification {
       def payment = service.createPaymentForInstance(policy)
     then:
       !payment.id
+  }
+
+  Should "find the payment instances"(){
+    given:"a payment"
+      def instance = _instance
+      instance.save(validate:false)
+      def payment = new Payment(paymentMethodRef:instance.id,type:instance.class.simpleName).save()
+      grailsApplication.metaClass.getDomainClasses = { [[clazz:BankAccount.class],[clazz:Card.class]] }
+
+    when:
+      def paymentInstance = service.findPaymentInstance(payment.id)
+    then:
+      paymentInstance.class.simpleName == _simpleName
+    where:
+      _instance         || _simpleName
+      new BankAccount() || 'BankAccount'
+      new Card()        || 'Card'
   }
 }

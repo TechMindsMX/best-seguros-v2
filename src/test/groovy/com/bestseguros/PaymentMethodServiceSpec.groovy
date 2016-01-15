@@ -28,5 +28,4 @@ class PaymentMethodServiceSpec extends Specification {
       new PaymentMethodCommand(accountNumber:"012345678910",paymentType:PaymentType.CHECK,periodicity:Periodicity.QUARTERLY)      || BankAccount.class.simpleName
   }
 
-
 }
