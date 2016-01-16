@@ -11,6 +11,11 @@ import com.bestseguros.Insurance
 import com.bestseguros.Product
 import com.bestseguros.InsuredType
 import com.bestseguros.Insured
+import com.bestseguros.Payment
+import com.bestseguros.PaymentType
+import com.bestseguros.Periodicity
+import com.bestseguros.Card
+import com.bestseguros.BankAccount
 import java.text.Normalizer
 import java.text.Normalizer.Form
 
@@ -48,6 +53,8 @@ class SplitterBean{
 
     def planName = rows[2].getCell(2)?.stringCellValue
     def productName = normalizeString(rows[2].getCell(1)?.stringCellValue)
+
+    getPaymentMethodFromRow(rows[2])
 
     Product.withTransaction{ status ->
       product = Product.list().find{ p ->
@@ -149,6 +156,26 @@ class SplitterBean{
                 colony:insuredRow[12],
                 city:insuredRow[13],
                 insuredType:insuredType)
+  }
+
+  private def getPaymentMethodFromRow(XSSFRow row){
+    def accountCardNumberCell = row.getCell(5)
+    accountCardNumberCell?.setCellType(XSSFCell.CELL_TYPE_STRING)
+    def accountCardNumber = new BigDecimal(accountCardNumberCell?.stringCellValue ?: "0").toPlainString()
+
+    def paymentMethods = [[PaymentType.CREDIT_CARD,PaymentType.DEBIT_CARD]:new Card(cardNumber:accountCardNumber),
+                          [PaymentType.CHECK,PaymentType.REFERENCED_DEPOSIT]:new BankAccount(accountNumber:accountCardNumber)]
+
+    def paymentType = PaymentType.values().find{ normalizeString(it.value) == normalizeString(row.getCell(3)?.stringCellValue) }
+    def periodicity = Periodicity.values().find{ normalizeString(it.value) == normalizeString(row.getCell(4)?.stringCellValue) }
+
+    def paymentMethod = paymentMethods.find{ it.key.contains(paymentType) }?.value
+
+    if(paymentMethod){
+      paymentMethod.paymentType = paymentType
+      paymentMethod.periodicity = periodicity
+    }
+
   }
 
 }
