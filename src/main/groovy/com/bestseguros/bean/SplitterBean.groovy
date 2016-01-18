@@ -54,8 +54,6 @@ class SplitterBean{
     def planName = rows[2].getCell(2)?.stringCellValue
     def productName = normalizeString(rows[2].getCell(1)?.stringCellValue)
 
-    getPaymentMethodFromRow(rows[2])
-
     Product.withTransaction{ status ->
       product = Product.list().find{ p ->
         normalizeString(p.name).matches(".*${productName}.*") && p.insurance.id == insurance.id
@@ -87,7 +85,9 @@ class SplitterBean{
 
     def policy = new Policy(product:product,
                             policyStatus:PolicyStatus.CREATED,
-                            plan:plan)
+                            plan:plan,
+                            payment:getPaymentMethodFromRow(rows[2]))
+
     insureds.each{ insured ->
       policy.addToInsureds(insured)
     }
@@ -159,7 +159,7 @@ class SplitterBean{
   }
 
   private def getPaymentMethodFromRow(XSSFRow row){
-    def accountCardNumberCell = row.getCell(5)
+    def accountCardNumberCell = row.getCell(6)
     accountCardNumberCell?.setCellType(XSSFCell.CELL_TYPE_STRING)
     def accountCardNumber = new BigDecimal(accountCardNumberCell?.stringCellValue ?: "0").toPlainString()
 
@@ -170,12 +170,18 @@ class SplitterBean{
     def periodicity = Periodicity.values().find{ normalizeString(it.value) == normalizeString(row.getCell(4)?.stringCellValue) }
 
     def paymentMethod = paymentMethods.find{ it.key.contains(paymentType) }?.value
+    def payment = null
 
     if(paymentMethod){
       paymentMethod.paymentType = paymentType
       paymentMethod.periodicity = periodicity
+      Policy.withTransaction{ session ->
+        paymentMethod?.save()
+      }
+      payment = new Payment(paymentMethodRef:paymentMethod.id,type:paymentMethod.class.simpleName)
     }
 
+    payment
   }
 
 }
