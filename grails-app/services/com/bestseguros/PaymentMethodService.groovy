@@ -26,4 +26,8 @@ class PaymentMethodService {
     policy
   }
 
+  def checkPaymentMethodForPolicy(Policy policy){
+    policy.payment != null ? true : false
+  }
+
 }
