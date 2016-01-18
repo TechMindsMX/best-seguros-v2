@@ -7,6 +7,7 @@ class Policy {
   PolicyStatus policyStatus
   Plan plan
   Payment payment
+  String fileName = 'Sin archivo'
   static hasMany = [insureds:Insured]
 
   Date dateCreated
