@@ -481,4 +481,5 @@ databaseChangeLog = {
   include file: 'adding-uuid-to-the-policy.groovy'
   include file: 'adding-payment-method.groovy'
   include file: 'adding-datest-to-bankaccount-and-card.groovy'
+  include file: 'adding-file-name-to-policy.groovy'
 }
