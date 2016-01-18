@@ -5,7 +5,7 @@ import grails.test.mixin.Mock
 import spock.lang.Specification
 import java.lang.Void as Should
 
-@Mock([Policy,Card,BankAccount])
+@Mock([Policy,Card,BankAccount,Payment])
 @TestFor(PaymentMethodService)
 class PaymentMethodServiceSpec extends Specification {
 
@@ -28,4 +28,26 @@ class PaymentMethodServiceSpec extends Specification {
       new PaymentMethodCommand(accountNumber:"012345678910",paymentType:PaymentType.CHECK,periodicity:Periodicity.QUARTERLY)      || BankAccount.class.simpleName
   }
 
+  Should "check if the policy has a payment method"(){
+    given: "the policy"
+      def policy = new Policy(policyStatus:PolicyStatus.CREATED)
+      policy.save(validate:false)
+
+    and:"the payment method"
+      def card = new Card(cardNumber:"123456789012345",
+                          cardProvider:CardProvider.VISA,
+                          paymentType:PaymentType.CREDIT_CARD,
+                          periodicity:Periodicity.MONTHLY)
+      card.save()
+
+      def payment = new Payment(paymentMethodRef:card.id,
+                                type:card.class.simpleName)
+      payment.save()
+      policy.payment = payment
+
+    when:
+      def itHasPaymentMethod = service.checkPaymentMethodForPolicy(policy)
+    then:
+      itHasPaymentMethod
+  }
 }
