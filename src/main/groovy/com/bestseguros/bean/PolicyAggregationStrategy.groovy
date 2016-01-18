@@ -8,18 +8,18 @@ class PolicyAggregationStrategy implements AggregationStrategy{
 
   public Exchange aggregate(Exchange oldExchange, Exchange newExchange) {
     def policies = null
-    Policy newPolicy = newExchange.getIn().getBody(Policy.class)
-    newPolicy.fileName = newExchange.in.headers.CamelFileName
+    LinkedHashMap policyInfo = newExchange.getIn().getBody(LinkedHashMap.class)
+    policyInfo.policy.fileName = newExchange.in.headers.CamelFileName
 
     if(!oldExchange){
-      policies = new ArrayList<Policy>()
-      policies << newPolicy
+      policies = []
+      policies << policyInfo
       newExchange.in.setBody(policies)
       newExchange
     }
     else{
       policies = oldExchange.in.getBody(ArrayList.class);
-      policies << newPolicy
+      policies << policyInfo
       oldExchange
     }
   }
