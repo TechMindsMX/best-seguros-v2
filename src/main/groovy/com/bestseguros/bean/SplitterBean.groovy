@@ -15,7 +15,9 @@ import com.bestseguros.Payment
 import com.bestseguros.PaymentType
 import com.bestseguros.Periodicity
 import com.bestseguros.Card
+import com.bestseguros.CardProvider
 import com.bestseguros.BankAccount
+import com.bestseguros.Bank
 import java.text.Normalizer
 import java.text.Normalizer.Form
 
@@ -42,7 +44,7 @@ class SplitterBean{
     policies
   }
 
-  private Policy getPolicyFromRows(def rows){
+  private def getPolicyFromRows(def rows){
     def insurance = Insurance.withTransaction{ status ->
       Insurance.findByNameIlike("%${rows[2].getCell(0).stringCellValue}%")
     }
@@ -85,14 +87,13 @@ class SplitterBean{
 
     def policy = new Policy(product:product,
                             policyStatus:PolicyStatus.CREATED,
-                            plan:plan,
-                            payment:getPaymentMethodFromRow(rows[2]))
+                            plan:plan)
 
     insureds.each{ insured ->
       policy.addToInsureds(insured)
     }
 
-    policy
+    [paymentMethod:getPaymentMethodFromRow(rows[2]),policy:policy]
   }
 
   private String normalizeString(String notNormalizedString){
@@ -166,22 +167,27 @@ class SplitterBean{
     def paymentMethods = [[PaymentType.CREDIT_CARD,PaymentType.DEBIT_CARD]:new Card(cardNumber:accountCardNumber),
                           [PaymentType.CHECK,PaymentType.REFERENCED_DEPOSIT]:new BankAccount(accountNumber:accountCardNumber)]
 
+    def addBankOrCardProvider = [(BankAccount.class.simpleName):{ paymentMethod,bankName ->
+                                                                Bank.withTransaction{ session ->
+                                                                  paymentMethod.bank = Bank.findByName(bankName ?: "")
+                                                                }
+                                                             },
+                                  (Card.class.simpleName):{ paymentMethod, cardProvider ->
+                                                              paymentMethod.cardProvider = CardProvider.values().find{ normalizeString(it.value) == normalizeString(cardProvider) }
+                                                          }]
+
     def paymentType = PaymentType.values().find{ normalizeString(it.value) == normalizeString(row.getCell(3)?.stringCellValue) }
     def periodicity = Periodicity.values().find{ normalizeString(it.value) == normalizeString(row.getCell(4)?.stringCellValue) }
-
     def paymentMethod = paymentMethods.find{ it.key.contains(paymentType) }?.value
-    def payment = null
+    def cardProviderOrBank = row.getCell(5)?.stringCellValue
 
     if(paymentMethod){
       paymentMethod.paymentType = paymentType
       paymentMethod.periodicity = periodicity
-      Policy.withTransaction{ session ->
-        paymentMethod?.save()
-      }
-      payment = new Payment(paymentMethodRef:paymentMethod.id,type:paymentMethod.class.simpleName)
+      addBankOrCardProvider[paymentMethod.class.simpleName](paymentMethod,cardProviderOrBank)
     }
 
-    payment
+    paymentMethod
   }
 
 }
