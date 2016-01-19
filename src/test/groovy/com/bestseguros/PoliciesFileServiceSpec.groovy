@@ -10,7 +10,7 @@ import org.apache.camel.impl.*
 import java.lang.Void as Should
 
 @TestFor(PoliciesFileService)
-@Mock([Policy,Plan,Insurance,Product,InsuredForPlan,Trade,Sponsor])
+@Mock([Policy,Plan,Insurance,Product,InsuredForPlan,Trade,Sponsor,Card,Payment])
 class PoliciesFileServiceSpec extends Specification {
 
   Should "save the policy from the exchange"(){
@@ -40,6 +40,13 @@ class PoliciesFileServiceSpec extends Specification {
     and:"the insureds"
       def insureds = [createInsured(InsuredType.CONTRACTING_PARTY),createInsured(InsuredType.PRINCIPAL)]
 
+    and:"the payment Method"
+      def card = new Card(cardNumber:"123456789012345",
+                          cardProvider:CardProvider.VISA,
+                          paymentType:PaymentType.CREDIT_CARD,
+                          periodicity:Periodicity.MONTHLY)
+      card.save()
+
     and:"the policy"
       def policy = new Policy(product:product,
                               policyStatus:PolicyStatus.CREATED)
@@ -47,16 +54,26 @@ class PoliciesFileServiceSpec extends Specification {
     and:"the exchange"
       CamelContext context = new DefaultCamelContext()
       def exchange = new DefaultExchange(context)
-      exchange.in.setBody([policy])
+      def policyInfo = [paymentMethod:card,policy:policy]
+      exchange.in.setBody([policyInfo])
 
-    and:"the policy service"
+    and:"the collaborators"
       def policyService = Mock(PolicyService)
+      def paymentMethodService = Mock(PaymentMethodService)
       service.policyService = policyService
+      service.paymentMethodService = paymentMethodService
     when:
       service.savePolicies(exchange)
     then:
       Policy.list().size() == 1
       1 * policyService.isThePolicyValid(_) >> true
+      1 * paymentMethodService.createPaymentForPolicy(_,_) >> { policyInfo_ ->
+                                                                  def payment = new Payment(paymentMethodRef:card.id,type:card.class.simpleName)
+                                                                  payment.save()
+                                                                  policy.payment = payment
+                                                                  policy.save()
+                                                                  policy
+                                                              }
   }
 
   private def createInsured(InsuredType insuredType){
