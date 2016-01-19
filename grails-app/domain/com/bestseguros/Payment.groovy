@@ -6,7 +6,7 @@ class Payment{
   String type
 
   static constraints = {
-    paymentMethodRef nullable:false,blank:false
+    paymentMethodRef nullable:false
     type nullable:false,blank:false
   }
 
