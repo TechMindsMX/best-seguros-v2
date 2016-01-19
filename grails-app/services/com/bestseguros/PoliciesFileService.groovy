@@ -7,16 +7,21 @@ import org.apache.camel.*
 class PoliciesFileService {
 
   def policyService
+  def paymentService
+  def paymentMethodService
 
   def savePolicies(Exchange exchange){
-    def policies = exchange.getIn().getBody(ArrayList.class)
+    def policiesWithInfo = exchange.getIn().getBody(ArrayList.class)
     def savedPolicies = []
-
-    policies.each{ policy ->
-      if(policyService.isThePolicyValid(policy)){
-        policy.save()
-        savedPolicies << policy
+    policiesWithInfo.each{ policyInfo ->
+      if(policyService.isThePolicyValid(policyInfo.policy)){
+        def policy = paymentMethodService.createPaymentForPolicy(policyInfo.policy,policyInfo.paymentMethod)
+        if(paymentMethodService.checkPaymentMethodForPolicy(policy)){
+          policy.save()
+          savedPolicies << policy
+        }
       }
+
     }
 
     savedPolicies
