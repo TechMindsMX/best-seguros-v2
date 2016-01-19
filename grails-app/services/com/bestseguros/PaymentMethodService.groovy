@@ -26,8 +26,20 @@ class PaymentMethodService {
     policy
   }
 
+  def createPaymentForPolicy(Policy policy,def paymentMethod){
+    if(paymentMethod.validate()){
+      paymentMethod.save()
+      def payment = paymentService.createPaymentForInstance(paymentMethod)
+      policy.payment = payment
+      if(payment?.id){
+        policy.save()
+      }
+      policy
+    }
+  }
+
   def checkPaymentMethodForPolicy(Policy policy){
-    policy.payment != null ? true : false
+    policy?.payment?.id != null ? true : false
   }
 
 }
