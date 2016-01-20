@@ -31,7 +31,7 @@ class FileRoute extends SingleRouteCamelConfiguration{
         from("direct:processFile").filter { exchange ->
           exchange.in.headers.CamelFileName.endsWith("xlsx")
         }
-        .split().method("splitterBean","splitBody")
+        .split().method("splitterService","splitBody")
         .aggregate(header("CamelFileName"), new PolicyAggregationStrategy()).completionTimeout(3000)
         .to("bean:policiesFileService?method=savePolicies(*)")
         .split(body())

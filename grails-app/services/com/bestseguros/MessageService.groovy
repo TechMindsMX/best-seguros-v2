@@ -11,8 +11,9 @@ class MessageService {
   def sendPolicyMail(Exchange exchange){
     def policy = exchange.getIn().getBody(Policy.class)
 
-    if(!mailSenderActor.isActive())
+    if(!mailSenderActor.isActive()){
       mailSenderActor.start()
+    }
 
     mailSenderActor.send policy.id
   }
