@@ -14,14 +14,14 @@ class PoliciesFileService {
     def policiesWithInfo = exchange.getIn().getBody(ArrayList.class)
     def savedPolicies = []
     policiesWithInfo.each{ policyInfo ->
-      if(policyService.isThePolicyValid(policyInfo.policy)){
-        def policy = paymentMethodService.createPaymentForPolicy(policyInfo.policy,policyInfo.paymentMethod)
+      def policy = paymentMethodService.createPaymentForPolicy(policyInfo.policy, policyInfo.paymentMethod)
+
+      if(policyService.isThePolicyValid(policy)){
         if(paymentMethodService.checkPaymentMethodForPolicy(policy)){
           policy.save()
           savedPolicies << policy
         }
       }
-
     }
 
     savedPolicies
