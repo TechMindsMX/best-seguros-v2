@@ -75,13 +75,16 @@ class PolicyService {
     policy.policyStatus = PolicyStatus.FINISHED
   }
 
-  def getPolicyDetail(Policy policy){
+  /*NOTE: Se envían los insureds para generar el reporte ya que al consultar la póliza nuevamente con el método get() el arreglo viene nulo.
+    Se intentó enviar el objeto directamente al método, pero había un problema de LazyInitializationException al obtener nuevamente los asegurados. */
+  def getPolicyDetailWithInsureds(def policyId, def insureds){
+    def policy = Policy.get(policyId)
     def detail = [policyNumber:policy.id, dateCreated:policy.dateCreated,taxes:0,totalInsuranceCost:0]
-    detail.contractingParty = policy.insureds.find{ it.insuredType == InsuredType.PRINCIPAL }
+    detail.contractingParty = insureds.find{ it.insuredType == InsuredType.PRINCIPAL }
     detail.coin = policy.product.coin
     detail.productName = policy.product.name
     detail.benefits = policy.plan.insuredSumsByCoveragePerInsured.sort{ insuredSum -> insuredSum.insured }
-    detail.insureds = policy.insureds.findAll{ insured -> insured.insuredType != InsuredType.CONTRACTING_PARTY }.sort{ it.insuredType }
+    detail.insureds = insureds.findAll{ insured -> insured.insuredType != InsuredType.CONTRACTING_PARTY }.sort{ it.insuredType }
     detail.monthlyInsuranceCost = 0
     detail.payment = paymentService.findPaymentInstance(policy.payment.paymentMethodRef)?.periodicity.value
 

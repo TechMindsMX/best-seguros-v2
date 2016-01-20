@@ -24,7 +24,7 @@ class PolicyController {
   }
 
   def show(Policy policy) {
-    def policyDetail = policyService.getPolicyDetail(policy)
+    def policyDetail = policyService.getPolicyDetailWithInsureds(policy,policy.insureds)
     renderPdf(template:"/pdfs/report",model:[policyDetail:policyDetail])
   }
 
