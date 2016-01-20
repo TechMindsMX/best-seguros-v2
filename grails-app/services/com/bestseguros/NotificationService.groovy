@@ -11,7 +11,7 @@ class NotificationService {
   def grailsApplication
 
   def sendPolicyPDF(def policy){
-    def policyDetail = policyService.getPolicyDetailWithInsureds(policy.id, policy.insureds)
+    def policyDetail = policyService.getPolicyDetailWithInsureds(policy.id,policy.insureds)
     def email = policyDetail.contractingParty.email
 
     ByteArrayOutputStream bytes = pdfRenderingService.render(template:"/pdfs/report",model:[policyDetail:policyDetail])
@@ -21,8 +21,20 @@ class NotificationService {
       to email
       from grailsApplication.config.mail.from
       subject "Póliza BestSeguros"
-      body 'Póliza de seguros'
+      body "Póliza de seguros"
       attachBytes "Policy.pdf","application/pdf",bytes.toByteArray()
+    }
+  }
+
+  def sendPolicyError(Policy policy){
+    mailService.sendMail{
+      multipart true
+      to grailsApplication.config.mail.error.to
+      from grailsApplication.config.mail.from
+      subject "Error"
+      body(view:"/notification/error",
+           plugin:"email-confirmation",
+           model:[insureds:policy?.insureds])
     }
   }
 
