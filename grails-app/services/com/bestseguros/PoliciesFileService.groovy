@@ -9,6 +9,7 @@ class PoliciesFileService {
   def policyService
   def paymentService
   def paymentMethodService
+  def notificationService
 
   def savePolicies(Exchange exchange){
     def policiesWithInfo = exchange.getIn().getBody(ArrayList.class)
@@ -18,8 +19,12 @@ class PoliciesFileService {
 
       if(policyService.isThePolicyValid(policy)){
         if(paymentMethodService.checkPaymentMethodForPolicy(policy)){
+          policyService.updatePolicyStatus(policy)
           policy.save()
           savedPolicies << policy
+        }
+        else{
+          notificationService.sendPolicyError(policy)
         }
       }
     }
