@@ -10,9 +10,8 @@ class NotificationService {
   def policyService
   def grailsApplication
 
-  def sendPolicyPDF(Long policyId){
-    def policy = Policy.get(policyId)
-    def policyDetail = policyService.getPolicyDetail(policy)
+  def sendPolicyPDF(def policy){
+    def policyDetail = policyService.getPolicyDetailWithInsureds(policy.id, policy.insureds)
     def email = policyDetail.contractingParty.email
 
     ByteArrayOutputStream bytes = pdfRenderingService.render(template:"/pdfs/report",model:[policyDetail:policyDetail])

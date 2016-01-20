@@ -15,7 +15,7 @@ class MessageService {
       mailSenderActor.start()
     }
 
-    mailSenderActor.send policy.id
+    mailSenderActor.send policy
   }
 
 }
