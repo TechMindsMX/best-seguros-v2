@@ -34,6 +34,7 @@ class FileRoute extends SingleRouteCamelConfiguration{
         .split().method("splitterService","splitBody")
         .aggregate(header("CamelFileName"), new PolicyAggregationStrategy()).completionTimeout(3000)
         .to("bean:policiesFileService?method=savePolicies(*)")
+        .to("bean:policiesFileService?method=savePaymentMethod(*)")
         .split(body())
         .to("bean:messageService?method=sendPolicyMail(*)")
       }
