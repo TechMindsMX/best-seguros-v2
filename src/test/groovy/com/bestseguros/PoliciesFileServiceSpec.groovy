@@ -67,13 +67,6 @@ class PoliciesFileServiceSpec extends Specification {
     then:
       Policy.list().size() == 1
       1 * policyService.isThePolicyValid(_) >> true
-      1 * paymentMethodService.createPaymentForPolicy(_,_) >> { policyInfo_ ->
-                                                                  def payment = new Payment(paymentMethodRef:card.id,type:card.class.simpleName)
-                                                                  payment.save()
-                                                                  policy.payment = payment
-                                                                  policy.save()
-                                                                  policy
-                                                              }
   }
 
   private def createInsured(InsuredType insuredType){
