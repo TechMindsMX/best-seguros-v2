@@ -32,9 +32,9 @@ class PaymentMethodService {
       paymentMethod.save()
       def payment = paymentService.createPaymentForInstance(paymentMethod)
       policy.payment = payment
+      policy.save()
     }
-
-    policy
+    
   }
 
   def checkPaymentMethodForPolicy(Policy policy){
