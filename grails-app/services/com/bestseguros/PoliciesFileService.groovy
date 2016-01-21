@@ -15,7 +15,7 @@ class PoliciesFileService {
     def policiesWithInfo = exchange.getIn().getBody(ArrayList.class)
     def savedPolicies = []
     policiesWithInfo.each{ policyInfo ->
-      def policy = policyInfo.policy      
+      def policy = policyInfo.policy
 
       if(policyService.isThePolicyValid(policy)){
         policy.save()
@@ -32,26 +32,35 @@ class PoliciesFileService {
   def savePaymentMethod(Exchange exchange){
     def policies = []
     def policiesWithPaymentMethod = exchange.in.getBody(ArrayList.class)
+
     policiesWithPaymentMethod.each{ policyWithPaymentMethod ->
-      def policy = policyWithPaymentMethod.policy 
+      def policy = policyWithPaymentMethod.policy
       paymentMethodService.createPaymentForPolicy(policy,policyWithPaymentMethod.paymentMethod)
 
-      if(paymentMethodService.checkPaymentMethodForPolicy(policy)){
+      if(paymentMethodService.checkPaymentMethodForPolicy(policy))
         policyService.updatePolicyStatus(policy)
-        policies << policy
-      }
+
+      policies << policy
     }
 
     policies
   }
 
-  def removeInvalidPolicies(def policies){
+  def removeInvalidPolicies(Exchange exchange){
+    def policies = exchange.in.getBody(ArrayList.class)
+    def validPolicies = []
+
     policies.each{ policy ->
       if(policy.policyStatus != PolicyStatus.FINISHED){
+        notificationService.sendPolicyError(policy,true)
         policy.delete()
       }
+      else{
+        policy.save()
+        validPolicies << policy
+      }
     }
-    policies
+    validPolicies
   }
 
 }

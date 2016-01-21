@@ -27,14 +27,11 @@ class PaymentMethodService {
   }
 
   def createPaymentForPolicy(Policy policy,def paymentMethod){
-
     if(paymentMethod.validate()){
       paymentMethod.save()
       def payment = paymentService.createPaymentForInstance(paymentMethod)
       policy.payment = payment
-      policy.save()
     }
-    
   }
 
   def checkPaymentMethodForPolicy(Policy policy){
