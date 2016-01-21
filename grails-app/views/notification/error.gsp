@@ -15,7 +15,12 @@
 </head>
 <body>
   <div class="container">
-    <h3>Hubo un error al procesar la póliza con la siguiente información.</h3>
+    <g:if test="${invalidProduct}">
+      <h3>Existe un error en la información de pago de la siguiente póliza.</h3>
+    </g:if>
+    <g:else>
+      <h3>Hubo un error al procesar la póliza con la siguiente información.</h3>
+    </g:else>
 
     <table style="border:solid 1px;">
       <thead>
