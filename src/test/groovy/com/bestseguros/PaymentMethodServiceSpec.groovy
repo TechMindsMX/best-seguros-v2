@@ -37,13 +37,13 @@ class PaymentMethodServiceSpec extends Specification {
       def paymentMethod = _paymentMethod
       service.paymentService = paymentService
     when:
-      def policyWithPayment = service.createPaymentForPolicy(policy,paymentMethod)
+      service.createPaymentForPolicy(policy,paymentMethod)
     then:
       1 * paymentService.createPaymentForInstance(_) >> { pm -> def payment = new Payment(paymentMethodRef:1,type:pm.class.simpleName)
                                                                 payment.save()
                                                                 payment
-                                                         }
-      policyWithPayment.payment.id
+                                                        }
+      policy.payment.id
     where:
       _paymentMethod << [new BankAccount(accountNumber:"123456789012345",paymentType:PaymentType.CHECK,periodicity:Periodicity.ANNUAL,bank:new Bank(name:"NAFIN").save()),
                          new Card(cardNumber:"123456789012345",cardProvider:CardProvider.VISA,paymentType:PaymentType.CREDIT_CARD,periodicity:Periodicity.MONTHLY)]
