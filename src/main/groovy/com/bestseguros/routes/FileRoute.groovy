@@ -4,7 +4,6 @@ import org.apache.camel.builder.RouteBuilder
 import org.apache.camel.Exchange
 import org.apache.camel.CamelContext
 import org.apache.camel.spring.SpringCamelContext
-import org.apache.camel.dropbox.*
 import org.springframework.context.annotation.Configuration
 import org.apache.camel.spring.javaconfig.SingleRouteCamelConfiguration
 import com.bestseguros.bean.PolicyAggregationStrategy
