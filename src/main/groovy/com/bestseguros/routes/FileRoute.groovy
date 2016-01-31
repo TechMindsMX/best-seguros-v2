@@ -24,16 +24,13 @@ class FileRoute extends SingleRouteCamelConfiguration{
   public RouteBuilder route(){
     return new RouteBuilder(){
       void configure() throws Exception{
-        from(grailsApplication.config.endPoint.from).filter{ exchange ->
-          exchange.in.headers.DOWNLOADED_FILE.endsWith("xlsx")
-        }
-        .setHeader("CamelFileName",header("DOWNLOADED_FILE"))
-        .to("${grailsApplication.config.endPoint.toFile}")
+        from(grailsApplication.config.endPoint.from)
+        .to(grailsApplication.config.endPoint.toFile)
         .multicast().to("direct:moveFile","direct:processFile")
 
         from("direct:moveFile").to(grailsApplication.config.endPoint.to)
-
-        from("direct:processFile").filter { exchange ->
+        
+        from("direct:processFile").filter{ exchange ->
           exchange.in.headers.CamelFileName.endsWith("xlsx")
         }
         .split().method("splitterService","splitBody")
