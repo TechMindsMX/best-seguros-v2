@@ -4,6 +4,7 @@ import org.apache.camel.builder.RouteBuilder
 import org.apache.camel.Exchange
 import org.apache.camel.CamelContext
 import org.apache.camel.spring.SpringCamelContext
+import org.apache.camel.dropbox.*
 import org.springframework.context.annotation.Configuration
 import org.apache.camel.spring.javaconfig.SingleRouteCamelConfiguration
 import com.bestseguros.bean.PolicyAggregationStrategy
@@ -23,7 +24,11 @@ class FileRoute extends SingleRouteCamelConfiguration{
   public RouteBuilder route(){
     return new RouteBuilder(){
       void configure() throws Exception{
-        from(grailsApplication.config.endPoint.from)
+        from(grailsApplication.config.endPoint.from).filter{ exchange ->
+          exchange.in.headers.DOWNLOADED_FILE.endsWith("xlsx")
+        }
+        .setHeader("CamelFileName",header("DOWNLOADED_FILE"))
+        .to("${grailsApplication.config.endPoint.toFile}")
         .multicast().to("direct:moveFile","direct:processFile")
 
         from("direct:moveFile").to(grailsApplication.config.endPoint.to)
