@@ -10,7 +10,7 @@ class NotificationService {
   def policyService
   def grailsApplication
 
-  def sendPolicyPDF(def policy){
+  def sendPolicyPDF(Policy policy){
     def policyDetail = policyService.getPolicyDetail(policy.id)
     def email = policyDetail.contractingParty.email
 
