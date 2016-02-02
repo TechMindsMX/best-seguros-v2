@@ -293,9 +293,9 @@ class BootStrap {
                           benefits:[productBenefits[0]]),
                  new Plan(name:"Titular y Cónyuge",
                           benefits:[productBenefits[0]]),
-                 new Plan(name:"Titular e hijo(s)",
+                 new Plan(name:"Titular e hijos dependientes",
                           benefits:[productBenefits[1]]),
-                 new Plan(name:"Titular, Cónyuge e hijo(s)",
+                 new Plan(name:"Titular, Cónyuge e hijos dependientes",
                           benefits:[productBenefits[2]])]
 
     insuranceCosts.each{ insuranceCost ->
