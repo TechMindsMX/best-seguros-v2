@@ -11,7 +11,9 @@ class InsuredController {
     if(insured.hasErrors()){
       def insureds = policyService.findSavedAndUnsavedInsuredsForPolicy(policy)
       def insuredTypes = policy?.plan?.insureds*.insured.unique() ?: []
-      def model = [policy:policy,insuredTypes:insuredTypes.sort()]
+      def model = [policy:policy,
+                   insuredTypes:insuredTypes.sort(),
+                   contractingParty:policyService.getContractingParty(policy)]
 
       if(insured.insuredType != InsuredType.CONTRACTING_PARTY){
         insureds.unsavedInsureds[insured.insuredType].remove(0)
