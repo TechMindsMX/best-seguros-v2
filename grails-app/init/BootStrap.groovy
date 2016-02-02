@@ -293,9 +293,9 @@ class BootStrap {
                           benefits:[productBenefits[0]]),
                  new Plan(name:"Titular y Cónyuge",
                           benefits:[productBenefits[0]]),
-                 new Plan(name:"Titular e hijos dependientes",
+                 new Plan(name:"Titular e hijo(s)",
                           benefits:[productBenefits[1]]),
-                 new Plan(name:"Titular, Cónyuge e hijos dependientes",
+                 new Plan(name:"Titular, Cónyuge e hijo(s)",
                           benefits:[productBenefits[2]])]
 
     insuranceCosts.each{ insuranceCost ->
@@ -369,9 +369,9 @@ class BootStrap {
                           benefits:productBenefits),
                  new Plan(name:"Titular y Cónyuge",
                           benefits:productBenefits),
-                 new Plan(name:"Titular e hijos dependientes",
+                 new Plan(name:"Titular e hijo(s)",
                           benefits:productBenefits),
-                 new Plan(name:"Titular, cónyuge e hijos dependientes",
+                 new Plan(name:"Titular, Cónyuge e hijo(s)",
                           benefits:productBenefits)]
 
     rangesAgeByBeneficiary.each{ range ->
