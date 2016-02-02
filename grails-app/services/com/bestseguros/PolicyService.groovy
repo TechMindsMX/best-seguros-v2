@@ -82,6 +82,7 @@ class PolicyService {
     detail.contractingParty = policy.insureds.find{ it.insuredType == InsuredType.PRINCIPAL }
     detail.coin = policy.product.coin
     detail.productName = policy.product.name
+    detail.insurance = policy.product.insurance.name
     detail.benefits = policy.plan.insuredSumsByCoveragePerInsured.sort{ insuredSum -> insuredSum.insured }
     detail.insureds = policy.insureds.findAll{ insured -> insured.insuredType != InsuredType.CONTRACTING_PARTY }.sort{ it.insuredType }
     detail.monthlyInsuranceCost = 0

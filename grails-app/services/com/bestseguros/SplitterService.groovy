@@ -62,7 +62,7 @@ class SplitterService {
     }
 
     plan = product?.plans?.find{ p ->
-      p.name == planName
+      normalizeString(p.name) == normalizeString(planName)
     }
 
     def contractingPartyInfoRow = rows[rows.findIndexOf{ it.getCell(0)?.stringCellValue == "Contratante" }+2]
@@ -119,11 +119,10 @@ class SplitterService {
     def insureds = []
 
     rows.each{ row ->
-      insuredType = InsuredType.values().find{ it.value == row.getCell(0)?.stringCellValue }
+      insuredType = InsuredType.values().find{ normalizeString(it.value) == normalizeString(row.getCell(0)?.stringCellValue) }
       insuredInfo = getInsuredInfoFromRow(row,row.firstCellNum+1,row.lastCellNum)
       insureds << createInsured(insuredInfo,insuredType)
     }
-
     insureds
   }
 

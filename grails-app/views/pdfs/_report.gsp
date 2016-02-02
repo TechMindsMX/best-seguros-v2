@@ -87,7 +87,12 @@
 
         <div class="row">
           <div class="col-print-4">
-            <img src="${grailsApplication.config.grails.serverUrl}/assets/pan_american.png" height="80" width="275"/>
+            <g:if test="${policyDetail.insurance.contains('Pan-American')}">
+              <img src="${grailsApplication.config.grails.serverUrl}/assets/pan_american.png" height="80" width="275"/>
+            </g:if>
+            <g:else>
+              <p></p>
+            </g:else>
           </div>
 
           <div class="col-print-8">
@@ -150,7 +155,7 @@
 
         <div class="row">
           <div class="col-print-12">
-            <p>Pan-American México, Compañia de Seguros, S.A. de C.V., en adelante la "Compañia", de conformidad con el presente contacto,
+            <p>${policyDetail?.insurance}, S.A. de C.V., en adelante la "Compañia", de conformidad con el presente contacto,
                sus alcances y limitaciones, pagará la indemnización que proceda si es que ocurre alguno de los siguientes eventos amparados
                siempre que la póliza correspondiente se encuentre vigente al momento de ocurrir el Evento.</p>
           </div>
@@ -334,7 +339,7 @@
               <div class="col-print-7">
                 <img src="${grailsApplication.config.grails.serverUrl}/assets/signature.png" height="90" width="160" />
                 <hr style="border-top: 1px solid #000 !important;"></hr>
-                <p>Pan-American México, Compañía de Seguros, S.A. de C.V.</p>
+                <p>${policyDetail?.insurance}, S.A. de C.V.</p>
               </div>
             </div>
           </div>
